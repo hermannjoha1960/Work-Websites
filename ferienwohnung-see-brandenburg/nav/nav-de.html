@@ -1,0 +1,97 @@
+<style>
+#main-nav::before{content:"";position:absolute;inset:0 0 auto 0;height:160px;pointer-events:none;z-index:-1;background:linear-gradient(to bottom,rgba(7,20,30,.85),rgba(7,20,30,.55) 50%,rgba(7,20,30,0));transition:opacity .3s}
+#main-nav.nav-scrolled::before{opacity:0}
+#main-nav.nav-scrolled{background:rgba(7,20,30,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+#main-nav .group:hover>.submenu,#main-nav .group:focus-within>.submenu{opacity:1;visibility:visible;transform:translateY(0)}
+#main-nav .group>.submenu::before{content:"";position:absolute;left:0;right:0;top:-.75rem;height:.75rem}
+#main-nav .nav-link{position:relative;display:inline-block;padding:.85rem .5rem;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;font-weight:500}
+#main-nav .nav-link::after{content:"";position:absolute;left:.5rem;right:.5rem;bottom:.45rem;height:1px;background:#C9A86A;transform:scaleX(0);transform-origin:left;transition:transform .3s}
+#main-nav .nav-link:hover::after,#main-nav .nav-link:focus-visible::after{transform:scaleX(1)}
+#mobile-menu{transform:translateX(100%)}
+#mobile-menu.is-open{transform:translateX(0)}
+</style>
+<nav id="main-nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300" aria-label="Hauptnavigation">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 h-20">
+    <a href="/" class="flex items-center gap-3 min-w-0 min-h-[44px]" aria-label="Ferien am See – Startseite">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40" class="w-10 h-10 shrink-0" aria-hidden="true" data-no-lightbox><rect width="64" height="64" rx="14" fill="#0B1F2E"/><circle cx="32" cy="23" r="8" fill="#C9A86A"/><path d="M8 40c6 0 6-4 12-4s6 4 12 4 6-4 12-4 6 4 12 4" fill="none" stroke="#5FB0C8" stroke-width="3" stroke-linecap="round"/><path d="M8 50c6 0 6-4 12-4s6 4 12 4 6-4 12-4 6 4 12 4" fill="none" stroke="#2A88A6" stroke-width="3" stroke-linecap="round"/></svg>
+      <span class="flex flex-col leading-none min-w-0">
+        <span class="font-serif text-xl sm:text-2xl tracking-[0.18em] font-semibold text-sand-50 whitespace-nowrap">FERIEN AM SEE</span>
+        <span class="mt-1 text-[11px] tracking-[0.22em] uppercase text-gold-300 font-sans whitespace-nowrap">Königs Wusterhausen · Brandenburg</span>
+      </span>
+    </a>
+    <ul class="hidden lg:flex items-center gap-3 text-sand-50">
+      <li class="relative group"><a href="/ferienhaeuser" class="nav-link">Unterkünfte</a>
+        <ul class="submenu absolute top-full left-2 mt-3 w-72 rounded-2xl bg-night-950/95 backdrop-blur p-3 opacity-0 invisible translate-y-2 transition shadow-float text-sm">
+          <li><a href="/ferienhaeuser" class="block px-4 py-2.5 rounded-lg hover:bg-white/10">Alle Unterkünfte</a></li>
+          <li><a href="/ferienhaeuser/maisonette-am-kruepelsee" class="block px-4 py-2.5 rounded-lg hover:bg-white/10">Maisonette am Krüpelsee</a></li>
+          <li><a href="/ferienhaeuser/apartment-am-kruepelsee" class="block px-4 py-2.5 rounded-lg hover:bg-white/10">Apartment am Krüpelsee</a></li>
+          <li><a href="/ferienhaeuser/gaestehaus-am-grossen-zug" class="block px-4 py-2.5 rounded-lg hover:bg-white/10">Gästehaus am Großen Zug</a></li>
+          <li><a href="/ferienhaeuser/ferienhaus-am-see-kablow" class="block px-4 py-2.5 rounded-lg hover:bg-white/10">Ferienhaus am See, Kablow</a></li>
+          <li><a href="/ferienhaeuser/villa-am-kruepelsee-zernsdorf" class="block px-4 py-2.5 rounded-lg hover:bg-white/10">Die Villa am Krüpelsee</a></li>
+        </ul>
+      </li>
+      <li class="relative group"><a href="/region" class="nav-link">Region</a>
+        <ul class="submenu absolute top-full left-2 mt-3 w-72 rounded-2xl bg-night-950/95 backdrop-blur p-3 opacity-0 invisible translate-y-2 transition shadow-float text-sm">
+          <li><a href="/region" class="block px-4 py-2.5 rounded-lg hover:bg-white/10">Königs Wusterhausen &amp; Dahme-Seenland</a></li>
+          <li><a href="/region/kruepelsee" class="block px-4 py-2.5 rounded-lg hover:bg-white/10">Der Krüpelsee</a></li>
+          <li><a href="/region/ausflugsziele" class="block px-4 py-2.5 rounded-lg hover:bg-white/10">Ausflugsziele</a></li>
+          <li><a href="/region/aktivitaeten-am-see" class="block px-4 py-2.5 rounded-lg hover:bg-white/10">Aktivitäten am See</a></li>
+          <li><a href="/region/anreise" class="block px-4 py-2.5 rounded-lg hover:bg-white/10">Anreise</a></li>
+        </ul>
+      </li>
+      <li><a href="/gastgeber" class="nav-link">Gastgeber</a></li>
+      <li><a href="/faq" class="nav-link">FAQ</a></li>
+      <li><a href="/kontakt" class="nav-link">Kontakt</a></li>
+      <!--tb-nav-insert-->
+    </ul>
+    <div class="flex items-center gap-1 sm:gap-2">
+      <a href="tel:{{phone_link}}" class="hidden md:inline-flex w-11 h-11 items-center justify-center rounded-full text-sand-50/80 hover:text-sand-50 hover:bg-white/10" aria-label="Anrufen"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg></a>
+      <a href="{{whatsapp_link}}" target="_blank" rel="noopener" class="hidden md:inline-flex w-11 h-11 items-center justify-center rounded-full text-sand-50/80 hover:text-sand-50 hover:bg-white/10" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/></svg></a>
+      <a href="/buchen" class="convert btn-gold hidden md:inline-flex items-center px-5 py-3 rounded-full text-sm font-semibold whitespace-nowrap">Verfügbarkeit anfragen</a>
+      <button id="mobile-menu-btn" type="button" class="lg:hidden inline-flex w-11 h-11 items-center justify-center rounded-full text-sand-50 hover:bg-white/10" aria-label="Menü öffnen" aria-controls="mobile-menu" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg></button>
+    </div>
+  </div>
+</nav>
+<div id="mobile-backdrop" class="fixed inset-0 bg-night-950/70 z-40 hidden"></div>
+<aside id="mobile-menu" class="fixed top-0 right-0 h-full w-[86%] max-w-sm bg-night-950 text-sand-50 z-50 p-6 overflow-y-auto transition-transform duration-300" aria-label="Mobiles Menü" aria-hidden="true">
+  <div class="flex items-center justify-between">
+    <span class="font-serif text-xl tracking-[0.18em] font-semibold">FERIEN AM SEE</span>
+    <button id="mobile-menu-close" type="button" class="inline-flex w-11 h-11 items-center justify-center rounded-full hover:bg-white/10" aria-label="Menü schließen"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+  </div>
+  <ul class="mt-6 space-y-1 text-lg">
+    <li><a href="/ferienhaeuser" class="block py-2.5 font-semibold">Unterkünfte</a>
+      <ul class="pl-4 space-y-0.5 text-base text-sand-100/80">
+        <li><a href="/ferienhaeuser/maisonette-am-kruepelsee" class="block py-2.5">Maisonette am Krüpelsee</a></li>
+        <li><a href="/ferienhaeuser/apartment-am-kruepelsee" class="block py-2.5">Apartment am Krüpelsee</a></li>
+        <li><a href="/ferienhaeuser/gaestehaus-am-grossen-zug" class="block py-2.5">Gästehaus am Großen Zug</a></li>
+        <li><a href="/ferienhaeuser/ferienhaus-am-see-kablow" class="block py-2.5">Ferienhaus am See, Kablow</a></li>
+        <li><a href="/ferienhaeuser/villa-am-kruepelsee-zernsdorf" class="block py-2.5">Die Villa am Krüpelsee</a></li>
+      </ul>
+    </li>
+    <li><a href="/region" class="block py-2.5 font-semibold">Region</a>
+      <ul class="pl-4 space-y-0.5 text-base text-sand-100/80">
+        <li><a href="/region/kruepelsee" class="block py-2.5">Der Krüpelsee</a></li>
+        <li><a href="/region/ausflugsziele" class="block py-2.5">Ausflugsziele</a></li>
+        <li><a href="/region/aktivitaeten-am-see" class="block py-2.5">Aktivitäten am See</a></li>
+        <li><a href="/region/anreise" class="block py-2.5">Anreise</a></li>
+      </ul>
+    </li>
+    <li><a href="/gastgeber" class="block py-2.5 font-semibold">Gastgeber</a></li>
+    <li><a href="/faq" class="block py-2.5 font-semibold">FAQ</a></li>
+    <li><a href="/kontakt" class="block py-2.5 font-semibold">Kontakt</a></li>
+    <!--tb-nav-insert-->
+  </ul>
+  <a href="/buchen" class="convert btn-gold mt-8 block text-center px-5 py-3 rounded-full font-semibold">Verfügbarkeit anfragen</a>
+  <div class="mt-6 text-sm text-sand-100/70">
+    <a href="tel:{{phone_link}}" class="block py-3">{{phone}}</a>
+    <a href="{{whatsapp_link}}" target="_blank" rel="noopener" class="block py-3">WhatsApp {{whatsapp}}</a>
+  </div>
+</aside>
+<script>
+document.addEventListener('DOMContentLoaded',function(){var n=document.getElementById('main-nav');function s(){n.classList.toggle('nav-scrolled',window.scrollY>60)}window.addEventListener('scroll',s,{passive:true});s();
+var b=document.getElementById('mobile-menu-btn'),c=document.getElementById('mobile-menu-close'),m=document.getElementById('mobile-menu'),k=document.getElementById('mobile-backdrop');
+function o(){m.classList.add('is-open');m.setAttribute('aria-hidden','false');k.classList.remove('hidden');document.body.style.overflow='hidden';b.setAttribute('aria-expanded','true');c.focus()}
+function x(){m.classList.remove('is-open');m.setAttribute('aria-hidden','true');k.classList.add('hidden');document.body.style.overflow='';b.setAttribute('aria-expanded','false')}
+b&&b.addEventListener('click',o);c&&c.addEventListener('click',x);k&&k.addEventListener('click',x);document.addEventListener('keydown',function(e){if(e.key==='Escape')x()});
+m&&m.querySelectorAll('a[href]').forEach(function(a){a.addEventListener('click',x)});});
+</script>

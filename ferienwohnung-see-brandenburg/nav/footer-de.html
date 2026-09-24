@@ -1,0 +1,70 @@
+<footer class="bg-night-950 text-sand-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+    <div class="min-w-0">
+      <a href="/" class="inline-flex items-center gap-3 min-h-[44px]" aria-label="Ferien am See – Startseite">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40" class="w-10 h-10 shrink-0" aria-hidden="true" data-no-lightbox><rect width="64" height="64" rx="14" fill="#164058"/><circle cx="32" cy="23" r="8" fill="#C9A86A"/><path d="M8 40c6 0 6-4 12-4s6 4 12 4 6-4 12-4 6 4 12 4" fill="none" stroke="#5FB0C8" stroke-width="3" stroke-linecap="round"/><path d="M8 50c6 0 6-4 12-4s6 4 12 4 6-4 12-4 6 4 12 4" fill="none" stroke="#2A88A6" stroke-width="3" stroke-linecap="round"/></svg>
+        <span class="flex flex-col leading-none"><span class="font-serif text-xl tracking-[0.18em] font-semibold text-sand-50">FERIEN AM SEE</span><span class="mt-1 text-[11px] tracking-[0.22em] uppercase text-gold-300">Königs Wusterhausen · Brandenburg</span></span>
+      </a>
+      <p class="mt-5 font-serif text-2xl text-sand-50 leading-snug">Ferien direkt am See –<br>40 Minuten von Berlin.</p>
+      <p class="mt-4 text-sm text-sand-100/70">Ein Angebot der {{company_name}} · Seehaus Berlin</p>
+      <address class="mt-4 not-italic text-sm text-sand-100/80 space-y-1">
+        <p>{{company_address}}</p>
+        <p><a href="tel:{{phone_link}}" class="inline-block py-2.5 hover:text-gold-300">{{phone}}</a></p>
+        <p><a href="{{whatsapp_link}}" target="_blank" rel="noopener" class="inline-block py-2.5 hover:text-gold-300">WhatsApp {{whatsapp}}</a></p>
+        <p><a href="mailto:{{email}}" class="inline-block py-2.5 hover:text-gold-300 break-all">{{email}}</a></p>
+        <p>{{hours}}</p>
+      </address>
+    </div>
+    <div>
+      <p class="eyebrow !text-gold-300">Unterkünfte</p>
+      <ul class="mt-3 text-sm">
+        <li><a href="/ferienhaeuser" class="inline-block py-2.5 hover:text-gold-300">Alle Unterkünfte</a></li>
+        <li><a href="/ferienhaeuser/maisonette-am-kruepelsee" class="inline-block py-2.5 hover:text-gold-300">Maisonette am Krüpelsee</a></li>
+        <li><a href="/ferienhaeuser/apartment-am-kruepelsee" class="inline-block py-2.5 hover:text-gold-300">Apartment am Krüpelsee</a></li>
+        <li><a href="/ferienhaeuser/gaestehaus-am-grossen-zug" class="inline-block py-2.5 hover:text-gold-300">Gästehaus am Großen Zug</a></li>
+        <li><a href="/ferienhaeuser/ferienhaus-am-see-kablow" class="inline-block py-2.5 hover:text-gold-300">Ferienhaus am See in der Natur, Kablow</a></li>
+        <li><a href="/ferienhaeuser/villa-am-kruepelsee-zernsdorf" class="inline-block py-2.5 hover:text-gold-300">Die Villa am Krüpelsee</a></li>
+        <!--tb-footer-insert-->
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow !text-gold-300">Region</p>
+      <ul class="mt-3 text-sm">
+        <li><a href="/region" class="inline-block py-2.5 hover:text-gold-300">Königs Wusterhausen &amp; Dahme-Seenland</a></li>
+        <li><a href="/region/kruepelsee" class="inline-block py-2.5 hover:text-gold-300">Der Krüpelsee</a></li>
+        <li><a href="/region/ausflugsziele" class="inline-block py-2.5 hover:text-gold-300">Ausflugsziele</a></li>
+        <li><a href="/region/aktivitaeten-am-see" class="inline-block py-2.5 hover:text-gold-300">Aktivitäten am See</a></li>
+        <li><a href="/region/anreise" class="inline-block py-2.5 hover:text-gold-300">Anreise</a></li>
+        <!--tb-footer-insert-->
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow !text-gold-300">Service</p>
+      <ul class="mt-3 text-sm">
+        <li><a href="/buchen" class="inline-block py-2.5 hover:text-gold-300">Anfragen &amp; Buchen</a></li>
+        <li><a href="/faq" class="inline-block py-2.5 hover:text-gold-300">Häufige Fragen</a></li>
+        <li><a href="/kontakt" class="inline-block py-2.5 hover:text-gold-300">Kontakt</a></li>
+        <li><a href="/gastgeber" class="inline-block py-2.5 hover:text-gold-300">Ihre Gastgeberin</a></li>
+        <li><a href="/impressum" class="inline-block py-2.5 hover:text-gold-300">Impressum</a></li>
+        <li><a href="/datenschutz" class="inline-block py-2.5 hover:text-gold-300">Datenschutz</a></li>
+        <li><a href="/agb-mietbedingungen" class="inline-block py-2.5 hover:text-gold-300">AGB / Mietbedingungen</a></li>
+        <li><button type="button" onclick="if(window.CookieConsent&&CookieConsent.openSettings){CookieConsent.openSettings()}" class="inline-block py-2.5 hover:text-gold-300 text-left">Cookie-Einstellungen</button></li>
+        <!--tb-footer-insert-->
+      </ul>
+      <p class="eyebrow !text-gold-300 mt-8">Auf Booking.com</p>
+      <ul class="mt-2 text-sm">
+        <li><a href="{{booking_u1}}" target="_blank" rel="noopener" class="inline-block py-2.5 hover:text-gold-300">Maisonette am Krüpelsee ↗</a></li>
+        <li><a href="{{booking_u2}}" target="_blank" rel="noopener" class="inline-block py-2.5 hover:text-gold-300">Apartment am Krüpelsee ↗</a></li>
+        <li><a href="{{booking_u3}}" target="_blank" rel="noopener" class="inline-block py-2.5 hover:text-gold-300">Gästehaus am Großen Zug ↗</a></li>
+        <li><a href="{{booking_u4}}" target="_blank" rel="noopener" class="inline-block py-2.5 hover:text-gold-300">Ferienhaus am See in der Natur ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-sand-100/60 text-center md:text-left">
+      <p class="py-3">© <span id="footer-year">2026</span> {{company_name}} · Alle Preise inkl. gesetzlicher MwSt.</p>
+      <p><a href="https://seehaus-berlin.de" class="inline-block py-3 px-1 hover:text-gold-300">Seehaus Berlin</a> · <a href="/impressum" class="inline-block py-3 px-1 hover:text-gold-300">Impressum</a> · <a href="/datenschutz" class="inline-block py-3 px-1 hover:text-gold-300">Datenschutz</a></p>
+    </div>
+  </div>
+  <script>(function(){var y=document.getElementById('footer-year');if(y){y.textContent=new Date().getFullYear();}})();</script>
+</footer>

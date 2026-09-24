@@ -1,0 +1,44 @@
+<link rel="preload" as="font" type="font/woff2" href="/fonts/cormorantgaramond/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/inter/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" crossorigin>
+<link rel="stylesheet" href="/fonts/sets/cormorant-garamond-66ff5f5b.css">
+<script>document.documentElement.classList.add('js');</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: {
+    night: { 950:'#07141E', 900:'#0B1F2E', 800:'#0F2C40', 700:'#164058' },
+    lake:  { 100:'#E6F3F7', 200:'#BFE3EC', 400:'#5FB0C8', 500:'#2A88A6', 600:'#1E6A85', 700:'#175570' },
+    sand:  { 50:'#FBF8F3', 100:'#F4EEE4', 200:'#E8DCCB', 300:'#D6C3A8' },
+    gold:  { 300:'#E3CFA2', 500:'#C9A86A', 600:'#B08D4F', 700:'#8F7038' },
+    reed:  { 500:'#6B8F71', 700:'#4F6E55' },
+    ink:   { DEFAULT:'#1A1A1A', soft:'#3D3D3D', mute:'#6B6B6B' }
+  },
+  fontFamily: { serif: ['Cormorant Garamond','Georgia','serif'], sans: ['Inter','system-ui','sans-serif'] },
+  boxShadow: { card: '0 2px 16px rgba(11,31,46,.08)', float: '0 20px 60px -20px rgba(11,31,46,.35)' },
+  keyframes: { kenburns: { '0%': { transform:'scale(1)' }, '100%': { transform:'scale(1.08)' } } },
+  animation: { kenburns: 'kenburns 24s ease-out forwards' }
+} } };
+</script>
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1A1A1A; background: #FBF8F3; -webkit-font-smoothing: antialiased; }
+  body h1, body h2, body h3, .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+  body h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 1.05; letter-spacing: -0.01em; font-weight: 600; }
+  body h2 { font-size: clamp(2rem, 3.6vw, 3.25rem); line-height: 1.1; font-weight: 600; }
+  body h3 { font-size: clamp(1.5rem, 2vw, 1.75rem); line-height: 1.2; font-weight: 600; }
+  body p, body li { line-height: 1.7; }
+  .eyebrow { font: 600 .75rem/1.2 'Inter', system-ui, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #B08D4F; }
+  .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: calc(var(--i, 0) * 90ms); }
+  .js .reveal.is-visible { opacity: 1; transform: none; }
+  .hero-media { animation: kenburns 24s ease-out forwards; }
+  details > summary { list-style: none; cursor: pointer; padding: .5rem 0; } details > summary::-webkit-details-marker { display: none; }
+  .chev { transition: transform .3s; } details[open] .chev { transform: rotate(180deg); }
+  .btn-gold { background:#C9A86A; color:#07141E; } .btn-gold:hover { background:#B08D4F; }
+  .btn-ghost { border:1px solid rgba(251,248,243,.6); color:#FBF8F3; } .btn-ghost:hover { background: rgba(251,248,243,.12); }
+  .btn-dark { background:#0B1F2E; color:#FBF8F3; } .btn-dark:hover { background:#164058; }
+  .btn-gold, .btn-ghost, .btn-dark, .convert, a.inline-flex.rounded-full, .cc-btn { min-height: 44px; }
+  .link-lake { color:#1E6A85; text-decoration: underline; text-underline-offset: 3px; } .link-lake:hover { color:#175570; }
+  #buchungsleiste { transition: transform .4s cubic-bezier(.2,.7,.2,1), opacity .4s; }
+  @media (max-width: 767px) { .bar-pad { padding-bottom: 6.5rem; } }
+  @media (prefers-reduced-motion: reduce) { .js .reveal { opacity:1; transform:none; transition:none } .hero-media { animation:none } html { scroll-behavior:auto } [data-hero] video { display:none !important } [data-hero] img.hero-media { display:block !important } }
+</style>

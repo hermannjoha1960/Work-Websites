@@ -1,0 +1,32 @@
+<script>
+(function(){
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = document.querySelectorAll('.reveal');
+  if (rm || !('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('is-visible'); }); }
+  else {
+    var io = new IntersectionObserver(function(en){ en.forEach(function(x){ if (x.isIntersecting){ x.target.classList.add('is-visible'); io.unobserve(x.target); } }); }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+    els.forEach(function(e){ io.observe(e); });
+  }
+  document.querySelectorAll('[data-count]').forEach(function(el){
+    var target = parseFloat(el.getAttribute('data-count')), suffix = el.getAttribute('data-suffix') || '', prefix = el.getAttribute('data-prefix') || '';
+    if (isNaN(target) || rm || !('IntersectionObserver' in window)) { return; }
+    var done = false;
+    var o = new IntersectionObserver(function(en){
+      if (en[0].isIntersecting && !done) { done = true; var t0 = performance.now();
+        (function step(t){ var p = Math.min(1, (t - t0) / 1200); el.textContent = prefix + Math.round(target * (1 - Math.pow(1 - p, 3))) + suffix; if (p < 1) requestAnimationFrame(step); })(t0);
+      }
+    });
+    o.observe(el);
+  });
+  var bar = document.getElementById('buchungsleiste'), hero = document.querySelector('[data-hero]');
+  if (bar && hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(en){ var onHero = en[0].isIntersecting; bar.classList.toggle('translate-y-full', onHero); bar.classList.toggle('opacity-0', onHero); bar.setAttribute('aria-hidden', onHero ? 'true' : 'false'); }).observe(hero);
+  }
+  /* Plattform-Meldungen des Anfrageformulars auf Deutsch anzeigen */
+  var msgMap = { 'Messaggio ricevuto con successo': 'Vielen Dank! Ihre Anfrage ist bei uns eingegangen – Sie erhalten innerhalb von 24 Stunden eine persönliche Antwort.' };
+  function fixText(node){ var w = document.createTreeWalker(node, NodeFilter.SHOW_TEXT), x; while ((x = w.nextNode())) { Object.keys(msgMap).forEach(function(k){ if (x.nodeValue.indexOf(k) > -1) { x.nodeValue = x.nodeValue.replace(k, msgMap[k]); } }); } }
+  if ('MutationObserver' in window) {
+    new MutationObserver(function(ms){ ms.forEach(function(m){ if (m.type === 'characterData') { fixText(m.target.parentNode || document.body); } m.addedNodes.forEach(function(n){ if (n.nodeType === 1) { fixText(n); } else if (n.nodeType === 3 && n.parentNode) { fixText(n.parentNode); } }); }); }).observe(document.body, { childList: true, subtree: true, characterData: true });
+  }
+})();
+</script>
