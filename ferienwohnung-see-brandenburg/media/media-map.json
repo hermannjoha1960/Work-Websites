@@ -1,0 +1,1042 @@
+[
+{
+"id": 1424,
+"folder": "brand",
+"file": "favicon-180.png",
+"url": "/uploads/site-51/brand/favicon-180.png",
+"w": 180,
+"h": 180,
+"alt": "Ferien am See – Bildmarke 180 px",
+"note": "Apple-Touch-Icon"
+},
+{
+"id": 1425,
+"folder": "brand",
+"file": "favicon.svg",
+"url": "/uploads/site-51/brand/favicon.svg",
+"w": null,
+"h": null,
+"alt": "Ferien am See – Bildmarke",
+"note": "Favicon (SVG)"
+},
+{
+"id": 1426,
+"folder": "brand",
+"file": "logo-512.png",
+"url": "/uploads/site-51/brand/logo-512.png",
+"w": 512,
+"h": 512,
+"alt": "Ferien am See – Logo",
+"note": "Logo 512 px"
+},
+{
+"id": 1427,
+"folder": "brand",
+"file": "og-default.jpg",
+"url": "/uploads/site-51/brand/og-default.jpg",
+"w": 1200,
+"h": 630,
+"alt": "Villa am Krüpelsee in Zernsdorf vom Steg aus, Hausboot am Ufer im Abendlicht",
+"note": "Standard-OG-Bild 1200×630"
+},
+{
+"id": 1500,
+"folder": "galeriehaus/aussen",
+"file": "01-villa-und-gaestehaus-grosser-zug-vom-wasser.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/01-villa-und-gaestehaus-grosser-zug-vom-wasser.jpg",
+"w": 1919,
+"h": 1323,
+"alt": "Villa und Gästehaus am Großen Zug bei Tageslicht, Blick vom Wasser",
+"note": "Video-Poster"
+},
+{
+"id": 1501,
+"folder": "galeriehaus/aussen",
+"file": "02-ensemble-bei-nacht-grosser-zug.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/02-ensemble-bei-nacht-grosser-zug.jpg",
+"w": 1925,
+"h": 1059,
+"alt": "Ensemble aus Villa und Gästehaus bei Nacht am Großen Zug",
+"note": "Gästehaus-Seite"
+},
+{
+"id": 1502,
+"folder": "galeriehaus/aussen",
+"file": "03-seehaus-bei-nacht-niederlehme.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/03-seehaus-bei-nacht-niederlehme.jpg",
+"w": 1290,
+"h": 731,
+"alt": "Beleuchtetes Seehaus bei Nacht in Niederlehme",
+"note": "Stimmung"
+},
+{
+"id": 1503,
+"folder": "galeriehaus/aussen",
+"file": "04-herbstatmosphaere-grosser-zug.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/04-herbstatmosphaere-grosser-zug.jpg",
+"w": 1920,
+"h": 1440,
+"alt": "Herbstatmosphäre am Ufer des Großen Zugs",
+"note": "Jahreszeiten Herbst"
+},
+{
+"id": 1504,
+"folder": "galeriehaus/aussen",
+"file": "05-herbstmorgen-grosser-zug.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/05-herbstmorgen-grosser-zug.jpg",
+"w": 1920,
+"h": 1440,
+"alt": "Herbstmorgen am Großen Zug, Blick aufs Wasser",
+"note": "Jahreszeiten Herbst"
+},
+{
+"id": 1505,
+"folder": "galeriehaus/aussen",
+"file": "06-sonnenuntergang-grosser-zug-hochformat.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/06-sonnenuntergang-grosser-zug-hochformat.jpg",
+"w": 1342,
+"h": 2000,
+"alt": "Sonnenuntergang über dem Großen Zug",
+"note": "Hochformat"
+},
+{
+"id": 1506,
+"folder": "galeriehaus/aussen",
+"file": "07-privater-steg-bei-nacht.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/07-privater-steg-bei-nacht.jpg",
+"w": 1920,
+"h": 1440,
+"alt": "Privater Steg bei Nacht am Großen Zug",
+"note": "Stimmung; Stegnutzung nicht bestätigt"
+},
+{
+"id": 1507,
+"folder": "galeriehaus/aussen",
+"file": "08-garten-mit-seeblick-grosser-zug.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/08-garten-mit-seeblick-grosser-zug.jpg",
+"w": 1920,
+"h": 1440,
+"alt": "Garten mit Seeblick auf den Großen Zug",
+"note": "Gästehaus-Seite"
+},
+{
+"id": 1508,
+"folder": "galeriehaus/aussen",
+"file": "18-herbstgarten-am-see-niederlehme.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/18-herbstgarten-am-see-niederlehme.jpg",
+"w": 1920,
+"h": 1440,
+"alt": "Herbstgarten am See in Niederlehme",
+"note": "Jahreszeiten Herbst"
+},
+{
+"id": 1509,
+"folder": "galeriehaus/aussen",
+"file": "19-herbstlicher-uferblick-grosser-zug.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/19-herbstlicher-uferblick-grosser-zug.jpg",
+"w": 1920,
+"h": 1440,
+"alt": "Herbstlicher Uferblick am Großen Zug",
+"note": "Jahreszeiten Herbst"
+},
+{
+"id": 1510,
+"folder": "galeriehaus/aussen",
+"file": "20-villa-architekturdetail-grosser-zug.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/20-villa-architekturdetail-grosser-zug.jpg",
+"w": 1920,
+"h": 1440,
+"alt": "Architekturdetail der Villa am Großen Zug",
+"note": "Gästehaus-Seite (Ensemble)"
+},
+{
+"id": 1511,
+"folder": "galeriehaus/aussen",
+"file": "21-villa-aussenansicht-grosser-zug.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/21-villa-aussenansicht-grosser-zug.jpg",
+"w": 1920,
+"h": 1440,
+"alt": "Villa am Großen Zug, Außenansicht",
+"note": "Gästehaus-Seite (Ensemble)"
+},
+{
+"id": 1512,
+"folder": "galeriehaus/aussen",
+"file": "23-garten-mit-privatsteg-und-seeblick.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/23-garten-mit-privatsteg-und-seeblick.jpg",
+"w": 1920,
+"h": 1282,
+"alt": "Garten mit privatem Steg und Seeblick auf den Großen Zug",
+"note": "Gästehaus-Seite; Stegnutzung nicht bestätigt"
+},
+{
+"id": 1513,
+"folder": "galeriehaus/aussen",
+"file": "gaestehaus-aussen-flachdachbau-terrasse-garten.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/gaestehaus-aussen-flachdachbau-terrasse-garten.jpg",
+"w": 2000,
+"h": 1500,
+"alt": "Gästehaus am Großen Zug von außen: weißer Flachdachbau mit Terrasse und weißen Stühlen im Garten",
+"note": "Alternativ-Hero Gästehaus, Kartenbild (Booking-Foto)"
+},
+{
+"id": 1514,
+"folder": "galeriehaus/aussen",
+"file": "rasen-baumbestand-ufer-grosser-zug-sonnenschirm.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/rasen-baumbestand-ufer-grosser-zug-sonnenschirm.jpg",
+"w": 2000,
+"h": 1500,
+"alt": "Rasen mit altem Baumbestand hinunter zum Großen Zug, Sonnenschirm am Ufer",
+"note": "Garten Gästehaus, Startseite (Booking-Foto)"
+},
+{
+"id": 1515,
+"folder": "galeriehaus/aussen",
+"file": "seestrasse-41-005-herbst-am-see-quadrat.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/seestrasse-41-005-herbst-am-see-quadrat.jpg",
+"w": 1024,
+"h": 1024,
+"alt": "Herbstatmosphäre am See",
+"note": "Quadrat-Kachel"
+},
+{
+"id": 1516,
+"folder": "galeriehaus/aussen",
+"file": "seestrasse-41-008-garten-steg-gaestehaus.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/seestrasse-41-008-garten-steg-gaestehaus.jpg",
+"w": 1920,
+"h": 1282,
+"alt": "Garten mit alten Kiefern und Steg am Großen Zug, rechts das Gästehaus",
+"note": "Gästehaus-Seite; Stegnutzung nicht bestätigt"
+},
+{
+"id": 1517,
+"folder": "galeriehaus/aussen",
+"file": "seestrasse-41-009-seehaus-sonnenuntergang.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/seestrasse-41-009-seehaus-sonnenuntergang.jpg",
+"w": 1920,
+"h": 1282,
+"alt": "Seehaus am Großen Zug bei Sonnenuntergang",
+"note": "Stimmung"
+},
+{
+"id": 1518,
+"folder": "galeriehaus/aussen",
+"file": "seestrasse-41-017-rasen-und-steg-grosser-zug.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/seestrasse-41-017-rasen-und-steg-grosser-zug.jpg",
+"w": 1920,
+"h": 1282,
+"alt": "Rasen und Steg am Großen Zug, Blick über den See auf den Wald am gegenüberliegenden Ufer",
+"note": "Gästehaus-Seite, Region; Stegnutzung nicht bestätigt"
+},
+{
+"id": 1519,
+"folder": "galeriehaus/aussen",
+"file": "steg-grosser-zug-motorboot-blaue-stuehle.jpg",
+"url": "/uploads/site-51/galeriehaus/aussen/steg-grosser-zug-motorboot-blaue-stuehle.jpg",
+"w": 2000,
+"h": 1500,
+"alt": "Steg am Großen Zug mit Motorboot und zwei blauen Stühlen, Blick über den See",
+"note": "See-Abschnitt Gästehaus; Stegnutzung durch Gäste nicht bestätigt (Booking-Foto)"
+},
+{
+"id": 1437,
+"folder": "galeriehaus/gaestehaus",
+"file": "01-gaestehaus-terrasse-mit-seeblick.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/01-gaestehaus-terrasse-mit-seeblick.jpg",
+"w": 853,
+"h": 1844,
+"alt": "Terrasse des Gästehauses mit Blick auf den Großen Zug",
+"note": "Hochformat-Kachel"
+},
+{
+"id": 1438,
+"folder": "galeriehaus/gaestehaus",
+"file": "02-gaestehaus-wohn-und-schlafbereich.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/02-gaestehaus-wohn-und-schlafbereich.jpg",
+"w": 1846,
+"h": 852,
+"alt": "Wohn- und Schlafbereich des Gästehauses mit Parkettboden",
+"note": "Breiter Streifen"
+},
+{
+"id": 1439,
+"folder": "galeriehaus/gaestehaus",
+"file": "03-gaestehaus-wohnbereich-mit-terrassenzugang.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/03-gaestehaus-wohnbereich-mit-terrassenzugang.jpg",
+"w": 1844,
+"h": 853,
+"alt": "Wohnbereich des Gästehauses mit Zugang zur Terrasse",
+"note": "Breiter Streifen"
+},
+{
+"id": 1440,
+"folder": "galeriehaus/gaestehaus",
+"file": "04-gaestehaus-schlafbereich.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/04-gaestehaus-schlafbereich.jpg",
+"w": 852,
+"h": 1846,
+"alt": "Schlafbereich im Gästehaus am Großen Zug",
+"note": "Hochformat"
+},
+{
+"id": 1441,
+"folder": "galeriehaus/gaestehaus",
+"file": "05-gaestehaus-kuechenzeile.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/05-gaestehaus-kuechenzeile.jpg",
+"w": 852,
+"h": 1847,
+"alt": "Küchenzeile im Gästehaus",
+"note": "Hochformat"
+},
+{
+"id": 1442,
+"folder": "galeriehaus/gaestehaus",
+"file": "06-gaestehaus-badezimmer.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/06-gaestehaus-badezimmer.jpg",
+"w": 852,
+"h": 1847,
+"alt": "Badezimmer des Gästehauses",
+"note": "Hochformat"
+},
+{
+"id": 1443,
+"folder": "galeriehaus/gaestehaus",
+"file": "07-gaestehaus-bodengleiche-dusche.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/07-gaestehaus-bodengleiche-dusche.jpg",
+"w": 853,
+"h": 1844,
+"alt": "Bodengleiche Dusche im barrierefreien Bad des Gästehauses",
+"note": "Hochformat"
+},
+{
+"id": 1444,
+"folder": "galeriehaus/gaestehaus",
+"file": "12-gaestehaus-ausblick-grosser-zug.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/12-gaestehaus-ausblick-grosser-zug.jpg",
+"w": 1920,
+"h": 1440,
+"alt": "Ausblick aus dem Gästehaus auf den Großen Zug",
+"note": "Gästehaus-Seite"
+},
+{
+"id": 1445,
+"folder": "galeriehaus/gaestehaus",
+"file": "17-gaestehaus-aussenansicht-terrasse.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/17-gaestehaus-aussenansicht-terrasse.jpg",
+"w": 1920,
+"h": 1440,
+"alt": "Gästehaus am Großen Zug in Niederlehme, Außenansicht mit Terrasse",
+"note": "Hero Gästehaus, Kartenbild"
+},
+{
+"id": 1446,
+"folder": "galeriehaus/gaestehaus",
+"file": "23-grundriss-gaestehaus.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/23-grundriss-gaestehaus.jpg",
+"w": 856,
+"h": 1808,
+"alt": "Grundriss des Gästehauses am Großen Zug, ca. 57 m²",
+"note": "Grundriss"
+},
+{
+"id": 1447,
+"folder": "galeriehaus/gaestehaus",
+"file": "gaestehaus-bad-waschtisch-wc-handtuchheizkoerper.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/gaestehaus-bad-waschtisch-wc-handtuchheizkoerper.jpg",
+"w": 2000,
+"h": 1500,
+"alt": "Bad des Gästehauses mit Waschtisch, WC und Handtuchheizkörper, beige Fliesen",
+"note": "Gästehaus-Seite (Booking-Foto)"
+},
+{
+"id": 1448,
+"folder": "galeriehaus/gaestehaus",
+"file": "gaestehaus-doppelbett.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/gaestehaus-doppelbett.jpg",
+"w": 922,
+"h": 1313,
+"alt": "Doppelbett im Gästehaus am Großen Zug",
+"note": "Hochformat (Booking-Foto)"
+},
+{
+"id": 1449,
+"folder": "galeriehaus/gaestehaus",
+"file": "gaestehaus-kuechenzeile-fenster-weisse-fronten.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/gaestehaus-kuechenzeile-fenster-weisse-fronten.jpg",
+"w": 922,
+"h": 1373,
+"alt": "Küchenzeile des Gästehauses mit Fenster und weißen Fronten",
+"note": "Hochformat (Booking-Foto)"
+},
+{
+"id": 1450,
+"folder": "galeriehaus/gaestehaus",
+"file": "gaestehaus-terrasse-bistrotisch-grosser-zug.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/gaestehaus-terrasse-bistrotisch-grosser-zug.jpg",
+"w": 853,
+"h": 1397,
+"alt": "Kleine Terrasse des Gästehauses mit Bistrotisch und Stühlen, Blick durch Bäume auf den Großen Zug",
+"note": "Hochformat-Kachel (Booking-Foto)"
+},
+{
+"id": 1451,
+"folder": "galeriehaus/gaestehaus",
+"file": "gaestehaus-wohn-schlafraum-doppelbett-schlafsofa.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/gaestehaus-wohn-schlafraum-doppelbett-schlafsofa.jpg",
+"w": 1460,
+"h": 922,
+"alt": "Wohn- und Schlafraum des Gästehauses: Doppelbett, Schlafsofa, Sessel, Parkett, Terrassentür in den Garten",
+"note": "Innenraum-Leitbild Gästehaus (Booking-Foto)"
+},
+{
+"id": 1452,
+"folder": "galeriehaus/gaestehaus",
+"file": "gaestehaus-wohnbereich-schlafsofa-sessel-parkett.jpg",
+"url": "/uploads/site-51/galeriehaus/gaestehaus/gaestehaus-wohnbereich-schlafsofa-sessel-parkett.jpg",
+"w": 1617,
+"h": 844,
+"alt": "Wohnbereich des Gästehauses mit Schlafsofa, zwei Sesseln und Stehleuchte auf Parkett",
+"note": "Breiter Streifen (Booking-Foto)"
+},
+{
+"id": 1474,
+"folder": "region/kruepelsee",
+"file": "kruepelsee-01-sonnenaufgang-lichtreflexion.jpg",
+"url": "/uploads/site-51/region/kruepelsee/kruepelsee-01-sonnenaufgang-lichtreflexion.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Sonnenaufgang über dem Krüpelsee, Lichtreflexion auf dem Wasser",
+"note": "Region, Jahreszeiten, Startseite"
+},
+{
+"id": 1475,
+"folder": "region/kruepelsee",
+"file": "kruepelsee-02-abenddaemmerung-am-wasser.jpg",
+"url": "/uploads/site-51/region/kruepelsee/kruepelsee-02-abenddaemmerung-am-wasser.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Abenddämmerung am Krüpelsee bei Zernsdorf",
+"note": "Region, Startseite"
+},
+{
+"id": 1476,
+"folder": "region/kruepelsee",
+"file": "kruepelsee-03-steg-im-morgennebel.jpg",
+"url": "/uploads/site-51/region/kruepelsee/kruepelsee-03-steg-im-morgennebel.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Steg im Morgennebel auf dem Krüpelsee",
+"note": "Region, Startseite (Der Tag am See)"
+},
+{
+"id": 1477,
+"folder": "region/kruepelsee",
+"file": "kruepelsee-04-schwaene-im-morgennebel.jpg",
+"url": "/uploads/site-51/region/kruepelsee/kruepelsee-04-schwaene-im-morgennebel.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Zwei Schwäne im Morgennebel auf dem Krüpelsee",
+"note": "Region"
+},
+{
+"id": 1478,
+"folder": "region/kruepelsee",
+"file": "kruepelsee-05-sonnenuntergang-ueber-dem-see.jpg",
+"url": "/uploads/site-51/region/kruepelsee/kruepelsee-05-sonnenuntergang-ueber-dem-see.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Sonnenuntergang über dem Krüpelsee im Dahme-Seenland",
+"note": "Region, Startseite"
+},
+{
+"id": 1479,
+"folder": "region/kruepelsee",
+"file": "kruepelsee-06-uferwiese-unter-der-weide.jpg",
+"url": "/uploads/site-51/region/kruepelsee/kruepelsee-06-uferwiese-unter-der-weide.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Uferwiese unter der Trauerweide mit Blick auf Stege und Wasser",
+"note": "Region, Villa"
+},
+{
+"id": 1480,
+"folder": "region/kruepelsee",
+"file": "kruepelsee-07-morgennebel-ueber-dem-wasser.jpg",
+"url": "/uploads/site-51/region/kruepelsee/kruepelsee-07-morgennebel-ueber-dem-wasser.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Morgennebel über dem Krüpelsee",
+"note": "Region"
+},
+{
+"id": 1481,
+"folder": "region/kruepelsee",
+"file": "kruepelsee-08-winterlicher-see-vogelschwarm.jpg",
+"url": "/uploads/site-51/region/kruepelsee/kruepelsee-08-winterlicher-see-vogelschwarm.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Winterlicher Krüpelsee mit Vogelschwarm über dem verschneiten Ufer",
+"note": "Jahreszeiten Winter"
+},
+{
+"id": 1482,
+"folder": "region/kruepelsee",
+"file": "kruepelsee-09-winterabend-am-steg.jpg",
+"url": "/uploads/site-51/region/kruepelsee/kruepelsee-09-winterabend-am-steg.jpg",
+"w": 1200,
+"h": 1600,
+"alt": "Winterabend am Steg – der Krüpelsee im Schnee",
+"note": "Jahreszeiten Winter (Hochformat)"
+},
+{
+"id": 1483,
+"folder": "region/kruepelsee",
+"file": "kruepelsee-10-mond-ueber-verschneitem-steg.jpg",
+"url": "/uploads/site-51/region/kruepelsee/kruepelsee-10-mond-ueber-verschneitem-steg.jpg",
+"w": 1200,
+"h": 1600,
+"alt": "Mond über dem verschneiten Steg am Krüpelsee",
+"note": "Winter (Hochformat)"
+},
+{
+"id": 1484,
+"folder": "region/kruepelsee",
+"file": "kruepelsee-11-schilf-im-abendrot-panorama.jpg",
+"url": "/uploads/site-51/region/kruepelsee/kruepelsee-11-schilf-im-abendrot-panorama.jpg",
+"w": 1600,
+"h": 736,
+"alt": "Schilfgürtel am Krüpelsee im Abendrot, Panorama",
+"note": "Abschnittstrenner"
+},
+{
+"id": 1485,
+"folder": "region/kruepelsee",
+"file": "kruepelsee-senzig-18-sonnenuntergang-ueber-dem-see.jpg",
+"url": "/uploads/site-51/region/kruepelsee/kruepelsee-senzig-18-sonnenuntergang-ueber-dem-see.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Abendrot über dem Krüpelsee bei Senzig",
+"note": "Region (neutrale Bildunterschrift)"
+},
+{
+"id": 1486,
+"folder": "region/kruepelsee",
+"file": "kruepelsee-senzig-20-abendrot-ueber-dem-wasser.jpg",
+"url": "/uploads/site-51/region/kruepelsee/kruepelsee-senzig-20-abendrot-ueber-dem-wasser.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Abendrot über dem Wasser des Krüpelsees bei Senzig",
+"note": "Region (neutrale Bildunterschrift)"
+},
+{
+"id": 1487,
+"folder": "region/kruepelsee",
+"file": "kruepelsee-senzig-21-sonnenuntergang-steg-silhouette.jpg",
+"url": "/uploads/site-51/region/kruepelsee/kruepelsee-senzig-21-sonnenuntergang-steg-silhouette.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Sonnenuntergang über dem Krüpelsee mit Steg-Silhouette bei Senzig",
+"note": "Region (neutrale Bildunterschrift)"
+},
+{
+"id": 1464,
+"folder": "video",
+"file": "hermann-website-video-warm-magic-hour-web.mp4",
+"url": "/uploads/site-51/video/hermann-website-video-warm-magic-hour-web.mp4",
+"w": null,
+"h": null,
+"alt": "Magic-Hour-Video am Großen Zug",
+"note": "Hero-Video (vor Nutzung sichten)"
+},
+{
+"id": 1465,
+"folder": "villa-am-kruepelsee/aussen",
+"file": "01-titelbild-villa-vom-steg.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/aussen/01-titelbild-villa-vom-steg.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Holzsteg führt über den Krüpelsee direkt auf die Villa in Zernsdorf zu",
+"note": "Hero Maisonette / Villa"
+},
+{
+"id": 1466,
+"folder": "villa-am-kruepelsee/aussen",
+"file": "03-terrasse-am-wasser.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/aussen/03-terrasse-am-wasser.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Holzterrasse am Wasser mit Blick auf Steg und Krüpelsee",
+"note": "Maisonette, Apartment, Villa"
+},
+{
+"id": 1467,
+"folder": "villa-am-kruepelsee/aussen",
+"file": "hauptbild-villa-am-kruepelsee-steg-hausboot.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/aussen/hauptbild-villa-am-kruepelsee-steg-hausboot.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Villa am Krüpelsee in Zernsdorf vom privaten Steg aus, Hausboot am Ufer im Abendlicht",
+"note": "Startseite Hero-Poster, OG-Standardbild"
+},
+{
+"id": 1468,
+"folder": "villa-am-kruepelsee/aussen",
+"file": "karl-marx-strasse-001-regenbogen.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/aussen/karl-marx-strasse-001-regenbogen.jpg",
+"w": 1920,
+"h": 1440,
+"alt": "Doppelter Regenbogen über dem Krüpelsee, vom Ufer der Villa in Zernsdorf",
+"note": "Villa, Krüpelsee"
+},
+{
+"id": 1469,
+"folder": "villa-am-kruepelsee/aussen",
+"file": "karl-marx-strasse-003-panorama-hochformat.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/aussen/karl-marx-strasse-003-panorama-hochformat.jpg",
+"w": 1125,
+"h": 2000,
+"alt": "Vertikales Panorama von Villa, Garten und Krüpelsee in Zernsdorf",
+"note": "Hochformat-Kachel"
+},
+{
+"id": 1470,
+"folder": "villa-am-kruepelsee/aussen",
+"file": "karl-marx-strasse-006-villa-gartenseite.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/aussen/karl-marx-strasse-006-villa-gartenseite.jpg",
+"w": 1920,
+"h": 1282,
+"alt": "Altbauvilla am Krüpelsee, Gartenseite mit Terrasse und Trauerweide",
+"note": "Kartenbild Villa / Maisonette"
+},
+{
+"id": 1471,
+"folder": "villa-am-kruepelsee/aussen",
+"file": "karl-marx-strasse-010-holzpavillon.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/aussen/karl-marx-strasse-010-holzpavillon.jpg",
+"w": 1216,
+"h": 933,
+"alt": "Überdachter Holzpavillon im Garten der Villa am Krüpelsee",
+"note": "Villa"
+},
+{
+"id": 1472,
+"folder": "villa-am-kruepelsee/aussen",
+"file": "karl-marx-strasse-011-sonnenuntergang.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/aussen/karl-marx-strasse-011-sonnenuntergang.jpg",
+"w": 1076,
+"h": 934,
+"alt": "Sonnenuntergang über dem Krüpelsee vom Ufergrundstück der Villa",
+"note": "Villa, Startseite"
+},
+{
+"id": 1473,
+"folder": "villa-am-kruepelsee/aussen",
+"file": "luftaufnahme-villa-am-kruepelsee-stege-hausboot.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/aussen/luftaufnahme-villa-am-kruepelsee-stege-hausboot.jpg",
+"w": 1672,
+"h": 941,
+"alt": "Luftaufnahme der Villa am Krüpelsee in Zernsdorf mit Stegen, Hausboot und Uferwiese",
+"note": "Hero Villa-Seite, Startseite"
+},
+{
+"id": 1488,
+"folder": "villa-am-kruepelsee/innen-unzugeordnet",
+"file": "04-wohnbereich-mit-seeblick.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/innen-unzugeordnet/04-wohnbereich-mit-seeblick.jpg",
+"w": 1448,
+"h": 1086,
+"alt": "Wohn- und Essbereich mit Fensterfront zum Krüpelsee, langer Holztisch und Backsteinpfeiler",
+"note": "Villa-Innenraum, Zuordnung Maisonette/Apartment offen – nicht verwenden"
+},
+{
+"id": 1489,
+"folder": "villa-am-kruepelsee/innen-unzugeordnet",
+"file": "05-wohnzimmer-panoramafenster-zum-see.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/innen-unzugeordnet/05-wohnzimmer-panoramafenster-zum-see.jpg",
+"w": 1448,
+"h": 1086,
+"alt": "Wohnzimmer mit bodentiefem Panoramafenster zum Krüpelsee",
+"note": "Villa-Innenraum, Zuordnung offen – nicht verwenden"
+},
+{
+"id": 1490,
+"folder": "villa-am-kruepelsee/innen-unzugeordnet",
+"file": "06-wintergarten-mit-esstisch.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/innen-unzugeordnet/06-wintergarten-mit-esstisch.jpg",
+"w": 1448,
+"h": 1086,
+"alt": "Wintergarten mit massivem Esstisch und Lederstühlen, Blick auf Uferwiese und Steg",
+"note": "Villa-Innenraum, Zuordnung offen – nicht verwenden"
+},
+{
+"id": 1491,
+"folder": "villa-am-kruepelsee/innen-unzugeordnet",
+"file": "07-essbereich-mit-backsteinbogen.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/innen-unzugeordnet/07-essbereich-mit-backsteinbogen.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Essbereich mit Backsteinbogen zur Küche und Industrieleuchten",
+"note": "Villa-Innenraum, Zuordnung offen – nicht verwenden"
+},
+{
+"id": 1492,
+"folder": "villa-am-kruepelsee/innen-unzugeordnet",
+"file": "08-esszimmer-im-erker.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/innen-unzugeordnet/08-esszimmer-im-erker.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Esszimmer im Erker mit Eichentisch, Treibholz-Raumteiler und Wendeltreppe",
+"note": "Villa-Innenraum, Zuordnung offen – nicht verwenden"
+},
+{
+"id": 1493,
+"folder": "villa-am-kruepelsee/innen-unzugeordnet",
+"file": "09-erker-sitzbank-am-fenster.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/innen-unzugeordnet/09-erker-sitzbank-am-fenster.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Gepolsterte Sitzbank im Erker mit Messingleuchte und Fensterfront zum Garten",
+"note": "Villa-Innenraum, Zuordnung offen – nicht verwenden"
+},
+{
+"id": 1494,
+"folder": "villa-am-kruepelsee/innen-unzugeordnet",
+"file": "10-kueche-mit-wendeltreppe.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/innen-unzugeordnet/10-kueche-mit-wendeltreppe.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Küche mit hölzerner Wendeltreppe, Landhausfronten und Balkendecke",
+"note": "Villa-Innenraum, Zuordnung offen – nicht verwenden"
+},
+{
+"id": 1495,
+"folder": "villa-am-kruepelsee/innen-unzugeordnet",
+"file": "11-wohnzimmer-mit-kaminofen.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/innen-unzugeordnet/11-wohnzimmer-mit-kaminofen.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Wohnzimmer mit gekacheltem Kaminofen, Holzbalkendecke und Terrakottaboden",
+"note": "Villa-Innenraum, Zuordnung offen – nicht verwenden"
+},
+{
+"id": 1496,
+"folder": "villa-am-kruepelsee/innen-unzugeordnet",
+"file": "12-kaminecke-mit-sitzbank.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/innen-unzugeordnet/12-kaminecke-mit-sitzbank.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Kaminecke mit gemauerter Sitzbank neben dem gekachelten Kaminofen",
+"note": "Villa-Innenraum, Zuordnung offen – nicht verwenden"
+},
+{
+"id": 1497,
+"folder": "villa-am-kruepelsee/innen-unzugeordnet",
+"file": "karl-marx-strasse-004-arbeitsplatz-seeblick.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/innen-unzugeordnet/karl-marx-strasse-004-arbeitsplatz-seeblick.jpg",
+"w": 1920,
+"h": 1080,
+"alt": "Arbeitsplatz am Panoramafenster mit Blick auf den Krüpelsee",
+"note": "Villa-Innenraum, Zuordnung offen – nicht verwenden"
+},
+{
+"id": 1498,
+"folder": "villa-am-kruepelsee/innen-unzugeordnet",
+"file": "karl-marx-strasse-008-blick-uferwiese-steg.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/innen-unzugeordnet/karl-marx-strasse-008-blick-uferwiese-steg.jpg",
+"w": 1307,
+"h": 937,
+"alt": "Blick aus dem Wohnbereich über die Uferwiese auf Steg und Krüpelsee",
+"note": "Villa-Innenraum, Zuordnung offen – nicht verwenden"
+},
+{
+"id": 1499,
+"folder": "villa-am-kruepelsee/innen-unzugeordnet",
+"file": "karl-marx-strasse-009-wintergarten-blick-steg.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/innen-unzugeordnet/karl-marx-strasse-009-wintergarten-blick-steg.jpg",
+"w": 1125,
+"h": 603,
+"alt": "Wintergarten mit Esstisch und Industrieleuchten, Blick über die Terrasse auf Steg und Krüpelsee",
+"note": "Villa-Innenraum, Zuordnung offen – nicht verwenden"
+},
+{
+"id": 1453,
+"folder": "villa-am-kruepelsee/reserve",
+"file": "02-salzwasserpool-gartenansicht.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/reserve/02-salzwasserpool-gartenansicht.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Beheizter Salzwasserpool mit Holzdeck im Garten der Villa am Krüpelsee",
+"note": "NUR verwenden, wenn Poolnutzung durch Gäste bestätigt ist"
+},
+{
+"id": 1454,
+"folder": "villa-am-kruepelsee/reserve",
+"file": "karl-marx-strasse-002-salzwasserpool-sommer.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/reserve/karl-marx-strasse-002-salzwasserpool-sommer.jpg",
+"w": 1920,
+"h": 1440,
+"alt": "Salzwasserpool im Sommer, dahinter Garten und Altbauvilla am Krüpelsee",
+"note": "NUR verwenden, wenn Poolnutzung durch Gäste bestätigt ist"
+},
+{
+"id": 1455,
+"folder": "villa-am-kruepelsee/reserve",
+"file": "karl-marx-strasse-005-saunahaus-innen.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/reserve/karl-marx-strasse-005-saunahaus-innen.jpg",
+"w": 1920,
+"h": 1282,
+"alt": "Saunahaus von innen: Glassauna mit Holzverkleidung und Ruhesessel",
+"note": "NUR verwenden, wenn Saunanutzung durch Gäste bestätigt ist"
+},
+{
+"id": 1456,
+"folder": "villa-am-kruepelsee/reserve",
+"file": "karl-marx-strasse-007-saunahaus-wintergarten.jpg",
+"url": "/uploads/site-51/villa-am-kruepelsee/reserve/karl-marx-strasse-007-saunahaus-wintergarten.jpg",
+"w": 1920,
+"h": 1282,
+"alt": "Saunahaus und Wintergarten unter der großen Trauerweide am Krüpelsee",
+"note": "NUR verwenden, wenn Saunanutzung durch Gäste bestätigt ist"
+},
+{
+"id": 1428,
+"folder": "villa-fontanestrasse/aussen",
+"file": "kablow-garten-alter-baumbestand-abendlicht.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/aussen/kablow-garten-alter-baumbestand-abendlicht.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Garten mit altem Baumbestand im Abendlicht, Blick zum Krüpelsee",
+"note": "Hero Ferienhaus Kablow (Booking-Foto, echt)"
+},
+{
+"id": 1429,
+"folder": "villa-fontanestrasse/aussen",
+"file": "kablow-garten-baumbestand-seeblick-abenddaemmerung.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/aussen/kablow-garten-baumbestand-seeblick-abenddaemmerung.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Garten mit altem Baumbestand und Seeblick in der Abenddämmerung",
+"note": "Draußen-Abschnitt"
+},
+{
+"id": 1430,
+"folder": "villa-fontanestrasse/aussen",
+"file": "kablow-naturweg-wildwiese-zum-see-hochformat.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/aussen/kablow-naturweg-wildwiese-zum-see-hochformat.jpg",
+"w": 1086,
+"h": 1448,
+"alt": "Naturbelassener Weg durch die Wildwiese zum See",
+"note": "Hochformat-Kachel"
+},
+{
+"id": 1431,
+"folder": "villa-fontanestrasse/aussen",
+"file": "kablow-naturwiese-birken-kiefern-hochformat.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/aussen/kablow-naturwiese-birken-kiefern-hochformat.jpg",
+"w": 1086,
+"h": 1448,
+"alt": "Naturbelassene Wiese mit Birken und Kiefern, Blick zum Wasser",
+"note": "Hochformat (Booking-Foto, echt)"
+},
+{
+"id": 1432,
+"folder": "villa-fontanestrasse/aussen",
+"file": "kablow-schilf-straeucher-naturufer.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/aussen/kablow-schilf-straeucher-naturufer.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Schilf und Sträucher am naturbelassenen Ufer",
+"note": "Natur/Biotop-Abschnitt"
+},
+{
+"id": 1433,
+"folder": "villa-fontanestrasse/aussen",
+"file": "kablow-seepanorama-sonnenuntergang.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/aussen/kablow-seepanorama-sonnenuntergang.jpg",
+"w": 1600,
+"h": 1200,
+"alt": "Seepanorama bei Sonnenuntergang am Krüpelsee, Kablow",
+"note": "Hero-Kandidat C, Region"
+},
+{
+"id": 1434,
+"folder": "villa-fontanestrasse/aussen",
+"file": "kablow-sonnenuntergang-kruepelsee-schilf.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/aussen/kablow-sonnenuntergang-kruepelsee-schilf.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Sonnenuntergang über dem Krüpelsee mit Schilf und Steg-Silhouette, Kablow",
+"note": "Hero-Kandidat Ferienhaus Kablow (Booking-Foto, echt)"
+},
+{
+"id": 1435,
+"folder": "villa-fontanestrasse/aussen",
+"file": "kablow-steg-im-schilf-abenddaemmerung.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/aussen/kablow-steg-im-schilf-abenddaemmerung.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Steg im Schilf bei Abenddämmerung am Krüpelsee",
+"note": "Nur als Seestimmung, nie mit „eigener Steg\""
+},
+{
+"id": 1436,
+"folder": "villa-fontanestrasse/aussen",
+"file": "kablow-wildwiese-unter-kiefern-und-birken.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/aussen/kablow-wildwiese-unter-kiefern-und-birken.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Wildwiese unter Kiefern und Birken",
+"note": "Natur/Biotop-Abschnitt"
+},
+{
+"id": 1416,
+"folder": "villa-fontanestrasse/innen",
+"file": "kablow-bad-badewanne-dachschraege-holzbalken.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/innen/kablow-bad-badewanne-dachschraege-holzbalken.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Bad mit Badewanne unter der Dachschräge, Holzbalken und Fenster",
+"note": "Bäder-Abschnitt (Booking-Foto, echt)"
+},
+{
+"id": 1417,
+"folder": "villa-fontanestrasse/innen",
+"file": "kablow-bad-bodengleiche-dusche-badewanne-graue-fliesen.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/innen/kablow-bad-bodengleiche-dusche-badewanne-graue-fliesen.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Bad mit bodengleicher Dusche, Badewanne und grauen Fliesen",
+"note": "Bäder-Abschnitt"
+},
+{
+"id": 1418,
+"folder": "villa-fontanestrasse/innen",
+"file": "kablow-bad-dusche-wand-wc-graue-fliesen-holzbalken.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/innen/kablow-bad-dusche-wand-wc-graue-fliesen-holzbalken.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Bad mit Dusche, Wand-WC, grauen Fliesen und sichtbarem Holzbalken",
+"note": "Bäder-Abschnitt (Booking-Foto, echt)"
+},
+{
+"id": 1419,
+"folder": "villa-fontanestrasse/innen",
+"file": "kablow-bad-waschtisch-badewanne-holzbalken.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/innen/kablow-bad-waschtisch-badewanne-holzbalken.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Bad mit Waschtisch, Badewanne und Holzbalken",
+"note": "Bäder-Abschnitt"
+},
+{
+"id": 1420,
+"folder": "villa-fontanestrasse/innen",
+"file": "kablow-badewanne-fenster-blick-richtung-see.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/innen/kablow-badewanne-fenster-blick-richtung-see.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Badewanne mit Fenster und Blick Richtung See",
+"note": "Bäder-Abschnitt"
+},
+{
+"id": 1421,
+"folder": "villa-fontanestrasse/innen",
+"file": "kablow-einbaukueche-kochinsel-natursteinarbeitsplatte.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/innen/kablow-einbaukueche-kochinsel-natursteinarbeitsplatte.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Einbauküche mit Kochinsel und Natursteinarbeitsplatte, Fenster zum Garten",
+"note": "Küche-Abschnitt (Booking-Foto, echt)"
+},
+{
+"id": 1422,
+"folder": "villa-fontanestrasse/innen",
+"file": "kablow-kueche-essbereich-gartenblick.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/innen/kablow-kueche-essbereich-gartenblick.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Küche mit Essbereich und Blick in den Garten",
+"note": "Küche-Abschnitt"
+},
+{
+"id": 1423,
+"folder": "villa-fontanestrasse/innen",
+"file": "kablow-kueche-kochfeld-insel-dunstabzug-seeblick.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/innen/kablow-kueche-kochfeld-insel-dunstabzug-seeblick.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Küche mit Kochfeld auf der Insel, Dunstabzug und Fenster mit Seeblick",
+"note": "Küche-Abschnitt (Booking-Foto, echt)"
+},
+{
+"id": 1457,
+"folder": "villa-fontanestrasse/reserve-staging",
+"file": "kablow-dachterrasse-tisch-sessel-seeblick.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/reserve-staging/kablow-dachterrasse-tisch-sessel-seeblick.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Dachterrasse mit rundem Tisch und zwei Sesseln, Blick über Bäume zum Krüpelsee",
+"note": "NICHT verwenden – digital möbliert (vermutet), Bestätigung des Eigentümers nötig"
+},
+{
+"id": 1458,
+"folder": "villa-fontanestrasse/reserve-staging",
+"file": "kablow-dachzimmer-balken-sofa-dachterrasse.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/reserve-staging/kablow-dachzimmer-balken-sofa-dachterrasse.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Zimmer unter dem Dach mit Balken, Sofa und Fenstern zur Dachterrasse",
+"note": "NICHT verwenden – digital möbliert (vermutet)"
+},
+{
+"id": 1459,
+"folder": "villa-fontanestrasse/reserve-staging",
+"file": "kablow-eingangsflur-fischgraetparkett-sitzbank.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/reserve-staging/kablow-eingangsflur-fischgraetparkett-sitzbank.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Eingangsflur mit Fischgrätparkett, Sitzbank und Glastür zum Garten",
+"note": "NICHT verwenden – digital möbliert (vermutet)"
+},
+{
+"id": 1460,
+"folder": "villa-fontanestrasse/reserve-staging",
+"file": "kablow-holzstuehle-sandufer-sonnenuntergang.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/reserve-staging/kablow-holzstuehle-sandufer-sonnenuntergang.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Holzstühle und Tisch am sandigen Seeufer bei Sonnenuntergang, Krüpelsee",
+"note": "NICHT verwenden – möglicherweise Visualisierung, Ufernutzung nicht bestätigt"
+},
+{
+"id": 1461,
+"folder": "villa-fontanestrasse/reserve-staging",
+"file": "kablow-schlafzimmer-1-doppelbett-dielenboden.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/reserve-staging/kablow-schlafzimmer-1-doppelbett-dielenboden.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Schlafzimmer 1 mit Doppelbett, Dielenboden und Fenster zum Garten",
+"note": "NICHT verwenden – digital möbliert (vermutet)"
+},
+{
+"id": 1462,
+"folder": "villa-fontanestrasse/reserve-staging",
+"file": "kablow-schlafzimmer-2-doppelbett-blick-ins-gruene.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/reserve-staging/kablow-schlafzimmer-2-doppelbett-blick-ins-gruene.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Schlafzimmer 2 mit Doppelbett und Blick ins Grüne",
+"note": "NICHT verwenden – digital möbliert (vermutet)"
+},
+{
+"id": 1463,
+"folder": "villa-fontanestrasse/reserve-staging",
+"file": "kablow-wohnzimmer-holzvertaefelung-panoramafenster.jpg",
+"url": "/uploads/site-51/villa-fontanestrasse/reserve-staging/kablow-wohnzimmer-holzvertaefelung-panoramafenster.jpg",
+"w": 1600,
+"h": 900,
+"alt": "Wohnzimmer mit Holzvertäfelung, Panoramafenster zum Garten, Sofa und Couchtisch",
+"note": "NICHT verwenden – digital möbliert (vermutet)"
+}
+]
