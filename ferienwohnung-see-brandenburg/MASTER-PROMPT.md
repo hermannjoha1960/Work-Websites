@@ -1,7 +1,7 @@
 # MASTER PROMPT — Build **ferienwohnung-see-brandenburg.de**
 ### Cinematic holiday-rental website for three lakeside houses in Königs Wusterhausen (Brandenburg), on the Timbaly platform via MCP
 
-> **Version:** 1.0 · **Date:** 2026-09-24 · **Prepared for:** the AI agent that will build the site (Claude or comparable, with the Timbaly MCP connector `Ferienwohung_brandenburg` = ferienwohnung-see-brandenburg.de) · **Owner:** Ausblicke Management GmbH / Seehaus Berlin (Marita Briese)
+> **Version:** 1.1 · **Date:** 2026-09-24 · **Prepared for:** the AI agent that will build the site (Claude or comparable, with the Timbaly MCP connector `Ferienwohung_brandenburg` = ferienwohnung-see-brandenburg.de) · **Owner:** Ausblicke Management GmbH / Seehaus Berlin (Marita Briese)
 >
 > **How to use this document:** paste it whole into the agent's first message (or attach it) and say: *"Execute this master prompt. Work phase by phase, verify every phase before moving on, and stop only for the questions listed in §12 that block you."* Everything the agent needs is in here: verified facts, image URLs, page-by-page specifications, the SEO/GEO plan, the tool-by-tool runbook and the acceptance checklist. Where a fact is **not** verified it is marked **[TO CONFIRM]** — the agent must not invent it.
 
@@ -34,7 +34,7 @@
 ## 1. Context, sources and what is (not) verified
 
 ### 1.1 The platform and the connector
-- The site runs on **Timbaly**. You edit it through the MCP server **`Ferienwohung_brandenburg`** (domain `ferienwohnung-see-brandenburg.de`, plan `pro`, default language `de`, currently **completely empty**: 0 pages, 0 media, 0 knowledge items, 0 variables, no nav, no footer, no head tags, no logo, no contact e-mail, legal profile 0 %).
+- The site runs on **Timbaly**. You edit it through the MCP server **`Ferienwohung_brandenburg`** (domain `ferienwohnung-see-brandenburg.de`, plan `pro`, default language `de`; 0 pages, 0 media, no nav/footer, no logo — but the identity, legal profile, cookie banner, fonts, footer scripts, AI instructions, variables and one knowledge item are already set, see §1.5).
 - Sitemap, robots.txt and llms.txt are auto-declared by the platform; IndexNow is enabled; Google Search Console is **not** connected (owner task, §11).
 - A second, equally empty domain exists in the same account: **ferienwohnung-am-see.info** (connector `ferienwohnung_info`). Do **not** build a duplicate site there. Recommendation for the owner: 301-redirect it to the main domain at DNS/plan level (or leave unused).
 - Sister sites of the same owner, all on Timbaly, readable through their own connectors if you have them (read-only — never edit them): `Seehaus-Berlin` (seehaus-berlin.de, the sales portal), `Karlmarx_VierstegeHaus` (vierstegehaus.de), `seestrase_GaleriehausamSee` (galeriehausamsee.de), `Fontanne_26A` (hausamseebiotop.de), `Fontanne35` (seebiotophaus.de), `Krupelsee_5` (seehaus-kablow.de), `Senzig` (seetraumhaus-senzig.de). All facts and photos in this document were extracted from them on 2026-09-24.
@@ -54,6 +54,18 @@
 2. Ask the owner for a **Booking extranet export** or plain copy-paste per unit: title, description text, "Ausstattung" list, "Wichtige Informationen"/house rules, check-in/out, max. guests, bed configuration, size, pet & smoking policy, current rate table (Nebensaison/Hauptsaison, Mindestaufenthalt, Endreinigung, Kaution), cancellation policy, review score & count, and the original photos (owner has the files). Give them the template in §12.
 3. Until that arrives, build every page with the verified facts from §2, write prices as "Preise & Verfügbarkeit auf Anfrage", and link to the Booking listing with the button "Auf Booking.com ansehen".
 4. Booking reviews must not be scraped or reproduced wholesale. You may state the score ("9,2 / 10 auf Booking.com, Stand MM/JJJJ") if the owner supplies it, and quote short guest sentences only from the owner's own testimonial collection (with first name + month/year and consent).
+
+### 1.5 What is ALREADY configured on the target site (done by the author of this prompt on 2026-09-24 — verify, do not redo)
+The site is no longer 100 % empty. These Phase-1 settings were applied and must be **checked, not recreated** (a second `save_knowledge_item` or a duplicate variable would leave two contradicting entries):
+- `update_site_settings`: name `Ferienhaus am See Brandenburg`, contactEmail `kontakt@seehaus-berlin.de`, languages `de`.
+- `update_legal_profile`: complete (100 %). The platform rewrote its two legal pages; **their URLs are the platform defaults `/privacy-policy` and `/cookie-policy`** (they do not appear in `list_pages`). Decide in Phase 1: either set the cookie banner's `cookiePrivacyPolicyUrl` to `/privacy-policy` and link `/privacy-policy` in the footer, or create redirects `/datenschutz → /privacy-policy` and `/cookie-richtlinie → /cookie-policy` with `create_url_redirects`. The banner currently points to `/datenschutz` — fix this first.
+- `update_cookie_consent`: enabled, analytics category on, marketing off, German title/description per §7.7.
+- `set_site_fonts`: Cormorant Garamond [500,600,700] + Inter [400,500,600]; head tags now contain only the two font preloads and `<link rel="stylesheet" href="/fonts/sets/cormorant-garamond-66ff5f5b.css">`. `save_head_tags` (§4.7) must **keep that link and the preloads** and add the Tailwind CDN + config + styles after them.
+- `save_footer_scripts`: the §4.8 script is saved (reveal, count-up, sticky bar).
+- `save_ai_instructions`: Appendix D.2 is saved.
+- Variables saved (`get_variables` to confirm): business_name, brand_short, company_name, company_address, contact_name, phone, phone_link, whatsapp, whatsapp_link, email, hours, portal_url, booking_u1…booking_u4, checkin, checkout, min_stay, hrb, ustid.
+- Knowledge base: item **id 261 „Unternehmen, Gastgeberin & Kontakt"** exists. Items 2–8 of Appendix D.1 are still missing — create only those; correct 261 with `update_knowledge_item` if needed.
+- Nothing else exists: no pages, no media, no blocks, no navigation, no SEO plan, no logo/favicon.
 
 ### 1.4 Open identification issue — U4
 The Booking title "Ferienhaus am See in der Natur" and the owner's word "Seebiotophaus" fit **Haus am Biotop, Fontanestraße 26 A, Kablow** (fully furnished, sauna, winter garden, jetty, biotope, guest apartment mentioned on the portal). The domain **seebiotophaus.de** however belongs to a different, un-renovated 1940 villa at Fontanestraße 35 (a development project, not rental-ready). **Default assumption: U4 = Fontanestraße 26 A.** Confirm with the owner before publishing the U4 page, and confirm whether the *entire house* or only its *guest apartment* is rented on Booking.
@@ -545,9 +557,9 @@ If you have **no shell**: hand the owner the `dropPageUrl` per folder and the Ap
 
 ## 9. Execution runbook (tool by tool, in order; verify after each phase)
 
-**Phase 0 — Read & confirm (no writes).** `get_site_settings`, `get_site_config`, `list_pages`, `list_media`, `get_knowledge_items`, `get_variables`, `list_blocks`, `get_search_visibility_status`, `get_legal_status`, `get_page_brief` (to load the current `systemPrompt`). Confirm the site is still empty; if not, stop and reconcile. Send the owner the question list (§12) and continue with everything that does not depend on the answers.
+**Phase 0 — Read & confirm (no writes).** `get_site_settings`, `get_site_config`, `list_pages`, `list_media`, `get_knowledge_items`, `get_variables`, `list_blocks`, `get_search_visibility_status`, `get_legal_status`, `get_page_brief` (to load the current `systemPrompt`). Compare with §1.5: the settings listed there must be present; pages, media, blocks, nav and SEO plan must be absent. If anything else exists, stop and reconcile. Send the owner the question list (§12) and continue with everything that does not depend on the answers.
 
-**Phase 1 — Identity & legal.** `update_site_settings` (§7) → `update_legal_profile` (§5.13) → `get_legal_status` must reach 100 % → `update_cookie_consent` (§7.7) → `set_site_fonts` → `get_site_config` → `save_head_tags` (§4.7 merged with what the font tool wrote) → `save_footer_scripts` (§4.8) → `save_variable` × all (§7.1) → `save_knowledge_item` × 8 (Appendix D.1) → `save_ai_instructions` (Appendix D.2).
+**Phase 1 — Identity & legal.** Most of this is already done (§1.5) — verify each item and only fill the gaps: `get_site_settings` / `get_legal_status` (expect 100 %) / `get_variables` / `get_knowledge_items` → fix the cookie-banner privacy URL (§1.5) → `get_site_config` → `save_head_tags` (§4.7, keeping the font preloads and the `/fonts/sets/…css` link) → `save_knowledge_item` for Appendix D.1 items 2–8 only → re-read `get_ai_instructions` (already saved).
 
 **Phase 2 — Media.** §8.1–8.2 completely, then `list_media` and keep the URL map in your notes. Upload the SVG/PNG brand files; set logo/favicon.
 
