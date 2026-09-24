@@ -47,6 +47,7 @@ Alle 19 Zeilen des SEO-Plans „Ferien am See – Launch" sind geschlossen. Die 
 | `anreise-tabelle` | Entfernungstabelle | Startseite, `/region/anreise` |
 | `vertrauensleiste` | Vertrauensleiste (direkt beim Gastgeber, Antwort in 24 h, Booking) | Startseite u. a. |
 | `rechtshinweis` | Pflichthinweis „Alle Angaben ohne Gewähr … Preise inkl. gesetzlicher MwSt." | alle Unterkunftsseiten, Startseite |
+| `cta-anfrage` | Dunkles Handlungsband „Verfügbarkeit für … anfragen" (Parameter `unit` im Dativ, `link` Ziel des Hauptbuttons) | Regions- und Unterkunftsseiten |
 
 Die Blockquellen liegen im Ordner `blocks/`. Ein Block wird im Admin (oder per `save_block`) einmal geändert und gilt sofort auf allen Seiten.
 
