@@ -1,0 +1,950 @@
+# MASTER PROMPT — Build **ferienwohnung-see-brandenburg.de**
+### Cinematic holiday-rental website for three lakeside houses in Königs Wusterhausen (Brandenburg), on the Timbaly platform via MCP
+
+> **Version:** 1.0 · **Date:** 2026-09-24 · **Prepared for:** the AI agent that will build the site (Claude or comparable, with the Timbaly MCP connector `Ferienwohung_brandenburg` = ferienwohnung-see-brandenburg.de) · **Owner:** Ausblicke Management GmbH / Seehaus Berlin (Marita Briese)
+>
+> **How to use this document:** paste it whole into the agent's first message (or attach it) and say: *"Execute this master prompt. Work phase by phase, verify every phase before moving on, and stop only for the questions listed in §12 that block you."* Everything the agent needs is in here: verified facts, image URLs, page-by-page specifications, the SEO/GEO plan, the tool-by-tool runbook and the acceptance checklist. Where a fact is **not** verified it is marked **[TO CONFIRM]** — the agent must not invent it.
+
+---
+
+## 0. Mission, quality bar and non-negotiables
+
+**Mission.** Turn the empty Timbaly site **ferienwohnung-see-brandenburg.de** into a premium, cinematic, conversion-oriented German-language website that rents out four holiday units in three lakeside houses in Königs Wusterhausen (Dahme-Seenland, Brandenburg, 35–40 km south-east of Berlin):
+
+| # | Unit (working name) | House / address | Booking.com listing |
+|---|---|---|---|
+| U1 | **Maisonette am Krüpelsee** | Villa am Krüpelsee, Karl-Marx-Straße 8, 15712 Königs Wusterhausen OT Zernsdorf | https://www.booking.com/hotel/de/traum-maisonette-direkt-am-see.de.html (share: https://www.booking.com/Share-5C0nOc) |
+| U2 | **Apartment am Krüpelsee** | same villa | https://www.booking.com/hotel/de/leben-direkt-am-see.de.html (share: https://www.booking.com/Share-bpaoCA) |
+| U3 | **Gästehaus am Großen Zug** | Galeriehaus am See (Designvilla), Seestraße 41, 15713 Königs Wusterhausen OT Niederlehme | https://www.booking.com/hotel/de/gastehaus-am-grossen-zug-see.de.html (share: https://www.booking.com/Share-oF7mmA) |
+| U4 | **Ferienhaus am See in der Natur** (Seebiotophaus) | Haus am Biotop, Fontanestraße 26 A, 15712 Königs Wusterhausen OT Kablow **[TO CONFIRM — see §1.4]** | https://www.booking.com/hotel/de/ferienhaus-am-see-in-der-natur.de.html (share: https://www.booking.com/Share-Hh37cg) |
+
+**Quality bar.** "Maximum quality, not speed." Every page must look like a boutique-hotel launch site: full-bleed photography, cinematic light, large serif headlines, calm whitespace, precise micro-typography, zero broken images, zero placeholder text, zero invented facts. Mobile is half the audience: every page passes the mobile layout probe (§10) at 390 px.
+
+**Non-negotiables (violating any of these = failed delivery):**
+1. **No invented facts.** Prices, bed counts, max guests, check-in times, pets policy, distances and times come only from this document, from the owner, or from the sources listed in §1. Anything unknown is written as "auf Anfrage" or left out. Approximate values carry "ca.".
+2. **Only real photos of the real houses.** Use exclusively the image URLs in Appendix B (they are the owner's own photos, already published on the owner's sister sites). Never use stock, never use AI-generated imagery for the properties, never hot-link: every image is downloaded and re-uploaded into this site's media library (§8). The AI-looking illustrative renders listed in Appendix B.6 must **not** be used for property depiction.
+3. **German first, flawless German.** Site language `de`. Sie-form, warm but precise, no marketing shouting, no SEO jargon visible ("Keyword", "Landing Page", "Google" must never appear in visible copy). English (`en`) is Phase 3.
+4. **Platform rules from `get_page_brief.systemPrompt` win** on markup mechanics (no `<nav>`/`<footer>`/`<header>` in page HTML, only listed image URLs, contact form contract, `convert` class on CTAs, 800–1400 visible words per content page, grids start at one column, no fixed widths > 375 px, tables wrapped in `overflow-x-auto`, `[[GALLERY:…]]` shortcode for galleries, images auto-lightboxed so never wrap them in `<a>`).
+5. **Every visible number is consistent** across text, tables, FAQ, JSON-LD, `llms.txt` and the knowledge base. Update all of them together.
+6. **Legal safety:** consumer prices always "inkl. gesetzlicher MwSt." (PAngV); no "Bestpreis"-claims unless the owner confirms; the mandatory disclaimer line (§5.13) on every property page; privacy consent checkbox before every form's submit button.
+7. **Never reveal the sale context.** The three houses are simultaneously marketed for sale on seehaus-berlin.de. Holiday guests must not read about purchase prices, "Exposé", "Courtage" or brokerage anywhere on this site. This site is *only* about staying there.
+
+---
+
+## 1. Context, sources and what is (not) verified
+
+### 1.1 The platform and the connector
+- The site runs on **Timbaly**. You edit it through the MCP server **`Ferienwohung_brandenburg`** (domain `ferienwohnung-see-brandenburg.de`, plan `pro`, default language `de`, currently **completely empty**: 0 pages, 0 media, 0 knowledge items, 0 variables, no nav, no footer, no head tags, no logo, no contact e-mail, legal profile 0 %).
+- Sitemap, robots.txt and llms.txt are auto-declared by the platform; IndexNow is enabled; Google Search Console is **not** connected (owner task, §11).
+- A second, equally empty domain exists in the same account: **ferienwohnung-am-see.info** (connector `ferienwohnung_info`). Do **not** build a duplicate site there. Recommendation for the owner: 301-redirect it to the main domain at DNS/plan level (or leave unused).
+- Sister sites of the same owner, all on Timbaly, readable through their own connectors if you have them (read-only — never edit them): `Seehaus-Berlin` (seehaus-berlin.de, the sales portal), `Karlmarx_VierstegeHaus` (vierstegehaus.de), `seestrase_GaleriehausamSee` (galeriehausamsee.de), `Fontanne_26A` (hausamseebiotop.de), `Fontanne35` (seebiotophaus.de), `Krupelsee_5` (seehaus-kablow.de), `Senzig` (seetraumhaus-senzig.de). All facts and photos in this document were extracted from them on 2026-09-24.
+
+### 1.2 Verified sources (already mined — you may re-read them, you need not)
+| Source | What it gave us | Status |
+|---|---|---|
+| seehaus-berlin.de knowledge base + pages `/angebote/*`, `/kruepelsee-region`, `/anbindung-berlin-zernsdorf-senzig`, `/ueber-uns`, `/impressum` | company data, unit sizes, features, region copy, distances, editorial rules | verified |
+| vierstegehaus.de (`/`, `/lage-anbindung`, `/kruepelsee-zernsdorf-see`) + its media library | Villa am Krüpelsee facts, 39 photos | verified |
+| galeriehausamsee.de (`/`, `/gaestehaus`, `/lage-und-anbindung`) + media library | Gästehaus facts, 54 media incl. one MP4 | verified |
+| hausamseebiotop.de (`/`) + media library | Haus am Biotop facts, 25 photos | verified |
+| Official/tourism web sources (reiseland-brandenburg.de, dahme-seenland.de, komoot, outdooractive, rome2rio, Wikipedia) | attractions, distances, travel times | verified as "ca." values, see Appendix C |
+| **Booking.com listings (4 URLs above)** | descriptions, amenities, house rules, prices, reviews, listing photos | **NOT retrievable by automation** (Booking serves an anti-bot challenge, HTTP 202/403). See §1.3. |
+
+### 1.3 Booking.com data — how to obtain it
+1. Try once yourself with a headless browser (`page.goto` each URL, wait for `#hp_hotel_name` / `[data-testid="property-description"]`). If you get a challenge page, **stop trying**; do not attempt to evade bot protection.
+2. Ask the owner for a **Booking extranet export** or plain copy-paste per unit: title, description text, "Ausstattung" list, "Wichtige Informationen"/house rules, check-in/out, max. guests, bed configuration, size, pet & smoking policy, current rate table (Nebensaison/Hauptsaison, Mindestaufenthalt, Endreinigung, Kaution), cancellation policy, review score & count, and the original photos (owner has the files). Give them the template in §12.
+3. Until that arrives, build every page with the verified facts from §2, write prices as "Preise & Verfügbarkeit auf Anfrage", and link to the Booking listing with the button "Auf Booking.com ansehen".
+4. Booking reviews must not be scraped or reproduced wholesale. You may state the score ("9,2 / 10 auf Booking.com, Stand MM/JJJJ") if the owner supplies it, and quote short guest sentences only from the owner's own testimonial collection (with first name + month/year and consent).
+
+### 1.4 Open identification issue — U4
+The Booking title "Ferienhaus am See in der Natur" and the owner's word "Seebiotophaus" fit **Haus am Biotop, Fontanestraße 26 A, Kablow** (fully furnished, sauna, winter garden, jetty, biotope, guest apartment mentioned on the portal). The domain **seebiotophaus.de** however belongs to a different, un-renovated 1940 villa at Fontanestraße 35 (a development project, not rental-ready). **Default assumption: U4 = Fontanestraße 26 A.** Confirm with the owner before publishing the U4 page, and confirm whether the *entire house* or only its *guest apartment* is rented on Booking.
+
+---
+
+## 2. Verified facts (single source of truth for copy, JSON-LD and knowledge base)
+
+### 2.1 Operator (used in Impressum, footer, JSON-LD `Organization`, legal profile)
+- Legal name: **Ausblicke Management GmbH**
+- Address: **Kuno-Fischer-Str. 14, 14057 Berlin, Deutschland**
+- Register: Amtsgericht Charlottenburg, **HRB 115701 B**
+- VAT ID (USt-IdNr.): **DE262426225**
+- Managing director / host: **Marita Briese** (Geschäftsführerin; sie ist die persönliche Gastgeberin und Ansprechpartnerin)
+- Phone: **+49 163 5088945** (tel link `+491635088945`)
+- WhatsApp: **+49 172 8588588** (link `https://wa.me/491728588588`) **[TO CONFIRM which number the owner wants shown as phone; the portal uses 163…, vierstegehaus.de uses 172…]**
+- E-mail: **kontakt@seehaus-berlin.de** (also the contact-form notification address; the owner may prefer a dedicated `ferien@…` — ask, default to this one)
+- Availability: Mo–Fr 9:00–18:00 Uhr, Sa nach Vereinbarung
+- Umbrella brand: **Seehaus Berlin** (https://seehaus-berlin.de). Footer line: „Ein Angebot der Ausblicke Management GmbH · Seehaus Berlin".
+- Real-estate licence data (§ 34c GewO, Bezirksamt Charlottenburg-Wilmersdorf) exists for the brokerage business; **not needed** on a rental site — omit unless the owner insists.
+
+### 2.2 House A — Villa am Krüpelsee (Zernsdorf) → units U1 + U2
+- Address: Karl-Marx-Straße 8, 15712 Königs Wusterhausen OT Zernsdorf. Quiet cul-de-sac (Stichstraße, no through traffic), south-facing, directly on the **Krüpelsee** (west shore, Zernsdorf side), Dahme-Seenland.
+- The estate: renovated historic villa (Altbau, half-timbered gable, terracotta floors, wooden beam ceilings, brick arches, spiral staircases), plot ca. 1.749 m², ca. 30 m private shoreline, **4 private jetties (Stege)**, heated **salt-water pool**, **sauna house ca. 40 m²** (recently renovated), winter garden, covered wooden pavilion, lakeside terrace, old weeping willow, lawn to the water, a houseboat moored at the jetty (appears in photos), workshop/outbuilding with office loft, photovoltaics, 5 parking spaces, 3 wood-burning stoves in total, 6 bathrooms in total, 5 balconies/terraces in total. Three separate living units: ca. 185 m² (owner/main), ca. 125 m² (U1), ca. 60–63 m² (U2).
+- **Guest use of pool, sauna house, jetties, boat, SUP/kayaks: [TO CONFIRM].** Until confirmed write "Seezugang über das Grundstück" and nothing about pool/sauna use.
+- **U1 Maisonette am Krüpelsee**: ca. 125 m² on two levels, 2,5 Schlafzimmer, 2 Bäder, 2 Balkone/Terrassen mit Seeblick, Kaminofen, 1 Stellplatz, direkter Seeblick. Beds/max guests/kitchen equipment/WLAN/TV/washing machine **[TO CONFIRM]**.
+- **U2 Apartment am Krüpelsee**: ca. 63 m², 1 Bad, Kaminofen, Seeblick, 1 Stellplatz, ruhige Lage direkt am Wasser. Beds/max guests etc. **[TO CONFIRM]**.
+- Interior photos of the villa exist (Appendix B.1) but their assignment to U1 vs U2 is **[TO CONFIRM]**: until confirmed, unit pages show only exterior/lake/shared-grounds photos plus the interiors the owner assigns.
+
+### 2.3 House B — Galeriehaus am See / Designvilla (Niederlehme) → unit U3
+- Address: Seestraße 41, 15713 Königs Wusterhausen OT Niederlehme. On a **peninsula (Landzunge) in the Großer Zug**, a long lake of the Dahme chain between Niederlehme and Ziegenhals; water on two/three sides; private jetty; garden with lake view; 5 parking spaces incl. carport for 3; fibre-optic internet (Glasfaser).
+- **U3 Gästehaus am Großen Zug**: separate guest house, **ca. 57 m²**, one-room apartment (living/sleeping area), Küchenzeile, Duschbad mit bodengleicher Dusche, **own entrance**, **own terrace with lake view, not visible from the main house**, **barrier-free / wheelchair-accessible (ebenerdig, Türen in Rollstuhlbreite)**, parquet floor, built-in wardrobes, high-quality furnishing, WLAN via Glasfaser. Floor plan image available. Beds/max guests/parking spot assignment/jetty use **[TO CONFIRM]**.
+- The main villa (ca. 244 m², gallery level, fireplace, sauna in basement) is **not** part of the rental: never show its interiors on the U3 page.
+- A short **MP4 video** (magic-hour footage, 8.3 MB) exists — the hero-video candidate (§4.6).
+
+### 2.4 House C — Haus am Biotop / "Seebiotophaus" (Kablow) → unit U4 [identification TO CONFIRM, §1.4]
+- Address: Fontanestraße 26 A, 15712 Königs Wusterhausen OT Kablow. North shore of the Krüpelsee, nature-protected biotope location, quiet village edge, woodland around.
+- House: Einfamilienhaus ca. 190 m², plot ca. 750 m² + ca. 350 m² leased shore strip with **private jetty**; **Wintergarten**, Terrasse mit Seeblick, **Sauna** (garden sauna house), **Kaminofen**, offene Küche mit Kochinsel, offener Wohn-/Essbereich, Homeoffice-Raum, Schlafzimmer mit Seeblick, 1 Bad + Gäste-WC, Dachgeschoss, Carport, Werkstatt, Gartenhaus, **überdachter Grillplatz mit Gasgrill**, Sonnendeck mit Liegen, wooden boardwalk through the reed biotope to the lake, big lawn under old trees, wrought-iron fence; a guest apartment is mentioned on the portal. Beds/max guests/what exactly is rented **[TO CONFIRM]**.
+
+### 2.5 Booking-relevant house facts still missing for **all** units (ask once, §12)
+Check-in/check-out times · minimum stay · max. guests and bed configuration · children/cots · pets · smoking · parties · quiet hours · parking · WLAN speed · linen & towels included? · final cleaning fee · deposit · payment methods · cancellation terms · seasonal rate table · Kurtaxe/tourist tax (verify with Stadt Königs Wusterhausen) · key handover (self check-in?) · languages spoken · accessibility details · sustainability features.
+
+### 2.6 Region facts (short; the full, sourced list with "ca." values is Appendix C)
+Königs Wusterhausen ("KW") is the largest town of Landkreis Dahme-Spreewald, south-east of Berlin, at the northern edge of the Dahme-Seenland / Naturpark Dahme-Heideseen. Lakes: Krüpelsee (Zernsdorf/Senzig/Kablow), Großer Zug (Niederlehme/Ziegenhals), Krimnicksee (Strandbad Neue Mühle), Zernsdorfer Lanke, Krossinsee. Berlin-Mitte ca. 35–40 km by road; S-Bahn S46 from KW to Berlin-Ostkreuz ca. 30 min, to Alexanderplatz ca. 40 min, regional trains RE2/RE7 faster; BER airport ca. 15–25 min by car, regional train from KW ca. 15 min; A10/A13 motorway; Tropical Islands ca. 40 km / 30–35 min; Spreewald (Lübben) ca. 45 km / 40 min; Potsdam ca. 45 km. Sights: Schloss Königs Wusterhausen (Soldatenkönig), Funkerberg with Sender- und Funktechnikmuseum (birthplace of German radio, 22.12.1920), Dahmelandmuseum, Schleuse Neue Mühle (1868), Strandbad Neue Mühle, Rundwanderweg Krüpelsee (ca. 23 km), Rundweg Tiergarten (7 km), DahmeRadweg, canoe route "Märkische Umfahrt", SUP rental in Zernsdorf, houseboat charter in Zernsdorf.
+
+---
+
+## 3. Positioning, audience, voice
+
+- **Positioning:** "Seehaus Berlin — Ferien am See": handpicked private lakeside houses of one host family, 40 minutes from Berlin, where the water is not the view but the daily rhythm. Not a portal, not a hotel: a host with three houses on two lakes.
+- **Audience (priority order):** (1) Berlin couples & families for weekends and short breaks; (2) remote workers / "Workation" (fibre internet, quiet, lake); (3) international visitors flying into BER (English Phase 3); (4) small groups celebrating quietly (no party houses); (5) nature lovers: swimming, SUP, canoe, fishing, cycling, winter fireplace stays.
+- **Promise:** direct lake access, real privacy, private jetties, fireplaces and saunas, Berlin within reach — and a personal host (Marita Briese) instead of an anonymous check-in machine.
+- **Voice:** premium, calm, concrete, sensory. Short sentences. Sie-form. No exclamation marks in body copy. No "Traum-", "Luxus-", "einzigartig" inflation: show, don't shout. Numbers precise or "ca.". Synonyms: Ferienhaus, Ferienwohnung, Unterkunft, Domizil, Refugium, Seehaus.
+- **Forbidden in visible copy:** Kaufpreis, Exposé, Courtage, Makler, Verkauf, Kapitalanlage, SEO, Google, Keyword, Landing Page, Conversion.
+- **Tagline (H1 candidates, pick per page):** „Ferien direkt am See – 40 Minuten von Berlin." · „Wo das Wasser die Zeit verlangsamt." (borrowed from the portal, use sparingly) · „Drei Häuser. Zwei Seen. Ein Gastgeber."
+
+---
+
+## 4. Brand & design system ("modern, cinematic, wow")
+
+### 4.1 Site identity
+- Display name (`update_site_settings.name`): **Ferienhaus am See Brandenburg** (keyword-aligned with the domain; the wordmark reads "FERIEN AM SEE").
+- Wordmark (inline SVG in the nav, no image request): line 1 "FERIEN AM SEE" (Cormorant Garamond 600, letter-spacing 0.18em), line 2 "Königs Wusterhausen · Brandenburg" (Inter 500, 10–11 px, uppercase, tracking 0.22em, gold).
+- Favicon + logo mark: monogram SVG (Appendix E.1) — upload as `brand/favicon.svg`/`brand/favicon-512.png` and set `faviconUrl`/`logoUrl`.
+- Optional co-branding: the Seehaus Berlin logo (`https://seehaus-berlin.de/uploads/site-15/logo-seehausberlin.jpg`, 384 px) in the footer next to „Ein Angebot von Seehaus Berlin" — **ask the owner**.
+
+### 4.2 Colour tokens (Tailwind `theme.extend.colors`)
+```js
+night: { 950:'#07141E', 900:'#0B1F2E', 800:'#0F2C40', 700:'#164058' },   // dusk over the lake — hero overlays, dark sections, footer
+lake:  { 100:'#E6F3F7', 200:'#BFE3EC', 400:'#5FB0C8', 500:'#2A88A6', 600:'#1E6A85', 700:'#175570' }, // links, icons, accents
+sand:  { 50:'#FBF8F3', 100:'#F4EEE4', 200:'#E8DCCB', 300:'#D6C3A8' },   // page backgrounds, cards
+gold:  { 300:'#E3CFA2', 500:'#C9A86A', 600:'#B08D4F', 700:'#8F7038' },  // eyebrows, dividers, primary button
+reed:  { 500:'#6B8F71', 700:'#4F6E55' },                                  // nature badges
+ink:   { DEFAULT:'#1A1A1A', soft:'#3D3D3D', mute:'#6B6B6B' }
+```
+Contrast rules: body text `ink` on `sand-50/white` (≥ 12:1); on `night-900` use `sand-100` text; gold only for text ≥ 18 px semibold or on `night` backgrounds (gold-300 on night-900 = ≥ 7:1). Never gold on white for small text.
+
+### 4.3 Typography (`set_site_fonts`, self-hosted by the platform — never link Google Fonts)
+- Display/serif: **Cormorant Garamond** weights 500, 600, 700 (headlines ≥ 28 px only).
+- Body/sans: **Inter** weights 400, 500, 600.
+- Scale: H1 `clamp(2.6rem, 6vw, 5rem)` line-height 1.05, letter-spacing −0.01em; H2 `clamp(2rem, 3.6vw, 3.25rem)`; H3 1.5–1.75 rem; body 1.0625 rem / 1.7; eyebrow labels Inter 600 0.72 rem uppercase tracking 0.2em in gold-600; captions 0.875 rem `ink-mute`.
+
+### 4.4 Layout grammar
+- Container `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`; content column for long copy `max-w-3xl`.
+- Section rhythm: `py-20 md:py-28`; alternate `bg-sand-50` / `bg-white` / `bg-night-900 text-sand-100` (one dark "cinematic" section per page, never two in a row).
+- Radius `rounded-2xl` on cards and images, `rounded-full` on pills; shadows `shadow-[0_20px_60px_-20px_rgba(11,31,46,0.35)]` on hover only.
+- Grids always `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8`.
+- Image treatment: `object-cover`, `aspect-[4/3]` cards, `aspect-[3/2]` strips, `aspect-[16/9]` cinematic; hero `min-h-[92svh]`; add `loading="lazy" decoding="async"` to all images except the hero (`fetchpriority="high"`), always `width`/`height` attributes (Appendix B lists dimensions).
+
+### 4.5 Signature components (build once as blocks, §8.5)
+1. **Cinematic hero**: full-bleed photo (or video) + layered gradient `from-night-950/80 via-night-900/30 to-transparent` + eyebrow + serif H1 + one-sentence sub + two CTAs (`Verfügbarkeit anfragen` gold-500 → anchor `#anfrage`; `Unterkünfte entdecken` ghost) + a "scroll" chevron. Ken-Burns 24 s slow zoom on the photo (CSS), disabled under `prefers-reduced-motion`.
+2. **Facts ribbon** (`fakten-leiste`): 4–6 tiles (m², Gäste, Schlafzimmer, Seeblick, Kamin, Sauna…) with inline SVG icons; numbers count up on reveal.
+3. **Sticky booking bar** (`buchungsleiste`, property pages only): appears after the hero; unit name · "Preise auf Anfrage" (or "ab X € / Nacht" once rates exist) · `Verfügbarkeit anfragen` · `Auf Booking.com ansehen` (`target="_blank" rel="noopener"`). Mobile: bottom bar with the two buttons.
+4. **Story strip**: alternating 60/40 image-text rows; the image bleeds to the viewport edge on desktop.
+5. **Gallery**: masonry-like grid (`grid-cols-2 md:grid-cols-3` with `row-span-2` on portrait shots) using `[[GALLERY:folder=<folder>,columns=3]]` where a whole folder fits, or explicit `<img>` grids where curation matters. Never wrap images in `<a>`.
+6. **Vier Jahreszeiten**: 4 photos (spring/summer/autumn/winter) with a one-line poetic caption each — the sites have autumn, winter, sunset and morning-mist material.
+7. **Lage-Karte**: static map image is not available and Google Maps needs consent → use an **OpenStreetMap embed** `<iframe class="w-full aspect-video" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=…&layer=mapnik&marker=…">` plus an "In Google Maps öffnen" link (`https://www.google.com/maps/search/?api=1&query=<lat>,<lng>`). No API keys, no cookies.
+8. **Distances table** (`anreise-tabelle`): Ziel · Entfernung · Fahrzeit · Verkehrsmittel (values in Appendix C, all "ca.").
+9. **Trust bar** (`vertrauensleiste`): „Persönliche Gastgeberin" · „Direkt am See" · „Direktanfrage ohne Portalgebühr" (only if owner agrees) · „Auch auf Booking.com".
+10. **Inquiry form** (`anfrage-formular`): see §4.8.
+11. **FAQ accordion** (native `<details>/<summary>`, styled) — also emitted as `FAQPage` JSON-LD.
+12. **Legal line** (`rechtshinweis`): „Alle Angaben ohne Gewähr. Preise inkl. gesetzlicher MwSt. Verfügbarkeit und Konditionen werden mit der Buchungsbestätigung verbindlich."
+
+### 4.6 Motion & "wow" (all CSS + ≤ 60 lines vanilla JS in footer scripts; respect `prefers-reduced-motion`)
+- `.reveal` → IntersectionObserver adds `.is-visible` (opacity 0→1, translateY 24 px→0, 700 ms cubic-bezier(.2,.7,.2,1)); children stagger via `--i` custom property (`transition-delay: calc(var(--i) * 90ms)`).
+- Hero Ken-Burns keyframes; parallax-lite on story images (`transform: translateY(calc(var(--scroll) * -0.06px))`, JS writes `--scroll`), capped and disabled on touch devices.
+- Count-up for facts (only on first reveal).
+- Hero video (home + U3 page): `<video class="absolute inset-0 h-full w-full object-cover hidden md:block" autoplay muted loop playsinline preload="metadata" poster="/uploads/…/poster.jpg"><source src="/uploads/…/hermann-website-video-warm-magic-hour-web.mp4" type="video/mp4"></video>` with the poster image shown on mobile. Preview the clip first (download it, check duration/first frame with ffmpeg at `/opt/pw-browsers/ffmpeg-1011` or any ffmpeg); if it shows the main villa interiors rather than lake/exterior, use it only on the home page.
+- No carousels that auto-rotate text; no scroll-jacking; no cursor effects.
+
+### 4.7 Head tags (`save_head_tags`) — after `set_site_fonts`, read `get_site_config` and merge; keep exactly one Tailwind CDN include
+```html
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { /* tokens from §4.2 */ },
+  fontFamily: { serif: ['Cormorant Garamond','Georgia','serif'], sans: ['Inter','system-ui','sans-serif'] },
+  boxShadow: { card: '0 2px 16px rgba(11,31,46,.08)', float: '0 20px 60px -20px rgba(11,31,46,.35)' },
+  keyframes: { kenburns: { '0%': { transform:'scale(1)' }, '100%': { transform:'scale(1.08)' } } },
+  animation: { kenburns: 'kenburns 24s ease-out forwards' }
+} } };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1A1A1A; background: #FBF8F3; }
+  h1,h2,h3,.font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+  .eyebrow { font: 600 .72rem/1 'Inter', sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #B08D4F; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: calc(var(--i, 0) * 90ms); }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .hero-media { animation: kenburns 24s ease-out forwards; }
+  details > summary { list-style: none; cursor: pointer; } details > summary::-webkit-details-marker { display: none; }
+  details[open] .chev { transform: rotate(180deg); }
+  .btn-gold { background:#C9A86A; color:#07141E; } .btn-gold:hover { background:#B08D4F; }
+  .btn-ghost { border:1px solid rgba(251,248,243,.6); color:#FBF8F3; } .btn-ghost:hover { background: rgba(251,248,243,.12); }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none } .hero-media { animation:none } html { scroll-behavior:auto } }
+</style>
+```
+
+### 4.8 Footer scripts (`save_footer_scripts`)
+```html
+<script>
+(function(){
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = document.querySelectorAll('.reveal');
+  if (rm || !('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('is-visible'); }); }
+  else { var io = new IntersectionObserver(function(en){ en.forEach(function(x){ if (x.isIntersecting){ x.target.classList.add('is-visible'); io.unobserve(x.target);} }); }, { rootMargin:'0px 0px -10% 0px', threshold:.12 }); els.forEach(function(e){ io.observe(e); }); }
+  // count-up
+  document.querySelectorAll('[data-count]').forEach(function(el){
+    var target = parseFloat(el.getAttribute('data-count')), suffix = el.getAttribute('data-suffix') || '';
+    var done = false; var o = new IntersectionObserver(function(en){ if (en[0].isIntersecting && !done){ done = true; var t0 = performance.now();
+      (function step(t){ var p = Math.min(1,(t-t0)/1200); el.textContent = Math.round(target*(1-Math.pow(1-p,3))) + suffix; if (p<1) requestAnimationFrame(step); })(t0); } }); o.observe(el);
+  });
+  // sticky booking bar
+  var bar = document.getElementById('buchungsleiste'); var hero = document.querySelector('[data-hero]');
+  if (bar && hero) { new IntersectionObserver(function(en){ bar.classList.toggle('translate-y-full', en[0].isIntersecting); bar.classList.toggle('opacity-0', en[0].isIntersecting); }).observe(hero); }
+})();
+</script>
+```
+Do **not** add Google Analytics / Ads tags in Phase 1 (see §7.7). If the owner later wants GA4, load it only through the consent categories.
+
+### 4.9 Inquiry form contract (platform intercepts `#contact-form`)
+```html
+<form id="contact-form" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+  <div><label for="name" class="block text-sm font-medium mb-1">Name *</label><input id="name" name="name" type="text" required class="w-full rounded-xl border border-sand-300 bg-white px-4 py-3"></div>
+  <div><label for="email" class="block text-sm font-medium mb-1">E-Mail *</label><input id="email" name="email" type="email" required class="…"></div>
+  <div><label for="phone" class="block text-sm font-medium mb-1">Telefon</label><input id="phone" name="phone" type="tel" class="…"></div>
+  <div><label for="unterkunft" class="block text-sm font-medium mb-1">Unterkunft *</label>
+    <select id="unterkunft" name="unterkunft" required class="…">
+      <option value="">Bitte wählen</option>
+      <option>Maisonette am Krüpelsee (Zernsdorf)</option><option>Apartment am Krüpelsee (Zernsdorf)</option>
+      <option>Gästehaus am Großen Zug (Niederlehme)</option><option>Ferienhaus am See in der Natur (Kablow)</option>
+      <option>Noch unentschieden – bitte beraten</option>
+    </select></div>
+  <div><label for="anreise" class="block text-sm font-medium mb-1">Anreise *</label><input id="anreise" name="anreise" type="date" required class="…"></div>
+  <div><label for="abreise" class="block text-sm font-medium mb-1">Abreise *</label><input id="abreise" name="abreise" type="date" required class="…"></div>
+  <div><label for="personen" class="block text-sm font-medium mb-1">Personen *</label><input id="personen" name="personen" type="number" min="1" max="12" required class="…"></div>
+  <div class="md:col-span-2"><label for="message" class="block text-sm font-medium mb-1">Ihre Nachricht</label><textarea id="message" name="message" rows="4" class="…"></textarea></div>
+  <div class="md:col-span-2 flex items-start gap-2 my-2"><input type="checkbox" id="privacy_consent" name="privacy_consent" value="1" required class="mt-1"><label for="privacy_consent" class="text-sm">Ich habe die <a href="/datenschutz" class="underline">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu. *</label></div>
+  <div class="md:col-span-2"><button type="submit" class="convert btn-gold px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all">Unverbindlich anfragen</button>
+  <p class="text-sm text-ink-mute mt-3">Sie erhalten innerhalb von 24 Stunden eine persönliche Antwort von Marita Briese. Keine Vorauszahlung, keine Portalgebühr.</p></div>
+</form>
+```
+On unit pages pre-select the unit (`selected`). Exactly one `#contact-form` per page. No `action`/`method` attributes.
+
+### 4.10 Navigation & footer (`save_navigation`, language `de`) — build once, complete, then never rewrite for single links (use `add_page_to_navigation`)
+Structure (desktop row + slide-over mobile panel + backdrop + tiny script; include the comment markers `<!--tb-nav-insert-->` and `<!--tb-footer-insert-->` at the end of **each** link list so the platform can append future pages):
+- Logo (wordmark SVG) → `/`
+- **Unterkünfte** ▾ → `/ferienhaeuser` (Alle Unterkünfte), `/ferienhaeuser/maisonette-am-kruepelsee`, `/ferienhaeuser/apartment-am-kruepelsee`, `/ferienhaeuser/gaestehaus-am-grossen-zug`, `/ferienhaeuser/ferienhaus-am-see-kablow`, `/ferienhaeuser/villa-am-kruepelsee-zernsdorf` (Das Anwesen)
+- **Region** ▾ → `/region` (Königs Wusterhausen & Dahme-Seenland), `/region/kruepelsee`, `/region/ausflugsziele`, `/region/aktivitaeten-am-see`, `/region/anreise`
+- **Gastgeber** → `/gastgeber`
+- **Magazin** → `/magazin` (Phase 2; add the link when the first article exists)
+- **FAQ** → `/faq`
+- **Kontakt** → `/kontakt`
+- CTA button (gold): **Verfügbarkeit anfragen** → `/buchen`
+- Utility (desktop, right): phone icon `tel:{{phone_link}}`, WhatsApp icon `{{whatsapp_link}}`
+Nav behaviour: transparent over the hero with a dark gradient veil (`nav::before`), turns `bg-night-950/95 backdrop-blur` after 60 px scroll (`.nav-scrolled`); mobile panel slides from the right, traps scroll, closes on backdrop click / Esc. Reference implementation: the Seehaus Berlin nav (readable via `Seehaus-Berlin.get_site_config`) — copy its mechanics, not its content.
+Footer (4 columns on desktop, stacked on mobile, `bg-night-950 text-sand-100`): (1) wordmark + 2-line claim + „Ein Angebot der Ausblicke Management GmbH · Seehaus Berlin" + address + phone + WhatsApp + e-mail + hours; (2) Unterkünfte links; (3) Region + Magazin links; (4) Service: Buchen, FAQ, Kontakt, Gastgeber, „Auf Booking.com" (4 listing links), Impressum, Datenschutz, AGB / Mietbedingungen, Cookie-Einstellungen (`#cookie-settings` if the platform exposes it; otherwise omit). Bottom line: © {{current year}} Ausblicke Management GmbH · „Alle Preise inkl. MwSt." · language switch placeholder (Phase 3).
+
+
+---
+
+## 5. Information architecture and page-by-page specifications
+
+### 5.1 URL map (all lowercase, a–z 0–9 and hyphens only; `ae/oe/ue/ss` for umlauts)
+| # | URL | Type (SEO-plan `pageType`) | Primary keyword | Phase |
+|---|---|---|---|---|
+| P0 | `/` | home (`isHomePage`) | Ferienhaus am See Brandenburg / Ferienwohnung am See nahe Berlin | 1 |
+| P1 | `/ferienhaeuser` | services (section) | Ferienhäuser & Ferienwohnungen Königs Wusterhausen | 1 |
+| P2 | `/ferienhaeuser/maisonette-am-kruepelsee` | other | Ferienwohnung Krüpelsee Zernsdorf (Maisonette) | 1 |
+| P3 | `/ferienhaeuser/apartment-am-kruepelsee` | other | Ferienwohnung Zernsdorf am See (Apartment) | 1 |
+| P4 | `/ferienhaeuser/gaestehaus-am-grossen-zug` | other | Ferienwohnung Niederlehme am See / barrierefreie Ferienwohnung Brandenburg | 1 |
+| P5 | `/ferienhaeuser/ferienhaus-am-see-kablow` | other | Ferienhaus Kablow Krüpelsee / Ferienhaus mit Sauna und Steg Brandenburg | 1 (after §1.4 confirmed) |
+| P6 | `/ferienhaeuser/villa-am-kruepelsee-zernsdorf` | other | Villa am Krüpelsee Ferienwohnung / Urlaub am Krüpelsee | 1 |
+| P7 | `/buchen` | other | Ferienwohnung Königs Wusterhausen buchen / Verfügbarkeit | 1 |
+| P8 | `/region` | other | Urlaub Dahme-Seenland / Königs Wusterhausen Urlaub | 1 |
+| P9 | `/region/kruepelsee` | other | Krüpelsee Urlaub / Krüpelsee baden | 1 |
+| P10 | `/region/ausflugsziele` | other | Ausflugsziele Königs Wusterhausen / Tropical Islands Unterkunft Nähe | 1 |
+| P11 | `/region/aktivitaeten-am-see` | other | Wassersport Dahme-Seenland / SUP Krüpelsee / Radfahren Dahme-Radweg | 1 |
+| P12 | `/region/anreise` | other | Anreise Königs Wusterhausen S-Bahn / Ferienwohnung nahe Flughafen BER | 1 |
+| P13 | `/gastgeber` | about | Gastgeber Seehaus Berlin Marita Briese | 1 |
+| P14 | `/faq` | other | Ferienwohnung Brandenburg FAQ (Hausregeln, Check-in, Haustiere) | 1 |
+| P15 | `/kontakt` | contact | Kontakt Ferienwohnung Königs Wusterhausen | 1 |
+| P16 | `/impressum` | other (noindex) | — | 1 |
+| P17 | `/datenschutz` | other (noindex) | — | 1 (platform template via `update_legal_profile`) |
+| P18 | `/agb-mietbedingungen` | other (noindex) | — | 1 |
+| P19 | `/magazin` | blog (section) | Magazin: Urlaub am See bei Berlin | 2 |
+| P20–P31 | `/magazin/<slug>` | other | 12 articles (§6.6) | 2 (weekly) |
+| — | `/en/…` | translations of P0–P15 | English | 3 |
+
+### 5.2 Shared rules for every content page
+- Length 800–1400 visible words (platform requirement) — reach it with substance: what the unit includes, for whom, how a stay works, what it costs or what the price depends on, real FAQs.
+- Structure: hero → "answer capsule" (2–3 factual sentences answering who/what/where/for whom/how to book) → facts ribbon → story sections → gallery → location → FAQ (4–6) → inquiry/CTA → legal line.
+- Internal links: ≥ 3 contextual links per page (unit ↔ region ↔ FAQ ↔ buchen), breadcrumbs in JSON-LD, one link to the Booking listing on each unit page, one outbound link to `https://seehaus-berlin.de` only in the footer/Gastgeber page (rel default).
+- Headings: one H1; H2 for sections; H3 inside; never skip levels.
+- Every image: German `alt` from Appendix B, `width`/`height`, lazy except hero.
+- JSON-LD per page (templates in §6.4) passed as `structuredData` in `create_page_from_html`.
+- Meta title ≤ 60 chars incl. brand suffix "| Ferien am See Brandenburg" where it fits; meta description 140–160 chars with a benefit and a location; OG title ≤ 70, OG description ≤ 200, `ogImage` = the page hero (absolute URL on this domain after upload), `ogType` `website` for home, `article` for magazine, `website` elsewhere.
+
+### 5.3 P0 — Home `/`
+- **Title:** `Ferienhaus & Ferienwohnung am See bei Berlin – Königs Wusterhausen`
+- **Meta:** `Vier private Unterkünfte direkt am Krüpelsee und Großen Zug in Königs Wusterhausen – Steg, Kamin, Sauna, 40 Minuten von Berlin. Jetzt Verfügbarkeit anfragen.`
+- **H1:** `Ferien direkt am See – 40 Minuten von Berlin`
+- **Sub:** `Drei Häuser, zwei Seen, ein Gastgeber: Maisonette, Apartment, Gästehaus und Ferienhaus mit privatem Seezugang in Königs Wusterhausen, Dahme-Seenland.`
+- Hero media: video (§4.6) with poster `hauptbild-villa-am-kruepelsee-steg-hausboot.jpg` (object-position 62 % — otherwise the house is cropped on phones); mobile shows the poster.
+- Sections: (1) answer capsule; (2) facts ribbon: `4 Unterkünfte · 2 Seen · ca. 40 Min. nach Berlin-Mitte · ca. 20 Min. zum BER · Kamin & Sauna · Private Stege`; (3) **Unterkünfte** — 4 cards (photo, name, place, 3 icons, "ab … €" only when known, buttons `Details` + `Anfragen`); (4) **Warum hier** — 6 reasons (Seezugang, Ruhe/Stichstraße/Landzunge, Kamin & Sauna, Berlin & BER nah, persönliche Gastgeberin, Natur: Naturpark Dahme-Heideseen); (5) dark cinematic section "Der Tag am See" (morning mist → afternoon on the jetty → evening fire) with three `umgebung-*` photos; (6) **Vier Jahreszeiten** strip; (7) **Region teaser** with distances table block; (8) **Gastgeberin** teaser (Marita Briese quote: „Eine Seeimmobilie ist mehr als ein Ort – es ist ein Lebensgefühl." adapted to guests); (9) trust bar + Booking mention; (10) FAQ (6: Wie weit ist es nach Berlin? Kann man im Krüpelsee baden? Gibt es WLAN? Sind Hunde erlaubt? [answer "auf Anfrage" until confirmed] Wie buche ich? Wo parke ich?); (11) inquiry form; (12) legal line.
+- JSON-LD: `WebSite` + `Organization` (§6.4.1) + `ItemList` of the 4 `VacationRental` URLs + `FAQPage`.
+
+### 5.4 P1 — `/ferienhaeuser` (overview)
+- **Title:** `Ferienhäuser & Ferienwohnungen am See in Königs Wusterhausen`
+- **Meta:** `Maisonette, Apartment, Gästehaus oder Ferienhaus – vergleichen Sie unsere vier Unterkünfte am Krüpelsee und Großen Zug: Größe, Ausstattung, Seeblick, Lage.`
+- **H1:** `Unsere Unterkünfte am See`
+- Sections: intro capsule; 4 large cards (alternating story-strip layout); **comparison table** (`unterkuenfte-vergleich` block): Größe · Schlafzimmer · Bäder · max. Gäste [TO CONFIRM] · Kamin · Sauna · Steg/Seezugang · Terrasse · barrierefrei · Parkplatz · WLAN · Lage · Booking-Link; "Welche Unterkunft passt zu wem" (Paar/Familie/Workation/barrierefrei/Gruppe); FAQ (4); CTA.
+- JSON-LD: `ItemList` + `BreadcrumbList` + `FAQPage`.
+
+### 5.5 P2 — `/ferienhaeuser/maisonette-am-kruepelsee` (U1)
+- **Title:** `Maisonette am Krüpelsee – Ferienwohnung mit Seeblick & Kamin, Zernsdorf`
+- **Meta:** `Ca. 125 m² auf zwei Ebenen, 2,5 Schlafzimmer, 2 Bäder, zwei Terrassen mit Seeblick und Kaminofen – direkt am Krüpelsee in Zernsdorf, 40 Minuten von Berlin.`
+- **H1:** `Maisonette am Krüpelsee` · eyebrow `Zernsdorf · Villa am Krüpelsee · direkt am See`
+- Hero: `01-seite-startseite-abschnitt-titelbild-villa-vom-steg-01.jpg` (or the Hauptbild if the home uses the video only).
+- Answer capsule: „Die Maisonette am Krüpelsee ist eine Ferienwohnung auf zwei Ebenen (ca. 125 m²) in einer renovierten Altbauvilla direkt am Krüpelsee in Königs Wusterhausen-Zernsdorf. Zwei Terrassen mit Seeblick, Kaminofen, 2,5 Schlafzimmer und 2 Bäder; Berlin-Mitte ist in ca. 40 Minuten erreichbar. Anfrage direkt beim Gastgeber oder über Booking.com."
+- Facts ribbon: `ca. 125 m² · 2 Ebenen · 2,5 Schlafzimmer · 2 Bäder · 2 Terrassen · Kaminofen · 1 Stellplatz · Seeblick`.
+- Sections: Wohnen (Altbau-Charakter: Balkendecken, Terrakotta, Backsteinbogen, Wendeltreppe — only as far as photos confirmed for U1); Schlafen & Bäder [details TO CONFIRM]; Draußen (Terrassen, Uferwiese, Stege — guest use TO CONFIRM); Das Anwesen (link P6); Gallery (folder `villa-am-kruepelsee/maisonette` once assigned, else `villa-am-kruepelsee/aussen`); Lage & Anreise (Zernsdorf, S-Bahnhof Zernsdorf/KW, BER); Preise & Buchung (rate table placeholder → "auf Anfrage", Endreinigung/Kaution rows only when known); Hausregeln summary [TO CONFIRM]; FAQ (5); sticky bar + form (unit pre-selected); legal line.
+- JSON-LD: `VacationRental` (§6.4.2) + `BreadcrumbList` + `FAQPage`.
+
+### 5.6 P3 — `/ferienhaeuser/apartment-am-kruepelsee` (U2)
+- **Title:** `Apartment am Krüpelsee – Ferienwohnung mit Kamin direkt am See, Zernsdorf`
+- **Meta:** `Ca. 63 m² mit Kaminofen, Seeblick und eigenem Stellplatz in der Villa am Krüpelsee, Zernsdorf. Ruhige Lage am Wasser, S-Bahn nach Berlin, BER in ca. 20 Minuten.`
+- **H1:** `Apartment am Krüpelsee` · eyebrow `Zernsdorf · für zwei · Kamin & Seeblick`
+- Same skeleton as P2; positioning: das Domizil für zwei (Paare, Workation, Kurzurlaub), "kompakt, stilvoll, das Wasser vor der Tür". Facts: `ca. 63 m² · 1 Schlafbereich [TO CONFIRM] · 1 Bad · Kaminofen · Seeblick · 1 Stellplatz`.
+
+### 5.7 P4 — `/ferienhaeuser/gaestehaus-am-grossen-zug` (U3)
+- **Title:** `Gästehaus am Großen Zug – barrierefreie Ferienwohnung am See, Niederlehme`
+- **Meta:** `Ca. 57 m², eigener Eingang, Küchenzeile, bodengleiche Dusche und eigene Terrasse mit Seeblick auf einer Landzunge im Großen Zug. Ebenerdig und rollstuhlgerecht, Glasfaser-WLAN.`
+- **H1:** `Gästehaus am Großen Zug` · eyebrow `Niederlehme · Landzunge · barrierefrei`
+- Hero: `17-gaestehaus.jpg` (exterior) or the video (if it shows the lake/villa exterior); poster = `01-ensemble-hero.jpg`.
+- Answer capsule: „Das Gästehaus am Großen Zug ist eine eigenständige, ebenerdige Ferienwohnung (ca. 57 m²) mit eigenem Eingang, Küchenzeile, Duschbad mit bodengleicher Dusche und eigener Terrasse mit Seeblick – auf einer Landzunge im Großen Zug in Königs Wusterhausen-Niederlehme. Sie ist rollstuhlgerecht ausgebaut und hat Glasfaser-Internet."
+- Facts: `ca. 57 m² · 1 Zimmer · Küchenzeile · Duschbad · eigene Terrasse · eigener Eingang · barrierefrei · Glasfaser-WLAN · Stellplatz`.
+- Sections: Wohnen (Parkett, Einbauschränke, Wohn-/Schlafbereich, Terrassenzugang); Barrierefreiheit (ebenerdig, Türbreiten, bodengleiche Dusche — no measurements unless confirmed); Draußen (Terrasse, Garten, Wasser auf zwei Seiten, Steg [use TO CONFIRM]); Workation (Glasfaser, Ruhe, eigener Eingang); Grundriss (image `23-grundriss-gaestehaus.jpg`); Gallery (folder `galeriehaus/gaestehaus` + a few `galeriehaus/aussen`); Lage (Niederlehme, Naturbadestelle Am Großen Zug, Zum Wasserfreund, S-Bahn KW/Bahnhof Niederlehme, BER); Preise & Buchung; FAQ (5 incl. „Ist das Gästehaus rollstuhlgerecht?"); form; legal line.
+- JSON-LD: `VacationRental` with `accessibilityFeature` hints via `amenityFeature` (`Barrierefrei`, `Ebenerdig`) + breadcrumbs + FAQ.
+
+### 5.8 P5 — `/ferienhaeuser/ferienhaus-am-see-kablow` (U4) — publish only after §1.4 is confirmed
+- **Title:** `Ferienhaus am See in der Natur – Sauna, Kamin & Steg am Krüpelsee, Kablow`
+- **Meta:** `Ferienhaus mit Wintergarten, Kaminofen, Sauna, Grillplatz und eigenem Steg am Krüpelsee in Königs Wusterhausen-Kablow. Naturlage am Biotop, 40 Minuten von Berlin.`
+- **H1:** `Ferienhaus am See in der Natur` · eyebrow `Kablow · Krüpelsee · Biotoplage`
+- Hero: `01_haus_am_biotop_gartenansicht_mit_wintergarten.jpg`.
+- Facts: `ca. 190 m² [or apartment size] · Wintergarten · Sauna · Kaminofen · eigener Steg · Grillplatz · Carport · Garten mit Biotop`.
+- Sections: Ankommen (Kiesvorplatz, schmiedeeisernes Tor); Wohnen (offener Wohn-/Essbereich, Kochinsel, Kaminofen, Homeoffice-Raum, Dachgeschoss); Wintergarten & Terrasse; Sauna & Grill & Sonnendeck; Der Weg zum Wasser (Holzsteg durchs Schilf, Steg, Baden); Natur & Biotop (Rücksicht: geschützter Bereich, keine lauten Feiern); Gallery (folder `haus-am-biotop/innen` + `/aussen`); Lage (Kablow, Naturpark, Radweg, Bahnhof KW ca. 10–15 Min.); Preise & Buchung; Hausregeln; FAQ; form; legal line.
+- JSON-LD as P2.
+
+### 5.9 P6 — `/ferienhaeuser/villa-am-kruepelsee-zernsdorf` (the estate hosting U1 + U2)
+- **Title:** `Villa am Krüpelsee – Urlaub in einer Altbauvilla direkt am See, Zernsdorf`
+- **Meta:** `Zwei Ferienwohnungen in einer renovierten Altbauvilla mit 30 m Seeufer, privaten Stegen und Garten am Krüpelsee in Zernsdorf. Ruhige Stichstraße, Südlage, Berlin in 40 Minuten.`
+- **H1:** `Die Villa am Krüpelsee`
+- Content: history/character of the house (no dates unless confirmed), the grounds (30 m shore, 4 jetties, lawn, willow, pavilion, terrace), what guests may use [TO CONFIRM list], the two units (cards → P2/P3), Zernsdorf & the lake (link P9), seasons, gallery (`villa-am-kruepelsee/aussen` + `region/kruepelsee`), FAQ, CTA. JSON-LD `LodgingBusiness` (name „Villa am Krüpelsee – Ferienwohnungen") + breadcrumbs.
+
+### 5.10 P7 — `/buchen`
+- **Title:** `Verfügbarkeit anfragen & buchen – Ferienwohnungen am See Königs Wusterhausen`
+- **Meta:** `So einfach buchen Sie: Anfrage senden, persönliche Bestätigung innerhalb von 24 Stunden, Anreise-Infos per E-Mail. Alternativ direkt auf Booking.com buchen.`
+- **H1:** `Anfragen & Buchen`
+- Sections: 3-step process (Anfrage → Bestätigung & Zahlung → Anreise-Infos & Schlüsselübergabe); the inquiry form (all units selectable); **Booking.com** panel with the four listing buttons; **Preise & Konditionen** (table per unit: Nebensaison/Hauptsaison/Feiertage, Mindestaufenthalt, Endreinigung, Kaution, Zahlungsweise, Stornobedingungen — every cell "auf Anfrage" until the owner supplies values; when values exist, add „Stand: MM/JJJJ, inkl. MwSt."); Check-in/Check-out; Gutschein/Geschenkidee (optional); FAQ (5); legal line.
+- JSON-LD: `WebPage` + `HowTo` (3 steps) + `FAQPage` + breadcrumbs.
+
+### 5.11 P8–P12 — Region cluster (local SEO backbone)
+- **P8 `/region`** — Title `Urlaub in Königs Wusterhausen & Dahme-Seenland – Seen, Natur, Berlin-Nähe` · H1 `Königs Wusterhausen und das Dahme-Seenland` · content: the town (largest town of Dahme-Spreewald, Schloss, Funkerberg, Altstadt, Wochenmarkt Di/Fr), the districts (Zernsdorf, Kablow, Niederlehme, Senzig, Neue Mühle, Wernsdorf, Zeesen, Ziegenhals — one paragraph each with what guests find there), the lakes, the seasons, hub links to P9–P12 and the unit pages, distances block, FAQ. JSON-LD `TouristDestination` + breadcrumbs.
+- **P9 `/region/kruepelsee`** — Title `Der Krüpelsee – Baden, Paddeln, Angeln und Ferien am Ufer` · H1 `Der Krüpelsee` · content: geography (natural lake of the Dahme chain, Zernsdorf west shore, Senzig east, Kablow north; quiet, reed belts, swans, herons, fish: Hecht, Barsch, Karpfen, Schleie — say „gilt als fischreich"), swimming (from the jetties, water quality "gilt als gut" — no official grade unless verified), SUP/canoe (Einsetzstelle Zernsdorf Fährweg, Märkische Umfahrt), houseboat/boat rentals (BunBo Zernsdorf — no prices), Rundwanderweg Krüpelsee (ca. 23 km), winter (ice, mist, fireplace), our three units on/near the lake, gallery `region/kruepelsee`, FAQ (Darf man im Krüpelsee baden? Gibt es Motorboote? Kann man angeln? — with „Angelkarte erforderlich, Auskunft beim Angelverband" phrasing). JSON-LD `LakeBodyOfWater` + breadcrumbs + FAQ.
+- **P10 `/region/ausflugsziele`** — Title `Ausflugsziele rund um Königs Wusterhausen – Tropical Islands, Spreewald, Berlin` · H1 `Ausflugsziele von der Haustür aus` · content: 12 cards with distance/time (Appendix C): Tropical Islands, Spreewald (Lübben/Lübbenau Kahnfahrt), Berlin-Mitte, Köpenick Altstadt & Schloss, Schloss Königs Wusterhausen, Funkerberg & Sendermuseum, Strandbad Neue Mühle & Schleuse, Naturbadestelle Am Großen Zug, Naturpark Dahme-Heideseen, Wildau (TH, Wildau A10 Center for shopping — optional), Potsdam, Müggelsee; plus „Regenwetter-Ideen" and „Mit Kindern". JSON-LD `ItemList` of `TouristAttraction` + breadcrumbs.
+- **P11 `/region/aktivitaeten-am-see`** — Title `Aktivitäten am See: SUP, Kanu, Radfahren, Angeln, Wandern im Dahme-Seenland` · H1 `Aktiv am Wasser und im Wald` · content by activity with practical pointers (where to rent, which route, season), DahmeRadweg, „Pack die Badehose ein" tour (35 km, 10 swimming spots), Rundweg Tiergarten (7 km), Funkerberg (6 km), winter activities, wellness (own saunas), FAQ. JSON-LD `Article`/`WebPage` + breadcrumbs.
+- **P12 `/region/anreise`** — Title `Anreise nach Königs Wusterhausen – S-Bahn, Auto, Flughafen BER` · H1 `Anreise: mit Bahn, Auto oder vom BER` · content: by car (A10 AS Königs Wusterhausen, A13, B179/B246; parking at each house), by train (S46 to KW; RE2/RE7; from KW to Zernsdorf station / by bus/taxi/bike to the houses — give the last-mile per unit: Bahnhof Zernsdorf (Regionalbahn, not S-Bahn) → Karl-Marx-Straße [distance TO CONFIRM], Bahnhof Niederlehme (Regionalbahn) → Seestraße [TO CONFIRM], Kablow → Regionalbahn-Halt Kablow or bus/taxi from KW [TO CONFIRM]), from BER (train ca. 15 min to KW, taxi ca. 20–25 min), by bike (DahmeRadweg), e-car charging [TO CONFIRM], the distances table block, FAQ. JSON-LD `WebPage` + breadcrumbs + FAQ.
+
+### 5.12 P13–P15
+- **P13 `/gastgeber`** — Title `Ihre Gastgeberin: Marita Briese & Seehaus Berlin` · H1 `Persönlich vermietet, persönlich betreut` · content: who hosts (Marita Briese, Ausblicke Management GmbH, based in Berlin, rooted in the Krüpelsee region), the philosophy (few houses, real lake access, discretion, 24-h personal answer), how a stay works, sustainability & house care, the sister brand Seehaus Berlin (one sentence, link), contact card, FAQ. JSON-LD `AboutPage` + `Organization`/`Person`.
+- **P14 `/faq`** — Title `Häufige Fragen – Ferienwohnungen am See Königs Wusterhausen` · H1 `Gut zu wissen` · 18–24 Q&As grouped: Buchung & Preise · Anreise & Schlüssel · Ausstattung · Haus & See · Region · Storno. Answers 40–80 words, factual, „auf Anfrage" where unknown. JSON-LD `FAQPage` (all Q&As).
+- **P15 `/kontakt`** — Title `Kontakt – Ferien am See Brandenburg` · H1 `Sprechen Sie mit uns` · contact card (phone, WhatsApp, e-mail, hours, postal address of the operator), the inquiry form, „Sie erreichen uns auch über Booking.com", map of the three locations (OSM embed centred on KW with a note), FAQ (3). JSON-LD `ContactPage` + `Organization` `contactPoint`.
+
+### 5.13 Legal pages
+- **P16 `/impressum`**: § 5 DDG data from §2.1 (company, address, Geschäftsführerin, phone, e-mail, register, USt-IdNr.), § 18 Abs. 2 MStV responsible person, EU-ODR/VSBG sentence („Zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle sind wir nicht verpflichtet und nicht bereit." — [TO CONFIRM with owner]), Haftung für Inhalte/Links, Urheberrecht, Bildnachweis („Alle Fotos: Ausblicke Management GmbH"). `noIndex: true`.
+- **P17 `/datenschutz`**: created by the platform from `update_legal_profile` (ragione_sociale `Ausblicke Management GmbH`, tipo_soggetto `company`, indirizzo `Kuno-Fischer-Str. 14, 14057 Berlin`, email `kontakt@seehaus-berlin.de`, partita_iva `DE262426225`, codice_fiscale `HRB 115701 B (Amtsgericht Charlottenburg)`, telefono `+49 163 5088945`). Then read it and add German sections the template may lack: contact-form processing (Art. 6 Abs. 1 lit. b DSGVO), WhatsApp contact notice, Booking.com as separate controller, OpenStreetMap embed notice, hosting (Timbaly) processor note [TO CONFIRM provider details], guest registration data (§ 29/30 BMG). Have the owner's lawyer review — say so in the handover.
+- **P18 `/agb-mietbedingungen`**: draft outline (owner + lawyer to finalise): Vertragspartner; Vertragsschluss (Anfrage → schriftliche Bestätigung); Preise (inkl. MwSt.), Nebenkosten (Endreinigung, Kaution), Zahlung (Anzahlung x %, Rest bis y Tage vor Anreise); Stornierung (staffel); An-/Abreise (Zeiten, Schlüssel); Personenzahl; Haustiere; Rauchen; Ruhezeiten & Feiern; Nutzung von Steg/See/Sauna auf eigene Gefahr, Kinder beaufsichtigen; Haftung; Meldeschein (§ 29 BMG); kein Widerrufsrecht bei Beherbergungsleistungen (§ 312g Abs. 2 Nr. 9 BGB); Gerichtsstand. Every numeric value "[vom Eigentümer festzulegen]" until supplied. `noIndex: true`.
+- The disclaimer block on property pages (`rechtshinweis`): „Alle Angaben ohne Gewähr; Ausstattung und Verfügbarkeit können sich ändern. Preise inkl. gesetzlicher MwSt. Maßgeblich ist die schriftliche Buchungsbestätigung."
+
+### 5.14 Copy bank (German, ready to use; adapt, do not repeat verbatim on more than one page)
+- Eyebrows: „Direkt am See" · „Zernsdorf · Krüpelsee" · „Niederlehme · Großer Zug" · „Kablow · Naturlage" · „40 Minuten von Berlin" · „Persönlich vermietet".
+- H2 candidates: „Der See beginnt am Ende des Gartens." · „Morgens Nebel, abends Feuer." · „Zwei Ebenen, zwei Terrassen, ein See." · „Ebenerdig, eigenständig, mit Blick aufs Wasser." · „Ankommen, ablegen, aufatmen." · „Berlin ist nah. Die Stille ist näher." · „Vier Jahreszeiten am Ufer."
+- Micro-copy: „Unverbindlich anfragen" · „Antwort innerhalb von 24 Stunden" · „Auf Booking.com ansehen" · „Alle Preise inkl. MwSt." · „Verfügbarkeit prüfen" · „Persönliche Schlüsselübergabe oder Schlüsselbox – nach Absprache" [TO CONFIRM].
+- Quote for the host section: „Wer hier ankommt, hört zuerst nichts – und dann das Wasser." — Marita Briese [TO CONFIRM she agrees; otherwise write a neutral sentence without attribution].
+
+
+---
+
+## 6. SEO, local/geo targeting and GEO (Generative Engine Optimization) plan
+
+### 6.1 Strategy in one paragraph
+Dominate the *micro-region* — not "Ferienwohnung Brandenburg" nationally, but every query that combines **accommodation intent** with **Königs Wusterhausen, Zernsdorf, Kablow, Niederlehme, Senzig, Krüpelsee, Großer Zug, Dahme-Seenland, "nahe Berlin", "nahe BER", "Tropical Islands Nähe", "Spreewald Nähe"** — and be the source that AI assistants quote when asked for a lake house near Berlin. Four unit pages carry the transactional intent, the region cluster carries the informational intent, the magazine feeds long-tail and freshness, and consistent entity data (NAP, coordinates, JSON-LD, llms.txt, knowledge base) makes the site machine-readable.
+
+### 6.2 Keyword map (German; the platform's `targetKeyword` per SEO-plan row)
+| Cluster | Head terms | Long-tail / questions | Target page |
+|---|---|---|---|
+| Domain-exact | ferienwohnung am see brandenburg, ferienhaus am see brandenburg, ferienwohnung see brandenburg | ferienhaus am see nahe berlin, ferienwohnung am see bei berlin, wochenende am see berlin umland | P0, P1 |
+| Town | ferienwohnung königs wusterhausen, ferienhaus königs wusterhausen, unterkunft königs wusterhausen, übernachten königs wusterhausen | ferienwohnung königs wusterhausen am see, ferienwohnung königs wusterhausen mit hund | P1, P8 |
+| Lake | ferienwohnung krüpelsee, ferienhaus krüpelsee, urlaub krüpelsee, krüpelsee baden | krüpelsee zernsdorf ferienwohnung, ferienhaus krüpelsee steg | P9, P2, P3, P6 |
+| Districts | ferienwohnung zernsdorf, ferienhaus zernsdorf, ferienwohnung kablow, ferienhaus kablow, ferienwohnung niederlehme, ferienwohnung senzig | ferienwohnung zernsdorf see, ferienhaus kablow krüpelsee | P2/P3, P5, P4, P8 |
+| Feature | ferienhaus mit sauna brandenburg, ferienhaus mit kamin am see, ferienwohnung mit seeblick brandenburg, ferienhaus mit steg brandenburg, ferienhaus mit bootssteg berlin umland, barrierefreie ferienwohnung brandenburg, rollstuhlgerechte ferienwohnung am see | ferienhaus mit eigenem steg und sauna nahe berlin | P5, P4, P2 |
+| Proximity | ferienwohnung nahe flughafen ber, unterkunft nähe ber, ferienwohnung tropical islands nähe, ferienhaus spreewald nähe berlin, ferienwohnung dahme-seenland | wo übernachten bei tropical islands, unterkunft bei ber mit auto | P12, P10, P8 |
+| Occasion | workation berlin umland see, romantisches wochenende am see berlin, familienurlaub am see brandenburg, kurzurlaub am see bei berlin | ferienwohnung mit kamin winter brandenburg | P0, P11, magazine |
+| Brand | seehaus berlin ferienwohnung, villa am krüpelsee ferienwohnung | — | P6, P13 |
+
+Rules: one primary keyword per page (in title, H1, first 100 words, one H2, image alt, URL), 2–4 secondaries in H2/H3 and body, never stuffed; place names as natural entities (Zernsdorf, Kablow, Niederlehme, Königs Wusterhausen, Krüpelsee, Großer Zug, Dahme-Seenland, Landkreis Dahme-Spreewald, Brandenburg, Berlin, BER).
+
+### 6.3 Technical SEO on this platform
+- Titles ≤ 60, descriptions 140–160, unique per page; canonical auto; `noIndex` on legal pages via `update_page_seo`.
+- URLs from §5.1; no trailing slashes; no umlauts.
+- `robots.txt` (via `save_seo_files`): allow all, `Sitemap: https://ferienwohnung-see-brandenburg.de/sitemap.xml`, optionally allow AI crawlers explicitly (`User-agent: GPTBot` / `ClaudeBot` / `PerplexityBot` / `Google-Extended` → `Allow: /`) — this is a marketing site that *wants* to be cited.
+- `llms.txt` (Appendix D.3): the canonical machine-readable summary — facts, units, addresses (locality level), distances, booking channels, contact, links.
+- Images: descriptive German file names (Appendix B already are), `alt` per image, ≤ 300 KB each where possible (resize to max 2000 px on the long edge before upload; keep originals), `width`/`height` set, hero `fetchpriority="high"`.
+- Page speed: one Tailwind CDN script (platform pattern), fonts self-hosted by `set_site_fonts`, no Lucide/other CDNs (inline SVG icons), video only with `preload="metadata"` and desktop-only autoplay.
+- Internal links: each page ≥ 3 in-content links; every unit page linked from home, overview, region hub, and the two sibling units ("Weitere Unterkünfte").
+- Breadcrumbs JSON-LD on all pages except home.
+- Hreflang: automatic when EN translations exist (Phase 3) — verify in `get_page_translations`.
+- IndexNow is automatic on publish; Google needs Search Console (owner task) + sitemap submission there.
+
+### 6.4 Structured data templates (fill from §2 — never leave placeholders)
+**6.4.1 Home — `Organization` + `WebSite`**
+```json
+{"@context":"https://schema.org","@graph":[
+ {"@type":["Organization","LodgingBusiness"],"@id":"https://ferienwohnung-see-brandenburg.de/#org",
+  "name":"Ferienhaus am See Brandenburg – Seehaus Berlin Ferien","legalName":"Ausblicke Management GmbH",
+  "url":"https://ferienwohnung-see-brandenburg.de/","logo":"https://ferienwohnung-see-brandenburg.de/uploads/…/brand/logo-512.png",
+  "telephone":"+49 163 5088945","email":"kontakt@seehaus-berlin.de",
+  "address":{"@type":"PostalAddress","streetAddress":"Kuno-Fischer-Str. 14","postalCode":"14057","addressLocality":"Berlin","addressCountry":"DE"},
+  "areaServed":["Königs Wusterhausen","Zernsdorf","Kablow","Niederlehme","Dahme-Seenland","Brandenburg"],
+  "founder":{"@type":"Person","name":"Marita Briese"},
+  "sameAs":["https://seehaus-berlin.de","https://www.booking.com/hotel/de/traum-maisonette-direkt-am-see.de.html","https://www.booking.com/hotel/de/leben-direkt-am-see.de.html","https://www.booking.com/hotel/de/gastehaus-am-grossen-zug-see.de.html","https://www.booking.com/hotel/de/ferienhaus-am-see-in-der-natur.de.html"]},
+ {"@type":"WebSite","@id":"https://ferienwohnung-see-brandenburg.de/#website","url":"https://ferienwohnung-see-brandenburg.de/","name":"Ferienhaus am See Brandenburg","inLanguage":"de-DE","publisher":{"@id":"https://ferienwohnung-see-brandenburg.de/#org"}}
+]}
+```
+**6.4.2 Unit page — `VacationRental` (Google's vacation-rental vocabulary)**
+```json
+{"@context":"https://schema.org","@type":"VacationRental",
+ "@id":"https://ferienwohnung-see-brandenburg.de/ferienhaeuser/maisonette-am-kruepelsee#unit",
+ "name":"Maisonette am Krüpelsee","identifier":"U1",
+ "brand":{"@id":"https://ferienwohnung-see-brandenburg.de/#org"},
+ "url":"https://ferienwohnung-see-brandenburg.de/ferienhaeuser/maisonette-am-kruepelsee",
+ "image":["<absolute upload URLs, 3–8 images>"],
+ "description":"<answer capsule>",
+ "address":{"@type":"PostalAddress","streetAddress":"Karl-Marx-Straße 8","postalCode":"15712","addressLocality":"Königs Wusterhausen","addressRegion":"Brandenburg","addressCountry":"DE"},
+ "latitude":0,"longitude":0,
+ "containsPlace":{"@type":"Accommodation","occupancy":{"@type":"QuantitativeValue","value":0},
+   "floorSize":{"@type":"QuantitativeValue","value":125,"unitCode":"MTK"},
+   "numberOfBedrooms":2.5,"numberOfBathroomsTotal":2,
+   "amenityFeature":[{"@type":"LocationFeatureSpecification","name":"Kaminofen","value":true},{"@type":"LocationFeatureSpecification","name":"Seeblick","value":true},{"@type":"LocationFeatureSpecification","name":"Terrasse","value":true},{"@type":"LocationFeatureSpecification","name":"Parkplatz","value":true}]},
+ "checkinTime":"<HH:MM, only when confirmed>","checkoutTime":"<HH:MM>","petsAllowed":"<only when confirmed>",
+ "knowsLanguage":["de","en"],
+ "additionalProperty":[{"@type":"PropertyValue","name":"Gewässer","value":"Krüpelsee"}]}
+```
+Geocode each street address with OpenStreetMap Nominatim (`https://nominatim.openstreetmap.org/search?q=…&format=json`, one request per second, custom User-Agent) and paste real `latitude`/`longitude`; drop the keys rather than leave zeros. `occupancy` only when max guests is confirmed. Add `aggregateRating` only with owner-confirmed Booking score and count. No `offers` until a rate table exists (then `priceRange` on the `LodgingBusiness`).
+**6.4.3 Every subpage — `BreadcrumbList`** (Startseite › Unterkünfte › Maisonette am Krüpelsee).
+**6.4.4 FAQ — `FAQPage`** with the exact visible Q&As.
+**6.4.5 Region — `TouristDestination` (P8), `LakeBodyOfWater` (P9), `ItemList` of `TouristAttraction` (P10), `Article` (magazine) with `author` = Organization and `datePublished`.**
+
+### 6.5 GEO — being the answer in AI assistants
+- **Answer capsule** at the top of every page: 2–3 declarative sentences with entity + place + key facts + how to book, in the same order everywhere. Assistants lift these.
+- **FAQ answers** 40–80 words, self-contained, each repeats the entity name once ("Die Maisonette am Krüpelsee …").
+- **Consistency:** the same numbers in text, table, FAQ, JSON-LD, llms.txt, knowledge base. Use "ca." for every distance/time; add „Stand: MM/JJJJ" to price tables.
+- **Entity density without stuffing:** each page names its lake, district, town, region, county, state and Berlin/BER once each in natural sentences.
+- **Quotable sentences:** one factual blockquote per page („Der Krüpelsee liegt ca. 35 km südöstlich von Berlin-Mitte im Dahme-Seenland; die S-Bahn S46 verbindet Königs Wusterhausen in ca. 30 Minuten mit Berlin-Ostkreuz.").
+- **Comparison table** on P1 (assistants love tables), **distances table** on P8/P12, **step list** on P7.
+- **llms.txt** maintained with every change (Appendix D.3); `robots.txt` allows AI crawlers.
+- **About/Gastgeber page** with a named human, address, register data (E-E-A-T).
+- **Off-site entity signals** (owner tasks, §11): Google Business Profile per house (category „Ferienwohnung"/„Ferienhaus" — only if guests are met in person or a legitimate address is served), Bing Places, Apple Business Connect, OpenStreetMap tags for the houses (tourism=apartment/chalet), Tourismusverband Dahme-Seenland host listing (dahme-seenland.de), reiseland-brandenburg.de (TMB), Stadt Königs Wusterhausen accommodation list, kulturfeste.de, plus consistent NAP everywhere and links from seehaus-berlin.de (footer „Ferien am See") to this site.
+
+### 6.6 Content calendar — Magazin (Phase 2, one article per week, 900–1300 words, 1 hero + 3 images, `Article` JSON-LD, 4 internal links)
+| Week | Slug | Working title | Primary keyword |
+|---|---|---|---|
+| 1 | `/magazin/tropical-islands-uebernachten-am-see` | Tropical Islands besuchen und am See übernachten – 30 Minuten entfernt | tropical islands unterkunft nähe |
+| 2 | `/magazin/spreewald-tagesausflug-vom-kruepelsee` | Spreewald-Tagesausflug: Kahnfahrt in Lübbenau, abends zurück an den Krüpelsee | spreewald ausflug unterkunft berlin nähe |
+| 3 | `/magazin/berlin-entdecken-am-see-wohnen` | Berlin entdecken, am See wohnen: So klappt der Städtetrip mit S-Bahn | berlin städtetrip unterkunft umland see |
+| 4 | `/magazin/workation-am-see-bei-berlin` | Workation am See: Arbeiten mit Glasfaser und Seeblick bei Berlin | workation berlin umland |
+| 5 | `/magazin/kruepelsee-baden-sup-kanu` | Baden, SUP und Kanu auf dem Krüpelsee – Einstiegsstellen, Regeln, Tipps | krüpelsee baden |
+| 6 | `/magazin/dahme-radweg-tour-ab-koenigs-wusterhausen` | DahmeRadweg ab Königs Wusterhausen: Tour-Ideen mit Badestopps | dahme radweg königs wusterhausen |
+| 7 | `/magazin/schloss-koenigs-wusterhausen-funkerberg` | Schloss und Funkerberg: Ein Kulturtag in Königs Wusterhausen | schloss königs wusterhausen besuch |
+| 8 | `/magazin/winter-am-see-kamin-sauna` | Winter am See: Kamin, Sauna und Morgennebel – warum die kalte Saison lohnt | ferienhaus winter kamin sauna brandenburg |
+| 9 | `/magazin/anreise-ohne-auto-koenigs-wusterhausen` | Ohne Auto an den See: Anreise mit S46, RE und Fahrrad | anreise königs wusterhausen s-bahn |
+| 10 | `/magazin/familienurlaub-am-see-brandenburg` | Familienurlaub am See: Strandbad, Wasserspielplatz, Tropical Islands | familienurlaub am see brandenburg |
+| 11 | `/magazin/barrierefrei-urlaub-am-see` | Barrierefrei am See: Was das Gästehaus am Großen Zug bietet | barrierefreie ferienwohnung brandenburg |
+| 12 | `/magazin/naturpark-dahme-heideseen-wandern` | Naturpark Dahme-Heideseen: Rundwanderweg Krüpelsee und Tiergarten | wandern dahme-seenland |
+Create these as approved rows in the SEO plan with `scheduledPublishAt` dates one week apart **only if** the owner wants the platform's nightly generator to write them (costs platform credits); otherwise leave unscheduled and write them yourself with `create_page_from_html` + `seoPlanItemId`. `/magazin` index uses `[[PAGE_LIST:prefix=/magazin,layout=cards,limit=12,sort=newest,columns=3]]`.
+
+### 6.7 Booking.com co-existence
+- Booking stays the distribution channel; this site is the **direct** channel. Primary CTA everywhere: direct inquiry. Secondary: „Auf Booking.com ansehen" (`target="_blank" rel="noopener"`).
+- Rate parity: since the BGH ruling (2021) narrow parity clauses are void in Germany; the owner *may* offer better direct terms, but this site claims nothing about prices until the owner decides. Allowed neutral wording: „Direkt beim Gastgeber anfragen – persönlich und ohne Umwege."
+- Keep unit names identical on both channels for entity matching (Booking title ↔ page H1/JSON-LD `name`); if the Booking titles differ („Traum Maisonette direkt am See", „Leben direkt am See", „Gästehaus am Großen Zug See", „Ferienhaus am See in der Natur"), mention the Booking title once on each unit page („bei Booking.com als ‚Traum Maisonette direkt am See' gelistet").
+- Availability: no calendar integration exists on Timbaly; the form asks for dates; Phase 4 option: embed a channel-manager widget (e.g. Smoobu/Lodgify) via `save_footer_scripts` after consent review.
+
+### 6.8 Measurement
+- Platform analytics: `get_analytics_overview`, `get_top_pages`, `get_conversions` (every CTA/button carries the `convert` class).
+- Google Search Console: owner connects at `/admin/settings/search-visibility`; after that use `get_search_performance` and `get_indexing_status` monthly; re-check `get_search_visibility_status`.
+- Monthly review loop: top queries → strengthen the matching page; zero-click pages → sharpen title/description; new questions from guests → FAQ + llms.txt.
+
+
+---
+
+## 7. Site configuration decisions (defaults — the owner may override)
+
+| Setting | Tool | Value |
+|---|---|---|
+| Display name | `update_site_settings.name` | `Ferienhaus am See Brandenburg` |
+| Contact e-mail (form notifications — without it leads are silently dropped) | `update_site_settings.contactEmail` | `kontakt@seehaus-berlin.de` |
+| Languages | `update_site_settings.availableLanguages` | `de` now; `de,en` in Phase 3 |
+| Logo / favicon | `update_site_settings.logoUrl/faviconUrl` | uploaded `brand/logo-512.png`, `brand/favicon.svg` (Appendix E.1) |
+| Fonts | `set_site_fonts` | display `Cormorant Garamond` [500,600,700], body `Inter` [400,500,600] |
+| Head tags | `save_head_tags` | §4.7 |
+| Footer scripts | `save_footer_scripts` | §4.8 |
+| Legal profile | `update_legal_profile` | §5.13 values |
+| 7.7 Cookie banner | `update_cookie_consent` | `enableCookieConsent: true`, `cookieEnableAnalytics: true`, `cookieEnableMarketing: false`, `cookiePrivacyPolicyUrl: /datenschutz`, position `bottom-bar`, title `Datenschutz-Einstellungen`, description: „Wir setzen technisch notwendige Cookies, damit diese Website funktioniert. Für die Reichweitenmessung benötigen wir Ihre Einwilligung – ohne sie wird nichts geladen. Ihre Auswahl können Sie jederzeit über „Cookie-Einstellungen" im Seitenfuß ändern." (No Google Ads/Analytics in Phase 1; if the owner adds them later, enable the marketing category and extend the text.) |
+| AI disclosure (EU AI Act Art. 50) | `update_ai_disclosure` | leave as is (disabled, like the sister sites) — owner's legal call; mention it in the handover |
+| AI instructions | `save_ai_instructions` | Appendix D.2 |
+| Knowledge base | `save_knowledge_item` × 8 | Appendix D.1 |
+| Variables | `save_variable` | §7.1 |
+| SEO files | `save_seo_files` | robots §6.3, llms.txt Appendix D.3 |
+
+### 7.1 Variables (`{{key}}` in pages, nav, footer, blocks)
+`business_name`=`Ferienhaus am See Brandenburg` · `brand_short`=`Ferien am See` · `company_name`=`Ausblicke Management GmbH` · `company_address`=`Kuno-Fischer-Str. 14, 14057 Berlin` · `contact_name`=`Marita Briese` · `phone`=`+49 163 5088945` · `phone_link`=`+491635088945` · `whatsapp`=`+49 172 8588588` · `whatsapp_link`=`https://wa.me/491728588588` · `email`=`kontakt@seehaus-berlin.de` · `hours`=`Mo–Fr 9:00–18:00 Uhr, Sa nach Vereinbarung` · `portal_url`=`https://seehaus-berlin.de` · `booking_u1`…`booking_u4` = the four Booking URLs · `place_u1`=`Zernsdorf, Königs Wusterhausen` · `place_u3`=`Niederlehme, Königs Wusterhausen` · `place_u4`=`Kablow, Königs Wusterhausen` · `checkin`=`auf Anfrage` · `checkout`=`auf Anfrage` · `min_stay`=`auf Anfrage` (replace when confirmed) · `hrb`=`HRB 115701 B` · `ustid`=`DE262426225`.
+
+---
+
+## 8. Media plan
+
+### 8.1 Folder structure in the target media library (`create_media_folder`; the platform normalises names — always use the returned path)
+`brand` · `villa-am-kruepelsee/aussen` · `villa-am-kruepelsee/maisonette` · `villa-am-kruepelsee/apartment` · `villa-am-kruepelsee/innen-unzugeordnet` (interiors until the owner assigns them) · `galeriehaus/gaestehaus` · `galeriehaus/aussen` · `haus-am-biotop/innen` · `haus-am-biotop/aussen` · `region/kruepelsee` · `region/karten` · `video`.
+
+### 8.2 Transfer procedure (shell available)
+1. For each row in Appendix B: `curl -fsSL -o <local> "<source URL>"` (all sources answer HTTP 200 without auth; the `-de.timbaly.site` mirrors work too).
+2. Normalise: convert PNG photos to JPEG q85; resize long edge to 2000 px (`convert in.png -resize 2000x2000\> -quality 85 out.jpg` if ImageMagick exists; otherwise upload as is); keep the SEO file names (lowercase, hyphens); portrait phone shots (852×1846) stay portrait.
+3. `request_media_upload(folder)` → run the returned `curlCommand` **one file per call**; the link expires — request a fresh one per batch.
+4. `list_media` → collect the real URLs; **only these** go into HTML.
+5. `update_media(id, altText, description)` for every file with the German alt from Appendix B (description = where it should be used).
+6. Hero/OG: crop `hauptbild-villa-am-kruepelsee-steg-hausboot.jpg` to 1200×630 (`brand/og-default.jpg`) with the house kept right of centre; use it as fallback `ogImage`.
+7. Video: download `hermann-website-video-warm-magic-hour-web.mp4`, inspect (duration, first frames), upload to `video/`, extract a poster frame (`ffmpeg -ss 2 -i in.mp4 -frames:v 1 poster.jpg`).
+If you have **no shell**: hand the owner the `dropPageUrl` per folder and the Appendix B list; do not claim uploads you cannot perform.
+
+### 8.3 Curation rules
+- Unit pages: only photos of that unit or of the shared grounds it can use; never interiors of other units/houses. Villa interiors (Appendix B.1 "innen") are shown on U1/U2 only after the owner's assignment; until then on P6 as „Wohnräume der Villa" is also **not** allowed (guests would assume they get them) → keep them in `innen-unzugeordnet`, unused.
+- Home: exterior + lake + one interior per house (assigned ones only).
+- Always both exterior and interior on every unit page once assignments exist; minimum 8 images per unit page, 12 on P0.
+- Never use B.6 renders for anything except, optionally, the water texture as a decorative background.
+- No AI image generation for properties. `generate_images` may be used only for an abstract OG banner if the owner wants one — default: don't.
+
+---
+
+## 9. Execution runbook (tool by tool, in order; verify after each phase)
+
+**Phase 0 — Read & confirm (no writes).** `get_site_settings`, `get_site_config`, `list_pages`, `list_media`, `get_knowledge_items`, `get_variables`, `list_blocks`, `get_search_visibility_status`, `get_legal_status`, `get_page_brief` (to load the current `systemPrompt`). Confirm the site is still empty; if not, stop and reconcile. Send the owner the question list (§12) and continue with everything that does not depend on the answers.
+
+**Phase 1 — Identity & legal.** `update_site_settings` (§7) → `update_legal_profile` (§5.13) → `get_legal_status` must reach 100 % → `update_cookie_consent` (§7.7) → `set_site_fonts` → `get_site_config` → `save_head_tags` (§4.7 merged with what the font tool wrote) → `save_footer_scripts` (§4.8) → `save_variable` × all (§7.1) → `save_knowledge_item` × 8 (Appendix D.1) → `save_ai_instructions` (Appendix D.2).
+
+**Phase 2 — Media.** §8.1–8.2 completely, then `list_media` and keep the URL map in your notes. Upload the SVG/PNG brand files; set logo/favicon.
+
+**Phase 3 — Blocks (`save_block`, language `de`).** `cta-anfrage` (band with two buttons; params `unit` default „unsere Unterkünfte"), `vertrauensleiste`, `anreise-tabelle`, `unterkuenfte-vergleich`, `booking-links` (4 buttons), `kontakt-karte` (phone/WhatsApp/e-mail/hours from variables), `rechtshinweis`, `fakten-leiste` (params `f1`…`f6`), `unterkuenfte-karten` (the 4 cards; single source for home, region and sibling-unit sections). Reference them as `[[BLOCK:name]]` / `[[BLOCK:name,unit=…]]`.
+
+**Phase 4 — SEO plan.** `create_seo_plan` (name „Ferien am See – Launch", language `de`, targetCountry `DE`, targetLocations „Königs Wusterhausen, Zernsdorf, Kablow, Niederlehme, Senzig, Dahme-Seenland, Brandenburg, Berlin", targetKeywords from §6.2) → `add_seo_plan_items` for P0–P18 (proposedUrl, proposedTitle, proposedDescription, targetKeyword, targetLocation, pageType from §5.1, `notes` = the page spec from §5 incl. the exact upload URLs of its photos, `isApproved: true`, no `scheduledPublishAt`) → `get_seo_plan_details` → note each row id.
+
+**Phase 5 — Navigation.** `save_navigation(navMenuHtml, footerHtml, language:'de')` per §4.10 with all Phase-1 URLs already in place (`/magazin` added later with `add_page_to_navigation`).
+
+**Phase 6 — Pages.** For each row, in this order P16 → P17 (verify the platform page, then edit if needed with `edit_page_content`) → P18 → P15 → P13 → P14 → P12 → P9 → P10 → P11 → P8 → P7 → P6 → P2 → P3 → P4 → P5 (if confirmed) → P1 → P0:
+`get_page_brief(seoPlanItemId=<id>, language:'de')` → write the HTML yourself following its `systemPrompt` + §4/§5 → `create_page_from_html({ title, url, htmlContent, metaDescription, metaKeywords, ogTitle, ogDescription, ogImage, ogType, structuredData, language:'de', seoPlanItemId, isHomePage (P0 only), generationModel:'<your model id>' })` → open the returned public URL → `get_page_content(format:'markdown')` to check words, headings, links, form and images → `update_page_seo({ noIndex:true })` for P16–P18.
+Word count: count visible words; if < 800 add substance (never filler).
+
+**Phase 7 — SEO files & indexing.** `save_seo_files(robotsTxt, llmsTxt)` → `submit_urls_to_search_engines` → `get_search_visibility_status` (expect Search Console still unconnected → owner task).
+
+**Phase 8 — QA (§10).** Fix everything found, re-verify, then `start_site_audit(auditModel)` → loop `get_site_audit_batch` → `submit_site_audit_findings` → `complete_site_audit`; apply the actionable findings with `apply_site_audit_action` where sensible.
+
+**Phase 9 — Handover.** Write the owner a short German summary: what is live, what waits on their input (§12), how to connect Search Console, how to send Booking data/photos, the Phase 2/3 plan.
+
+**Phase 10 (later) — Magazin** per §6.6; **Phase 11 — English**: `create_page_translation(page_id, language:'en', url:'/en/…')` for P0–P15, then rewrite each EN page with `update_page_content`, add `en` to `availableLanguages`, save an EN nav/footer with `save_navigation(language:'en')`.
+
+---
+
+## 10. QA checklist (acceptance criteria — all must pass)
+
+- [ ] Every page in §5.1 Phase 1 exists, is published, has unique title/description/OG, correct JSON-LD (validate mentally against schema.org; no empty/zero fields), and a `BreadcrumbList` (except home).
+- [ ] `get_layout_probe` executed on every page at 390×844, 768×1024, 1440×900: no forced viewport, no horizontal overflow, tap targets ≥ 44 px, text ≥ 16 px on mobile.
+- [ ] Hero readable on phones (house not cropped away; overlay contrast ≥ 4.5:1 for text).
+- [ ] No broken images (`list_media` URLs only), all with `alt`, `width`, `height`; hero eager, rest lazy.
+- [ ] Exactly one `#contact-form` per page, with the privacy checkbox before the submit button, no `action`/`method`, and a successful test submission that arrives at the contact e-mail (`list_contact_submissions`).
+- [ ] All CTAs carry class `convert`.
+- [ ] `find_in_site_content` for `TODO`, `Lorem`, `[TO CONFIRM]`, `Exposé`, `Courtage`, `Kaufpreis`, `Makler`, `placeholder`, `unsplash` → zero hits.
+- [ ] Nav and footer show on every page, all links resolve (no 404), Booking links open in a new tab.
+- [ ] Legal pages present, `noindex`, Impressum data correct, Datenschutz mentions the contact form, WhatsApp, OSM embed and Booking.
+- [ ] Cookie banner appears once, in German, links to `/datenschutz`.
+- [ ] `robots.txt`, `sitemap.xml`, `llms.txt` reachable and consistent with the live pages.
+- [ ] Word counts 800–1400 on content pages; no keyword stuffing; no forbidden words (§3).
+- [ ] Numbers cross-checked: every m², room count, distance appears identically on P1 table, unit page, FAQ, JSON-LD, llms.txt, knowledge base.
+- [ ] Reduced-motion respected; video muted/autoplay only on desktop; page weight of home < 4 MB on desktop, < 1.5 MB on mobile (video excluded on mobile).
+- [ ] Mobile sticky booking bar does not cover the form's submit button (add bottom padding on the form section).
+- [ ] Site audit completed and closed; findings applied or consciously deferred with a note.
+
+---
+
+## 11. Owner tasks (cannot be done by the agent)
+1. Connect **Google Search Console** for ferienwohnung-see-brandenburg.de in `/admin/settings/search-visibility`; submit the sitemap; also Bing Webmaster Tools.
+2. Provide the **Booking.com data pack** and **original photos** per unit (§1.3, §12).
+3. Confirm the **U4 identification** and what exactly is rented (§1.4).
+4. Confirm guest access to **pool / sauna house / jetties / boats** at the villa and the jetty at the Gästehaus.
+5. Decide prices, minimum stay, fees, cancellation terms, pets, check-in/out, key handover; confirm Kurtaxe/tourist-tax status with Stadt Königs Wusterhausen.
+6. Lawyer review of Datenschutz + AGB/Mietbedingungen; decide on the AI-disclosure banner and on the Streitbeilegung sentence in the Impressum.
+7. Create/claim Google Business Profiles (if eligible), Bing Places, list the houses with Tourismusverband Dahme-Seenland and reiseland-brandenburg.de; add a „Ferien am See" link in the seehaus-berlin.de footer.
+8. Decide on the second domain ferienwohnung-am-see.info (301 redirect recommended).
+9. Optional: GA4/Ads (then §7.7 changes), channel-manager widget, English translation go-ahead, professional photo shoot of unit interiors (the strongest single upgrade available).
+
+---
+
+## 12. Question template for the owner (send in German, once)
+```
+Guten Tag Frau Briese,
+für die Website ferienwohnung-see-brandenburg.de brauche ich pro Unterkunft (Maisonette Zernsdorf, Apartment Zernsdorf, Gästehaus Niederlehme, Ferienhaus Kablow) bitte folgende Angaben – am einfachsten als Kopie aus dem Booking-Extranet:
+1. Booking-Text (Beschreibung), Ausstattungsliste, „Wichtige Informationen", Hausregeln.
+2. Max. Personen, Betten (Anzahl/Art), Kinderbett, Schlafzimmer, Bäder, Wohnfläche.
+3. Check-in-/Check-out-Zeiten, Mindestaufenthalt, Schlüsselübergabe (persönlich/Box).
+4. Preise (Nebensaison/Hauptsaison/Feiertage), Endreinigung, Kaution, Anzahlung, Zahlungsarten, Stornobedingungen, Kurtaxe (falls erhoben).
+5. Haustiere, Rauchen, Feiern, Ruhezeiten, Parkplätze, WLAN (Glasfaser?), Ladestation für E-Autos, Bettwäsche/Handtücher inklusive?
+6. Dürfen Gäste der Villa am Krüpelsee Pool, Saunahaus, Stege, Boote/SUP nutzen? Dürfen Gäste des Gästehauses den Steg nutzen?
+7. Ist „Ferienhaus am See in der Natur" das Haus Fontanestraße 26 A (Haus am Biotop) – und wird das ganze Haus oder nur das Gäste-Apartment vermietet?
+8. Welche der vorhandenen Innenfotos der Villa gehören zur Maisonette, welche zum Apartment? (Liste anbei.) Gibt es weitere Fotos, insbesondere vom Inneren des Gästehauses und des Ferienhauses in Kablow?
+9. Booking-Bewertungsscore und Anzahl pro Unterkunft (Stand heute) – und dürfen wir 2–3 Gästestimmen (Vorname, Monat/Jahr) zitieren?
+10. Telefonnummer für die Website: +49 163 5088945 oder +49 172 8588588? E-Mail für Anfragen: kontakt@seehaus-berlin.de oder eine eigene Adresse?
+11. Soll das Seehaus-Berlin-Logo im Footer erscheinen? Soll ein „Direktbucher-Vorteil" kommuniziert werden?
+Vielen Dank – bis die Angaben vorliegen, veröffentliche ich alle Seiten mit „Preise & Verfügbarkeit auf Anfrage".
+```
+
+
+---
+
+# Appendices
+
+## Appendix A — Unit data sheets (machine-readable; `null` = unknown → write "auf Anfrage")
+```json
+{
+  "operator": {"legalName":"Ausblicke Management GmbH","brand":"Seehaus Berlin","siteName":"Ferienhaus am See Brandenburg","host":"Marita Briese","street":"Kuno-Fischer-Str. 14","postalCode":"14057","city":"Berlin","country":"DE","register":"Amtsgericht Charlottenburg HRB 115701 B","vatId":"DE262426225","phone":"+49 163 5088945","whatsapp":"+49 172 8588588","email":"kontakt@seehaus-berlin.de","hours":"Mo–Fr 9:00–18:00 Uhr, Sa nach Vereinbarung","portal":"https://seehaus-berlin.de"},
+  "units": [
+    {"id":"U1","name":"Maisonette am Krüpelsee","bookingTitle":"Traum Maisonette direkt am See","booking":"https://www.booking.com/hotel/de/traum-maisonette-direkt-am-see.de.html","house":"Villa am Krüpelsee","street":"Karl-Marx-Straße 8","postalCode":"15712","district":"Zernsdorf","city":"Königs Wusterhausen","lake":"Krüpelsee","type":"Ferienwohnung (Maisonette, 2 Ebenen)","sizeSqm":125,"bedrooms":2.5,"bathrooms":2,"terraces":2,"fireplace":true,"lakeView":true,"parking":1,"maxGuests":null,"beds":null,"wifi":null,"checkin":null,"checkout":null,"minStay":null,"pets":null,"smoking":false,"sharedGrounds":["ca. 30 m Seeufer","4 private Stege (Nutzung TO CONFIRM)","Salzwasserpool (Nutzung TO CONFIRM)","Saunahaus (Nutzung TO CONFIRM)","Garten mit Trauerweide, Pavillon, Uferterrasse"],"confirmed":["sizeSqm","bedrooms","bathrooms","terraces","fireplace","lakeView","parking","address"]},
+    {"id":"U2","name":"Apartment am Krüpelsee","bookingTitle":"Leben direkt am See","booking":"https://www.booking.com/hotel/de/leben-direkt-am-see.de.html","house":"Villa am Krüpelsee","street":"Karl-Marx-Straße 8","postalCode":"15712","district":"Zernsdorf","city":"Königs Wusterhausen","lake":"Krüpelsee","type":"Ferienwohnung (Apartment)","sizeSqm":63,"bedrooms":null,"bathrooms":1,"terraces":null,"fireplace":true,"lakeView":true,"parking":1,"maxGuests":null,"beds":null,"wifi":null,"checkin":null,"checkout":null,"minStay":null,"pets":null,"smoking":false,"sharedGrounds":"as U1","confirmed":["sizeSqm","bathrooms","fireplace","lakeView","parking","address"]},
+    {"id":"U3","name":"Gästehaus am Großen Zug","bookingTitle":"Gästehaus am Großen Zug See","booking":"https://www.booking.com/hotel/de/gastehaus-am-grossen-zug-see.de.html","house":"Galeriehaus am See (Designvilla)","street":"Seestraße 41","postalCode":"15713","district":"Niederlehme","city":"Königs Wusterhausen","lake":"Großer Zug","type":"Ferienwohnung (separates Gästehaus, 1 Zimmer)","sizeSqm":57,"bedrooms":1,"bathrooms":1,"terraces":1,"ownEntrance":true,"accessible":true,"kitchen":"Küchenzeile","shower":"bodengleich","floor":"Parkett","internet":"Glasfaser","lakeView":true,"parking":true,"fireplace":false,"maxGuests":null,"beds":null,"checkin":null,"checkout":null,"minStay":null,"pets":null,"jettyUse":null,"floorPlanImage":"23-grundriss-gaestehaus.jpg","confirmed":["sizeSqm","ownEntrance","accessible","kitchen","shower","floor","internet","lakeView","terraces","address"]},
+    {"id":"U4","name":"Ferienhaus am See in der Natur","bookingTitle":"Ferienhaus am See in der Natur","booking":"https://www.booking.com/hotel/de/ferienhaus-am-see-in-der-natur.de.html","house":"Haus am Biotop","street":"Fontanestraße 26 A","postalCode":"15712","district":"Kablow","city":"Königs Wusterhausen","lake":"Krüpelsee","type":"Ferienhaus (ganzes Haus oder Gäste-Apartment – TO CONFIRM)","identificationConfirmed":false,"sizeSqm":190,"plotSqm":750,"leasedShoreSqm":350,"bedrooms":null,"bathrooms":1,"guestWc":1,"winterGarden":true,"sauna":true,"fireplace":true,"jetty":true,"grill":"überdachter Gasgrill","sunDeck":true,"carport":true,"homeOffice":true,"kitchen":"offen, mit Kochinsel","maxGuests":null,"beds":null,"wifi":null,"checkin":null,"checkout":null,"minStay":null,"pets":null,"confirmed":["sizeSqm","plotSqm","leasedShoreSqm","winterGarden","sauna","fireplace","jetty","grill","carport","kitchen","address"]}
+  ]
+}
+```
+
+## Appendix B — Image inventory (source URL → target folder, alt text in German). All sources return HTTP 200 without authentication (verified 2026-09-24). Dimensions are w×h px.
+
+### B.1 Villa am Krüpelsee (U1/U2) — base `https://vierstegehaus.de` (mirror of every file: `https://seehaus-berlin.de/uploads/site-15/<same path after /uploads/site-17/>`)
+**Exterior & grounds → `villa-am-kruepelsee/aussen`**
+| Source | px | Alt (de) | Use |
+|---|---|---|---|
+| /uploads/site-17/vierstegehaus_website_upload/hauptbild-villa-am-kruepelsee-steg-hausboot.jpg | 1600×1200 | Villa am Krüpelsee in Zernsdorf vom privaten Steg aus, Hausboot am Ufer im Abendlicht | Home hero poster, OG default; `object-position: 62% 50%` |
+| /uploads/site-17/vierstegehaus_website_upload/01-seite-startseite-abschnitt-titelbild-villa-vom-steg-01.jpg | 1600×1200 | Holzsteg führt über den Krüpelsee direkt auf die Villa in Zernsdorf zu | Hero P2/P6 |
+| /uploads/site-17/karl-markx-strasse/karl-markx-strasse_006.jpg | 1920×1282 | Altbauvilla am Krüpelsee, Gartenseite mit Terrasse und Trauerweide | Card image villa/U1 |
+| /uploads/site-17/umgebung_alle_objekte/03-seite-aussenbereich-abschnitt-terrasse-am-wasser-01.jpg | 1600×1200 | Holzterrasse am Wasser mit Blick auf Steg und Krüpelsee | P2/P3/P6 |
+| /uploads/site-17/karl-markx-strasse/karl-markx-strasse_001.jpg | 1920×1440 | Doppelter Regenbogen über dem Krüpelsee, vom Ufer der Villa in Zernsdorf | P6, P9 |
+| /uploads/site-17/karl-markx-strasse/karl-markx-strasse_010.png | 1216×933 | Überdachter Holzpavillon im Garten der Villa am Krüpelsee | P6 |
+| /uploads/site-17/karl-markx-strasse/karl-markx-strasse_011.png | 1076×934 | Sonnenuntergang über dem Krüpelsee vom Ufergrundstück der Villa | P6, home |
+| /uploads/site-17/karl-markx-strasse/karl-markx-strasse_007.jpg | 1920×1282 | Saunahaus und Wintergarten unter der großen Trauerweide am Krüpelsee | only if sauna use is confirmed |
+| /uploads/site-17/vierstegehaus_website_upload/02-seite-aussenbereich-abschnitt-salzwasserpool-gartenansicht-01.jpg | 1600×1200 | Beheizter Salzwasserpool mit Holzdeck im Garten der Villa am Krüpelsee | only if pool use is confirmed |
+| /uploads/site-17/karl-markx-strasse/karl-markx-strasse_002.jpg | 1920×1440 | Salzwasserpool im Sommer, dahinter Garten und Altbauvilla am Krüpelsee | only if pool use is confirmed |
+| /uploads/site-17/karl-markx-strasse/karl-markx-strasse_005.jpg | 1920×1282 | Saunahaus von innen: Glassauna mit Holzverkleidung und Ruhesessel | only if sauna use is confirmed |
+| /uploads/site-17/karl-markx-strasse/karl-markx-strasse_003.jpg | 1920×3413 | Vertikales Panorama von Villa, Garten und Krüpelsee in Zernsdorf | portrait tile only |
+| /uploads/site-17/karl-markx-strasse/karl-markx-strasse_009.png | 1125×603 | (motif not documented — view before use) | check |
+| /uploads/site-17/poza-principalaa.jpg | 1672×941 | (motif not documented — view before use; "poza principala" = main photo) | check |
+
+**Interiors (unit assignment TO CONFIRM) → `villa-am-kruepelsee/innen-unzugeordnet`, later move with `relocate_media` to `/maisonette` or `/apartment`**
+| Source | px | Alt (de) |
+|---|---|---|
+| /uploads/site-17/vierstegehaus_website_upload/04-seite-innenraeume-abschnitt-wohnbereich-mit-seeblick-bereinigt-ohne-mop-und-eimer-02.jpg | 1448×1086 | Wohn- und Essbereich mit Fensterfront zum Krüpelsee, langer Holztisch und Backsteinpfeiler |
+| /uploads/site-17/vierstegehaus_website_upload/05-seite-innenraeume-abschnitt-wohnzimmer-panoramafenster-zum-see-bereinigt-ohne-mop-und-eimer-02.jpg | 1448×1086 | Wohnzimmer mit bodentiefem Panoramafenster zum Krüpelsee |
+| /uploads/site-17/vierstegehaus_website_upload/06-seite-innenraeume-abschnitt-wintergarten-mit-esstisch-bereinigt-ohne-mop-und-eimer-02.jpg | 1448×1086 | Wintergarten mit massivem Esstisch und Lederstühlen, Blick auf Uferwiese und Steg |
+| /uploads/site-17/vierstegehaus_website_upload/07-seite-innenraeume-abschnitt-essbereich-mit-backsteinbogen-01.jpg | 1600×1200 | Essbereich mit Backsteinbogen zur Küche und Industrieleuchten |
+| /uploads/site-17/vierstegehaus_website_upload/08-seite-innenraeume-abschnitt-esszimmer-im-erker-01.jpg | 1600×1200 | Esszimmer im Erker mit Eichentisch, Treibholz-Raumteiler und Wendeltreppe |
+| /uploads/site-17/vierstegehaus_website_upload/09-seite-innenraeume-abschnitt-erker-sitzbank-am-fenster-01.jpg | 1600×1200 | Gepolsterte Sitzbank im Erker mit Messingleuchte und Fensterfront zum Garten |
+| /uploads/site-17/vierstegehaus_website_upload/10-seite-innenraeume-abschnitt-kueche-mit-wendeltreppe-01.jpg | 1600×1200 | Küche mit hölzerner Wendeltreppe, Landhausfronten und Balkendecke |
+| /uploads/site-17/vierstegehaus_website_upload/11-seite-innenraeume-abschnitt-wohnzimmer-mit-kaminofen-01.jpg | 1600×1200 | Wohnzimmer mit gekacheltem Kaminofen, Holzbalkendecke und Terrakottaboden |
+| /uploads/site-17/vierstegehaus_website_upload/12-seite-innenraeume-abschnitt-kaminecke-mit-sitzbank-01.jpg | 1600×1200 | Kaminecke mit gemauerter Sitzbank neben dem gekachelten Kaminofen |
+| /uploads/site-17/karl-markx-strasse/karl-markx-strasse_004.jpg | 1920×1080 | Arbeitsplatz am Panoramafenster mit Blick auf den Krüpelsee |
+| /uploads/site-17/karl-markx-strasse/karl-markx-strasse_008.png | 1307×937 | Blick aus dem Wohnbereich über die Uferwiese auf Steg und Krüpelsee |
+(The `-01` originals of files 04/05/06 contain a mop and bucket — use only the `bereinigt … -02` versions.)
+
+**Lake & seasons → `region/kruepelsee`** (base `https://vierstegehaus.de/uploads/site-17/umgebung_alle_objekte/`)
+| File | px | Alt (de) |
+|---|---|---|
+| umgebung-01-seite-lage-und-anbindung-abschnitt-sonnenaufgang-lichtreflexion-01.jpg | 1600×1200 | Sonnenaufgang über dem Krüpelsee, Lichtreflexion auf dem Wasser |
+| umgebung-02-seite-lage-und-anbindung-abschnitt-abenddaemmerung-am-wasser-01.jpg | 1600×1200 | Abenddämmerung am Krüpelsee bei Zernsdorf |
+| umgebung-03-seite-lage-und-anbindung-abschnitt-steg-im-morgennebel-01.jpg | 1600×1200 | Steg im Morgennebel auf dem Krüpelsee |
+| umgebung-04-seite-lage-und-anbindung-abschnitt-schwaene-im-morgennebel-01.jpg | 1600×1200 | Zwei Schwäne im Morgennebel auf dem Krüpelsee |
+| umgebung-05-seite-lage-und-anbindung-abschnitt-sonnenuntergang-ueber-dem-see-01.jpg | 1600×1200 | Sonnenuntergang über dem Krüpelsee im Dahme-Seenland |
+| umgebung-06-seite-lage-und-anbindung-abschnitt-uferwiese-unter-der-weide-01.jpg | 1600×1200 | Uferwiese unter der Trauerweide mit Blick auf Stege und Wasser |
+| umgebung-07-seite-lage-und-anbindung-abschnitt-morgennebel-ueber-dem-wasser-01.jpg | 1600×1200 | Morgennebel über dem Krüpelsee |
+| umgebung-08-seite-lage-und-anbindung-abschnitt-winterlicher-see-vogelschwarm-01.jpg | 1600×1200 | Winterlicher Krüpelsee mit Vogelschwarm über dem verschneiten Ufer |
+| umgebung-09-seite-lage-und-anbindung-abschnitt-winterabend-am-steg-01.jpg | 1200×1600 | Winterabend am Steg – der Krüpelsee im Schnee |
+| umgebung-10-seite-lage-und-anbindung-abschnitt-mond-ueber-verschneitem-steg-01.jpg | 1200×1600 | Mond über dem verschneiten Steg am Krüpelsee |
+| umgebung-11-seite-lage-und-anbindung-abschnitt-schilf-im-abendrot-panorama-01.jpg | 1600×736 | Schilfgürtel am Krüpelsee im Abendrot, Panorama (section divider) |
+
+### B.2 Galeriehaus am See / Gästehaus (U3) — base `https://galeriehausamsee.de`
+**Gästehaus → `galeriehaus/gaestehaus`**
+| Source | px | Alt (de) | Use |
+|---|---|---|---|
+| /uploads/site-16/02-designvilla-niederlehme-1.85m/17-gaestehaus.jpg | 1920×1440 | Gästehaus am Großen Zug in Niederlehme, Außenansicht mit Terrasse | Hero P4, card |
+| /uploads/site-16/01_gaestehaus_terrasse_mit_seeblick.png | 853×1844 | Terrasse des Gästehauses mit Blick auf den Großen Zug | portrait tile |
+| /uploads/site-16/02_gaestehaus_wohn_und_schlafbereich.png | 1846×852 | Wohn- und Schlafbereich des Gästehauses mit Parkettboden | wide strip |
+| /uploads/site-16/03_gaestehaus_wohnbereich_mit_terrassenzugang.png | 1844×853 | Wohnbereich des Gästehauses mit Zugang zur Terrasse | wide strip |
+| /uploads/site-16/04_gaestehaus_schlafbereich.png | 852×1846 | Schlafbereich im Gästehaus am Großen Zug | portrait |
+| /uploads/site-16/05_gaestehaus_kuechenzeile.png | 852×1847 | Küchenzeile im Gästehaus | portrait |
+| /uploads/site-16/06_gaestehaus_badezimmer.png | 852×1847 | Badezimmer des Gästehauses | portrait |
+| /uploads/site-16/07_gaestehaus_bodengleiche_dusche.png | 853×1844 | Bodengleiche Dusche im barrierefreien Bad des Gästehauses | portrait |
+| /uploads/site-16/02-designvilla-niederlehme-1.85m/12-ausblick-aus-wohnung.jpg | 1920×1440 | Ausblick aus dem Gästehaus auf den Großen Zug | P4 |
+| /uploads/site-16/02-designvilla-niederlehme-1.85m/23-grundriss-gaestehaus.jpg | 856×1808 | Grundriss des Gästehauses am Großen Zug, ca. 57 m² | P4 floor plan |
+**Exterior, garden, lake → `galeriehaus/aussen`** (base `/uploads/site-16/02-designvilla-niederlehme-1.85m/` unless noted)
+| File | px | Alt (de) |
+|---|---|---|
+| 01-ensemble-hero.jpg | 1919×1323 | Villa und Gästehaus am Großen Zug bei Tageslicht, Blick vom Wasser (video poster) |
+| 02-ensemble-nacht.jpg | 1925×1059 | Ensemble aus Villa und Gästehaus bei Nacht am Großen Zug |
+| 03-haus-nacht.jpg | 1290×731 | Beleuchtetes Seehaus bei Nacht in Niederlehme |
+| 04-herbst-atmosphaere.jpg | 1920×1440 | Herbstatmosphäre am Ufer des Großen Zugs |
+| 05-herbstmorgen-see.jpg | 1920×1440 | Herbstmorgen am Großen Zug, Blick aufs Wasser |
+| 06-sonnenuntergang-see.jpg | 1920×2862 | Sonnenuntergang über dem Großen Zug (portrait) |
+| 07-steg-bei-nacht.jpg | 1920×1440 | Privater Steg bei Nacht am Großen Zug |
+| 08-garten-seeblick.jpg | 1920×1440 | Garten mit Seeblick auf den Großen Zug |
+| 18-herbst-garten.jpg | 1920×1440 | Herbstgarten am See in Niederlehme |
+| 19-herbst-uferblick.jpg | 1920×1440 | Herbstlicher Uferblick am Großen Zug |
+| 20-villa-detail.jpg | 1920×1440 | Architekturdetail der Villa am Großen Zug |
+| 21-villa-architektur.jpg | 1920×1440 | Villa am Großen Zug, Außenansicht |
+| /uploads/site-16/23_garten_mit_privatsteg_und_seeblick.jpg | 1920×1282 | Garten mit privatem Steg und Seeblick auf den Großen Zug |
+| /uploads/site-16/seestrasse-41_009.jpg | 1920×1282 | Seehaus am Großen Zug bei Sonnenuntergang |
+| /uploads/site-16/seestrasse-41_005.jpg | 1024×1024 | Herbstatmosphäre am See (square) |
+| /uploads/site-16/seestrasse-41_017.jpg · _008.jpg | 1920×1282 | near-duplicates of 07/08 — dedupe visually |
+**Video → `video/`**: `/uploads/site-16/hermann-website-video-warm-magic-hour-web.mp4` (8.3 MB, magic-hour footage; preview before use).
+**Do NOT use on U3 (main-house interiors, not rented):** `seestrasse-41_010…016, _018, _019, _020`, `10_panoramablick_aus_dem_haus_zum_see.jpg`, `13_essbereich_mit_gartenzugang.jpg`, `14_wohnbereich_mit_seeblick.jpg`, `15_loungebereich_mit_panoramafenstern.jpg`, `18_blick_durch_panoramafenster_zum_see.jpg`, `09-essplatz-seeblick.jpg`, `10-kueche-essbereich.jpg`, `11-wohnen-salon.jpg`, `13-schlafzimmer-seeblick.jpg`, `14-designerbad.jpg`, `15-dachzimmer-galerie.jpg`, `16-dachgeschoss.jpg`, `22-grundriss-haupthaus.jpg`, `seestrasse-41_006.png`.
+
+### B.3 Haus am Biotop (U4) — base `https://hausamseebiotop.de/uploads/site-18/website_upload_haus_am_biotop/`
+**Exterior → `haus-am-biotop/aussen`**
+| File | px | Alt (de) |
+|---|---|---|
+| 01_haus_am_biotop_gartenansicht_mit_wintergarten.jpg | 2560×1437 | Gartenansicht des Hauses am Biotop in Kablow mit Wintergarten und Holzterrasse (hero P5) |
+| 02_haus_am_biotop_aussenansicht_vom_hof.jpg | 1086×1448 | Hauseingang mit Vordach, Laterne und Kiesvorplatz (portrait) |
+| 03_haus_am_biotop_strassenansicht_mit_einfriedung.jpg | 1448×1086 | Straßenansicht mit schmiedeeisernem Zaun und Tor |
+| 06_haus_am_biotop_gartenweg_und_terrassenbereich.jpg | 1440×1920 | Gartenweg und Holzterrasse mit Kiesbeet (portrait) |
+| 10_haus_am_biotop_gartenlounge_mit_blick_ins_gruene.jpg | 1673×940 | Holzterrasse mit Tisch und Stühlen, Blick über den Rasen zum Krüpelsee |
+| 11_haus_am_biotop_grosser_garten_mit_rasenflaeche.jpg | 2560×1437 | Großer Garten mit altem Baumbestand und Blick zum Krüpelsee |
+| 12_haus_am_biotop_gartenhaus_im_gruenen.jpg | 2560×1437 | Dunkelgrünes Gartenhaus mit Sitzbank unter Bäumen |
+| 13_gartenweg_und_terrassenbereich_natuerlich_optimiert.jpg | 3072×4096 (6.3 MB — resize) | Holzweg zwischen Terrassen und Kiesbeeten im Garten |
+| 14_grillplatz_realistisch_aufbereitet.png | 1086×1448 | Überdachter Gasgrill auf der Holzterrasse neben dem Wintergarten (retouched — confirm it shows the real state) |
+| 16_sonnendeck_realistisch_aufbereitet.png | 1448×1086 | Sonnendeck mit zwei Holzliegen und Sonnenschirm im Garten (retouched — confirm) |
+| 24_haus_am_biotop_waldweg_zum_see.jpg | 2560×1437 | Holzplankenweg durch Farn und Bäume zum Ufer des Krüpelsees |
+| 25_haus_am_biotop_holzsteg_durch_das_biotop.jpg | 1674×940 | Holzsteg durch das Schilf am Seeufer |
+| 26_haus_am_biotop_naturpfad_im_biotop.jpg | 1673×940 | Naturpfad aus Holzplanken durch das Biotop zum Haus |
+| 27_haus_am_biotop_privater_steg_am_see.jpg | 1674×940 | Privater Holzsteg mit Plattform auf dem Krüpelsee |
+| 28_haus_am_biotop_seeblick_durch_alten_baumbestand.jpg | 2560×1438 | Blick durch alte Bäume vom Garten auf den Krüpelsee |
+**Interior → `haus-am-biotop/innen`**
+| File | px | Alt (de) |
+|---|---|---|
+| 02_offener_wohn_und_essbereich_natuerlich_optimiert.jpg | 4096×3072 (resize) | Offener Essbereich mit Holztisch, Polsterstühlen und Hängeleuchten |
+| 03_wohnzimmer_mit_kaminofen_und_tv_natuerlich_optimiert.jpg | 4096×3072 (resize) | Wohnzimmer mit Ecksofa, Parkett, gemauertem Kaminofen und Wandfernseher |
+| 04_treppe_zum_dachgeschoss_natuerlich_optimiert.jpg | 3072×4096 (resize) | Dunkle Holztreppe mit Stufenmatten zum Dachgeschoss |
+| 05_offene_kueche_mit_kochinsel_natuerlich_optimiert.jpg | 4096×3072 (resize) | Offene Küche mit weißen Fronten, schwarzer Arbeitsplatte und Kochinsel |
+| 13_haus_am_biotop_wohnbereich_uebersicht.jpg | 2560×1437 | Heller Wohnbereich mit blauem Ecksofa, Parkett und Treppe |
+| 14_haus_am_biotop_wohnbereich_mit_homeoffice_und_gartenblick.jpg | 2560×1920 | Zimmer mit Schreibtisch am Fenster, Sofa und Tagesbett |
+| 15_haus_am_biotop_offener_wohn_und_essbereich.jpg | 2560×1920 | Blick vom Essbereich in den Wohnbereich |
+| 16_haus_am_biotop_wohnzimmer_mit_kaminofen.jpg | 2560×1920 | Wohnzimmer mit beigem Ecksofa vor dem Eckkamin |
+| 17_haus_am_biotop_offene_kueche_mit_kochinsel.jpg | 2560×1920 | Offene Einbauküche mit mosaikverkleideter Kochinsel |
+| 23_haus_am_biotop_wintergarten_mit_gartenblick.jpg | 1673×940 | Wintergarten mit Glasfront zur Holzterrasse und zum Garten |
+**Portal set (base `https://seehaus-berlin.de/uploads/site-15/fontanne-strasse-26/`; portal captions are inconsistent — view each file before writing alt):** `fontanne-strasse-26a-biotop_001.jpg` (2560×1437), `_002.jpg` (1673×940), `_004.jpg`, `_005.jpg`, `_006.jpg` (Sonnenuntergang am See), `_007.jpg` (Abendstimmung), `_008.jpg` (Herbstufer), `_009.jpg` (Winterstille), `_011.jpg` (Steg), `_017.jpg` (Herbst), `_019.jpg` (Haus bei Nacht), `_020.jpg` (Garten/Biotop) — all 1920×1078 unless noted.
+
+### B.4 Optional region mood (another owner property in Senzig — neutral captions only, no implication they belong to our houses) — base `https://seetraumhaus-senzig.de/uploads/site-21/website_upload_senzig_kruepelsee/`
+`senzig-kruepelsee-18-sonnenuntergang-ueber-dem-see.jpg` (1600×1200, „Abendrot über dem Krüpelsee bei Senzig"), `senzig-kruepelsee-20-abendrot-ueber-dem-wasser.jpg` (1600×1200), `senzig-kruepelsee-21-sonnenuntergang-mit-steg-silhouette.jpg` (1600×1200).
+
+### B.5 Brand assets (owner approval needed): Seehaus Berlin logo `https://seehaus-berlin.de/uploads/site-15/logo-seehausberlin.jpg` (384×384), large version `https://seehaus-berlin.de/uploads/site-15/exec-224ec351-e0c2-40d9-930a-3e67ab4aecf1.png` (1254×1254).
+
+### B.6 Illustrative AI renders on seehaus-berlin.de — **do not use for property depiction**: `luxusvilla-mit-privatem-bootssteg-am-see-nahe-berlin--seehau.jpg`, `privater-bootssteg-am-krpelsee--exklusive-seeimmobilien-zern.jpg`, `lifestyle-am-see--exklusives-wohnen-mit-seeblick-nahe-berlin.jpg`, `krpelsee-brandenburg-bei-sonnenuntergang--seeimmobilien-dahm.jpg`, `seewasser-am-krpelsee--seeimmobilien-brandenburg-nahe-berlin.jpg` (water texture — decorative use tolerated), `moderne-villa-mit-seezugang-und-glasfront-am-see-nahe-berlin.jpg`, `villa-mit-pool-und-seezugang-kaufen-nahe-berlin--seehaus-ber.jpg`, `krpelsee-region-aus-der-vogelperspektive--kablow-zernsdorf-s.jpg`, `01-editorial-vector.png … 05-glass-map.png`, `foto-esterno/*`, `foto-interni/*` (these two folders belong to Fontanestraße 35, not rented).
+
+## Appendix C — Region facts (all values "ca."; verify timetable-dependent values on vbb.de before publishing)
+| Ziel / Fakt | Wert | Quelle |
+|---|---|---|
+| Königs Wusterhausen → Berlin-Mitte | ca. 35–40 km Straße (ca. 29 km Luftlinie); Auto ca. 40–55 Min. | luftlinie.org, seehaus-berlin.de |
+| S-Bahn S46 Königs Wusterhausen → Berlin-Ostkreuz / Alexanderplatz | ca. 30 Min. / ca. 40 Min.; Takt tagsüber ca. 10–20 Min.; RE2/RE7 ab KW schneller | VBB via seehaus-berlin.de (verify) |
+| Königs Wusterhausen → Flughafen BER | Auto ca. 15–25 Min.; Regionalzug ab KW ca. 15 Min. | seehaus-berlin.de (verify) |
+| Zernsdorf → Bf. Königs Wusterhausen | Auto ca. 5–8 Min., Rad ca. 15–20 Min.; Senzig ca. 8–12 Min.; Kablow ca. 10–15 Min. | seehaus-berlin.de |
+| Regionalbahn-Halte Zernsdorf / Kablow / Niederlehme | vorhanden (Linie Königs Wusterhausen–Beeskow); genaue Linie & Takt **[verify on vbb.de]** — never call them "S-Bahn" | Wikipedia (stations) |
+| Autobahn | A10 (Berliner Ring) AS Königs Wusterhausen; A13 Richtung Dresden; B179/B246 | general |
+| Tropical Islands (Krausnick) | ca. 40 km, Auto ca. 30–35 Min.; Zug ab KW ca. 25 Min. bis Brand Tropical Islands (+ Shuttle) | rome2rio, reiseland-brandenburg.de |
+| Spreewald: Lübben / Lübbenau | ca. 45 km / ca. 55 km; Auto ca. 40 / 45 Min.; RE2 ab KW | spreewald-info.de, i2030.de |
+| Potsdam | ca. 45 km, ca. 50–60 Min. | luftlinie.org |
+| Köpenick (Altstadt, Schloss) | ca. 20 km, ca. 25–30 Min. | general |
+| Wildau (A10 Center) | ca. 8 km, ca. 10 Min. | general |
+| Cottbus | ca. 90 km, ca. 60 Min. | general |
+| Schloss Königs Wusterhausen | Residenz des „Soldatenkönigs" Friedrich Wilhelm I. (ab 1698), Barockgarten, Tabakskollegium | reiseland-brandenburg.de |
+| Funkerberg / Sender- und Funktechnikmuseum | Geburtsort des deutschen Rundfunks: erstes Konzert am 22.12.1920; Rundweg Funkerberg 6 km | reiseland-brandenburg.de, kulturfeste.de |
+| Dahmelandmuseum | Regionalgeschichte Dahme-Seenland | dahme-seenland.de |
+| Schleuse Neue Mühle | in Betrieb seit 1868, historische Zugbrücke; Strandbad Neue Mühle am Krimnicksee (Rutsche, Volleyball, Bootsverleih) | reiseland-brandenburg.de, dahme-seenland.de |
+| Wasserspielplatz Mühleninsel, Königsboot (Bootsverleih Nottekanal) | Stadtzentrum KW | dahme-seenland.de |
+| Naturbadestelle „Am Großen Zug" (Ziegenhals) | Badestelle mit Restaurant (kroatische Küche) direkt am Wasser | reiseland-brandenburg.de |
+| „Zum Wasserfreund" Niederlehme | Gaststätte mit Steganlage, über 80 Jahre Familientradition, an der L30 zwischen KW und Wernsdorf, am Großen Zug | zumwasserfreund.de |
+| Rundwanderweg Krüpelsee | ca. 23 km, 6–8 h, Start Bf. Königs Wusterhausen | reiseland-brandenburg.de, ich-geh-wandern.de |
+| Rundweg Tiergarten | 7 km, Naturschutzgebiet mit alten Eichen/Buchen, seit 1725 königliches Jagdrevier, am Krimnicksee | reiseland-brandenburg.de |
+| DahmeRadweg; „Pack die Badehose ein" | Radweg entlang der Dahme; Tour ca. 35 km zu 10 Badestellen; > 250 km Radwege, > 100 km Wanderwege | dahme-seenland.de |
+| Kanu: Dahme-Spree-Rundtour („Märkische Umfahrt") | Einsetzstelle Zernsdorf, Fährweg am Krüpelsee | flussinfo.net |
+| SUP-Verleih Zernsdorf | ab ca. 15 € (heiuki) — say „SUP-Verleih vor Ort" without price | heiuki.com |
+| Hausboot-Charter Zernsdorf | BunBo (Bungalowboote) | bunbo.de |
+| Naturpark Dahme-Heideseen | umgibt die Region; Wälder, Seen, Schutzgebiete | outdooractive |
+| Krüpelsee | natürlicher Flachsee der Dahme-Kette, Schilfgürtel, gilt als fischreich (Hecht, Barsch, Karpfen, Schleie), kaum Motorbootverkehr, Ortsteile Zernsdorf (West), Senzig (Ost), Kablow (Nord) | vierstegehaus.de, seehaus-berlin.de |
+| Großer Zug | langgestreckter See zwischen Niederlehme und Ziegenhals, Teil der Dahme-Gewässer | galeriehausamsee.de, reiseland-brandenburg.de |
+| Wochenmarkt Königs Wusterhausen | dienstags und freitags | dahme-seenland.de |
+| Restaurants in KW (Auswahl, Öffnung prüfen) | Jagdschloss 1896, Schmitz Katze, Villa Romana, Osteria Forio, Mr. Singh, Kaffeehaus54, Mühlencafé am Schloss | reiseland-brandenburg.de |
+
+## Appendix D — Texts to store on the platform
+
+### D.1 Knowledge base items (`save_knowledge_item`, German)
+1. **„Unternehmen, Gastgeberin & Kontakt"** (business_info): Betreiber: Ausblicke Management GmbH, Kuno-Fischer-Str. 14, 14057 Berlin; Amtsgericht Charlottenburg HRB 115701 B; USt-IdNr. DE262426225; Geschäftsführerin und persönliche Gastgeberin: Marita Briese. Telefon +49 163 5088945, WhatsApp +49 172 8588588, E-Mail kontakt@seehaus-berlin.de, erreichbar Mo–Fr 9–18 Uhr, Sa nach Vereinbarung. Marke: „Ferienhaus am See Brandenburg" / „Ferien am See", ein Angebot von Seehaus Berlin (seehaus-berlin.de). Alle Häuser liegen in Königs Wusterhausen (Landkreis Dahme-Spreewald, Brandenburg), südöstlich von Berlin, im Dahme-Seenland.
+2. **„Die vier Unterkünfte – Eckdaten"** (products): U1 Maisonette am Krüpelsee, Zernsdorf: ca. 125 m², 2 Ebenen, 2,5 Schlafzimmer, 2 Bäder, 2 Terrassen mit Seeblick, Kaminofen, 1 Stellplatz. U2 Apartment am Krüpelsee, Zernsdorf: ca. 63 m², 1 Bad, Kaminofen, Seeblick, 1 Stellplatz. U3 Gästehaus am Großen Zug, Niederlehme: ca. 57 m², 1 Zimmer, Küchenzeile, Duschbad mit bodengleicher Dusche, eigener Eingang, eigene Terrasse mit Seeblick, barrierefrei/ebenerdig, Parkett, Glasfaser-WLAN, Stellplatz. U4 Ferienhaus am See in der Natur, Kablow (Haus am Biotop): ca. 190 m², Wintergarten, Sauna, Kaminofen, offene Küche mit Kochinsel, eigener Steg, Grillplatz, Sonnendeck, Carport, Garten mit Biotop. Unbekannt (immer „auf Anfrage"): Betten, max. Personen, Check-in/-out, Mindestaufenthalt, Preise, Haustiere. Booking.com-Titel: „Traum Maisonette direkt am See", „Leben direkt am See", „Gästehaus am Großen Zug See", „Ferienhaus am See in der Natur".
+3. **„Villa am Krüpelsee – das Anwesen"** (products): renovierte Altbauvilla, Karl-Marx-Straße 8, Zernsdorf, Südlage, ruhige Stichstraße, Grundstück ca. 1.749 m², ca. 30 m Seeufer, 4 private Stege, Uferterrasse, Garten mit Trauerweide und Holzpavillon, Saunahaus ca. 40 m² und beheizter Salzwasserpool vorhanden (Mitbenutzung durch Gäste nur nennen, wenn vom Eigentümer bestätigt). Altbau-Details: Balkendecken, Terrakotta, Backsteinbogen, Wendeltreppen, Wintergarten.
+4. **„Gästehaus am Großen Zug – Details"** (products): eigenständiges Gästehaus auf einer Landzunge im Großen Zug, Seestraße 41, Niederlehme; Wasser auf zwei Seiten; Terrasse vom Haupthaus nicht einsehbar; ebenerdig, Türen in Rollstuhlbreite, bodengleiche Dusche; Einbauschränke, Parkett; Glasfaser; 5 Stellplätze auf dem Grundstück, davon Carport für 3 (Zuordnung auf Anfrage); Grundriss vorhanden. Das Haupthaus gehört nicht zur Vermietung.
+5. **„Ferienhaus am Biotop Kablow – Details"** (products): Fontanestraße 26 A, Kablow, Nordufer des Krüpelsees, naturgeschützte Biotoplage; Grundstück ca. 750 m² plus ca. 350 m² Pachtfläche am Ufer mit privatem Steg; Holzsteg durch das Schilf; Wintergarten, Terrasse mit Seeblick, Saunahaus im Garten, Kaminofen, offene Küche mit Kochinsel, Homeoffice-Raum, Dachgeschoss, 1 Bad + Gäste-WC, überdachter Gasgrill, Sonnendeck, Gartenhaus, Carport. Ob das ganze Haus oder ein Gäste-Apartment vermietet wird: vom Eigentümer bestätigen lassen.
+6. **„Region & Anreise – verifizierte ca.-Werte"** (geo_targeting): the whole Appendix C table in prose, each value with „ca.", plus the rule „Bahnhalte in Zernsdorf/Kablow/Niederlehme sind Regionalbahn, nicht S-Bahn; S46 endet in Königs Wusterhausen".
+7. **„Tonalität & Regeln"** (about): Sie-Form, ruhig, konkret, sinnlich; keine Superlative; verbotene Wörter im sichtbaren Text: Kaufpreis, Exposé, Courtage, Makler, Verkauf, Kapitalanlage, SEO, Google, Keyword, Landing Page, Conversion; Preise immer „inkl. gesetzlicher MwSt."; jede Objektseite endet mit dem Rechtshinweis; keine Aussagen zu Pool/Sauna/Steg-Nutzung ohne Bestätigung; keine erfundenen Zahlen; Entfernungen mit „ca."; CTA einheitlich „Verfügbarkeit anfragen" und „Auf Booking.com ansehen".
+8. **„Buchung & FAQ-Standardantworten"** (faq): Ablauf: Anfrage per Formular/WhatsApp/Telefon → persönliche Antwort von Marita Briese innerhalb von 24 Stunden → schriftliche Bestätigung und Zahlung → Anreise-Infos und Schlüsselübergabe nach Absprache. Alternativ Buchung über Booking.com. Standardantworten: Berlin-Mitte ca. 40 Min. mit der S46 ab Königs Wusterhausen; BER ca. 20 Min.; Baden im Krüpelsee vom Grundstück aus möglich (auf eigene Gefahr, Kinder beaufsichtigen); Haustiere/Rauchen/Feiern: auf Anfrage bzw. Hausregeln; Parkplatz am Haus; WLAN vorhanden (Gästehaus: Glasfaser).
+
+### D.2 AI instructions (`save_ai_instructions`, German markdown)
+```
+# Redaktionsregeln ferienwohnung-see-brandenburg.de
+## Tonalität
+- Deutsch, Sie-Form, ruhig, konkret, sinnlich. Kurze Sätze. Keine Ausrufezeichen im Fließtext. Keine Superlative ohne Beleg.
+- Synonyme: Ferienhaus, Ferienwohnung, Unterkunft, Domizil, Refugium, Seehaus. Keine Keyword-Wiederholungen.
+## Fakten
+- Nur Angaben aus der Wissensbasis. Unbekanntes = „auf Anfrage". Entfernungen/Zeiten immer „ca.". Preise immer „inkl. gesetzlicher MwSt." und mit „Stand: MM/JJJJ".
+- Verboten im sichtbaren Text: Kaufpreis, Exposé, Courtage, Makler, Verkauf, Kapitalanlage, SEO, Google, Keyword, Landing Page, Conversion.
+- Pool, Saunahaus, Stege, Boote: nur erwähnen, wenn die Gästenutzung bestätigt ist.
+## Struktur jeder Inhaltsseite
+Hero → Antwortkapsel (2–3 Sätze: was, wo, für wen, wie buchen) → Faktenleiste → Story-Abschnitte → Galerie → Lage & Anreise → FAQ (4–6, je 40–80 Wörter) → Anfrageformular → Rechtshinweis. 800–1400 sichtbare Wörter.
+## SEO/GEO
+- Ein Hauptkeyword pro Seite (Title, H1, erste 100 Wörter, eine H2, Alt-Text, URL). Orte als natürliche Entitäten: Königs Wusterhausen, Zernsdorf, Kablow, Niederlehme, Krüpelsee, Großer Zug, Dahme-Seenland, Brandenburg, Berlin, BER.
+- Zahlen in Text, Tabelle, FAQ, JSON-LD und llms.txt identisch halten.
+- CTAs: „Verfügbarkeit anfragen" (Klasse convert) und „Auf Booking.com ansehen".
+## Formulare
+- Formular id="contact-form", Felder mit name, Datenschutz-Checkbox vor dem Absenden-Button, genau ein Formular pro Seite.
+## Bilder
+- Nur Bilder aus der Mediathek; jedes Bild mit deutschem Alt-Text; nie Innenräume einer anderen Einheit zeigen.
+```
+
+### D.3 `llms.txt` (`save_seo_files.llmsTxt`)
+```
+# Ferienhaus am See Brandenburg – Ferienwohnungen und Ferienhäuser in Königs Wusterhausen (Dahme-Seenland), ca. 40 Minuten von Berlin
+> Vier private Unterkünfte direkt am Krüpelsee und am Großen Zug, vermietet von Marita Briese (Ausblicke Management GmbH / Seehaus Berlin). Direktanfrage über die Website oder Buchung über Booking.com.
+
+## Unterkünfte
+- Maisonette am Krüpelsee (Zernsdorf): ca. 125 m², 2 Ebenen, 2,5 Schlafzimmer, 2 Bäder, 2 Terrassen mit Seeblick, Kaminofen, Stellplatz. https://ferienwohnung-see-brandenburg.de/ferienhaeuser/maisonette-am-kruepelsee
+- Apartment am Krüpelsee (Zernsdorf): ca. 63 m², 1 Bad, Kaminofen, Seeblick, Stellplatz. https://ferienwohnung-see-brandenburg.de/ferienhaeuser/apartment-am-kruepelsee
+- Gästehaus am Großen Zug (Niederlehme): ca. 57 m², eigener Eingang, Küchenzeile, bodengleiche Dusche, eigene Terrasse mit Seeblick, barrierefrei, Glasfaser-WLAN. https://ferienwohnung-see-brandenburg.de/ferienhaeuser/gaestehaus-am-grossen-zug
+- Ferienhaus am See in der Natur (Kablow): Wintergarten, Sauna, Kaminofen, eigener Steg, Grillplatz, Garten mit Biotop. https://ferienwohnung-see-brandenburg.de/ferienhaeuser/ferienhaus-am-see-kablow
+- Übersicht & Vergleich: https://ferienwohnung-see-brandenburg.de/ferienhaeuser · Anfragen & Buchen: https://ferienwohnung-see-brandenburg.de/buchen
+
+## Lage & Anreise (ca.-Werte)
+- Königs Wusterhausen, Landkreis Dahme-Spreewald, Brandenburg; Ortsteile Zernsdorf, Niederlehme, Kablow.
+- Berlin-Mitte ca. 35–40 km; S-Bahn S46 ab Königs Wusterhausen ca. 30 Min. nach Berlin-Ostkreuz, ca. 40 Min. nach Alexanderplatz; Flughafen BER ca. 15–25 Min. mit dem Auto; A10/A13.
+- Ausflüge: Tropical Islands ca. 40 km, Spreewald (Lübben) ca. 45 km, Schloss Königs Wusterhausen, Funkerberg, Strandbad Neue Mühle, Naturpark Dahme-Heideseen.
+- Region: https://ferienwohnung-see-brandenburg.de/region · Anreise: https://ferienwohnung-see-brandenburg.de/region/anreise
+
+## Kontakt
+- Marita Briese, Ausblicke Management GmbH, Kuno-Fischer-Str. 14, 14057 Berlin · +49 163 5088945 · WhatsApp +49 172 8588588 · kontakt@seehaus-berlin.de
+- Preise, Belegung, Check-in-Zeiten und Hausregeln: auf Anfrage bzw. laut Buchungsbestätigung. Alle Preise inkl. gesetzlicher MwSt.
+- FAQ: https://ferienwohnung-see-brandenburg.de/faq · Gastgeber: https://ferienwohnung-see-brandenburg.de/gastgeber
+```
+(Update the unit lines the moment beds/max guests/prices are confirmed.)
+
+### D.4 `robots.txt`
+```
+User-agent: *
+Allow: /
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+Sitemap: https://ferienwohnung-see-brandenburg.de/sitemap.xml
+```
+
+## Appendix E — Code assets
+
+### E.1 Favicon / logo mark (SVG; upload as `brand/favicon.svg`, and a 512 px PNG export as `brand/logo-512.png`)
+```svg
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Ferien am See">
+  <rect width="64" height="64" rx="14" fill="#0B1F2E"/>
+  <circle cx="32" cy="23" r="8" fill="#C9A86A"/>
+  <path d="M8 40c6 0 6-4 12-4s6 4 12 4 6-4 12-4 6 4 12 4" fill="none" stroke="#5FB0C8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M8 50c6 0 6-4 12-4s6 4 12 4 6-4 12-4 6 4 12 4" fill="none" stroke="#2A88A6" stroke-width="3" stroke-linecap="round"/>
+</svg>
+```
+Wordmark for the nav (inline, next to the mark): `<span class="font-serif text-2xl tracking-[0.18em] font-semibold text-sand-50">FERIEN AM SEE</span><span class="block text-[10px] tracking-[0.22em] uppercase text-gold-300 font-sans">Königs Wusterhausen · Brandenburg</span>`.
+
+### E.2 Navigation + footer skeleton for `save_navigation` (fill links per §4.10; keep the markers)
+```html
+<style>
+#main-nav::before{content:"";position:absolute;inset:0 0 auto 0;height:160px;pointer-events:none;z-index:-1;background:linear-gradient(to bottom,rgba(7,20,30,.85),rgba(7,20,30,.55) 50%,rgba(7,20,30,0));transition:opacity .3s}
+#main-nav.nav-scrolled::before{opacity:0}
+#main-nav.nav-scrolled{background:rgba(7,20,30,.94);backdrop-filter:blur(10px)}
+#main-nav .group:hover>.submenu{opacity:1;visibility:visible;transform:translateY(0)}
+</style>
+<nav id="main-nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300" aria-label="Hauptnavigation">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+    <a href="/" class="flex items-center gap-3" aria-label="Ferien am See – Startseite"><!-- E.1 mark + wordmark --></a>
+    <ul class="hidden lg:flex items-center gap-8 text-sand-50 text-sm font-medium">
+      <li class="relative group"><a href="/ferienhaeuser" class="nav-link">Unterkünfte</a>
+        <ul class="submenu absolute top-full left-0 mt-3 w-72 rounded-2xl bg-night-950/95 backdrop-blur p-3 opacity-0 invisible translate-y-2 transition">
+          <li><a href="/ferienhaeuser" class="block px-4 py-2 rounded-lg hover:bg-white/10">Alle Unterkünfte</a></li>
+          <li><a href="/ferienhaeuser/maisonette-am-kruepelsee" class="block px-4 py-2 rounded-lg hover:bg-white/10">Maisonette am Krüpelsee</a></li>
+          <li><a href="/ferienhaeuser/apartment-am-kruepelsee" class="block px-4 py-2 rounded-lg hover:bg-white/10">Apartment am Krüpelsee</a></li>
+          <li><a href="/ferienhaeuser/gaestehaus-am-grossen-zug" class="block px-4 py-2 rounded-lg hover:bg-white/10">Gästehaus am Großen Zug</a></li>
+          <li><a href="/ferienhaeuser/ferienhaus-am-see-kablow" class="block px-4 py-2 rounded-lg hover:bg-white/10">Ferienhaus am See, Kablow</a></li>
+          <li><a href="/ferienhaeuser/villa-am-kruepelsee-zernsdorf" class="block px-4 py-2 rounded-lg hover:bg-white/10">Die Villa am Krüpelsee</a></li>
+        </ul></li>
+      <li class="relative group"><a href="/region" class="nav-link">Region</a>
+        <ul class="submenu …"> <!-- /region, /region/kruepelsee, /region/ausflugsziele, /region/aktivitaeten-am-see, /region/anreise --> </ul></li>
+      <li><a href="/gastgeber" class="nav-link">Gastgeber</a></li>
+      <li><a href="/faq" class="nav-link">FAQ</a></li>
+      <li><a href="/kontakt" class="nav-link">Kontakt</a></li>
+      <!--tb-nav-insert-->
+    </ul>
+    <div class="flex items-center gap-3">
+      <a href="https://wa.me/491728588588" class="hidden md:inline-flex text-sand-50/80 hover:text-sand-50" aria-label="WhatsApp"><!-- inline svg --></a>
+      <a href="/buchen" class="convert btn-gold hidden md:inline-flex px-5 py-2.5 rounded-full text-sm font-semibold">Verfügbarkeit anfragen</a>
+      <button id="mobile-menu-btn" class="lg:hidden text-sand-50 p-2" aria-label="Menü öffnen" aria-controls="mobile-menu" aria-expanded="false"><!-- burger svg --></button>
+    </div>
+  </div>
+</nav>
+<div id="mobile-backdrop" class="fixed inset-0 bg-night-950/70 z-40 hidden"></div>
+<aside id="mobile-menu" class="fixed top-0 right-0 h-full w-[86%] max-w-sm bg-night-950 text-sand-50 z-50 p-6 overflow-y-auto transition-transform duration-300" style="transform:translateX(100%)" aria-label="Mobiles Menü">
+  <button id="mobile-menu-close" class="p-2" aria-label="Menü schließen">✕</button>
+  <ul class="mt-6 space-y-1 text-lg">
+    <!-- same links as desktop, flat, with the sub-items indented -->
+    <!--tb-nav-insert-->
+  </ul>
+  <a href="/buchen" class="convert btn-gold mt-8 block text-center px-5 py-3 rounded-full font-semibold">Verfügbarkeit anfragen</a>
+  <p class="mt-6 text-sm text-sand-100/70">{{phone}} · <a href="{{whatsapp_link}}">WhatsApp</a></p>
+</aside>
+<script>
+document.addEventListener('DOMContentLoaded',function(){var n=document.getElementById('main-nav');function s(){n.classList.toggle('nav-scrolled',window.scrollY>60)}window.addEventListener('scroll',s,{passive:true});s();
+var b=document.getElementById('mobile-menu-btn'),c=document.getElementById('mobile-menu-close'),m=document.getElementById('mobile-menu'),k=document.getElementById('mobile-backdrop');
+function o(){m.style.transform='translateX(0)';k.classList.remove('hidden');document.body.style.overflow='hidden';b.setAttribute('aria-expanded','true')}
+function x(){m.style.transform='translateX(100%)';k.classList.add('hidden');document.body.style.overflow='';b.setAttribute('aria-expanded','false')}
+b&&b.addEventListener('click',o);c&&c.addEventListener('click',x);k&&k.addEventListener('click',x);document.addEventListener('keydown',function(e){if(e.key==='Escape')x()});});
+</script>
+```
+Footer (`footerHtml`): `<footer class="bg-night-950 text-sand-100">` → 4 columns per §4.10, each link list ending with `<!--tb-footer-insert-->`, bottom bar `© {{current_year}} {{company_name}} · Alle Preise inkl. MwSt.` (if the platform has no year variable, write the year). Do **not** output a `<nav>`/`<footer>` inside any page HTML — only here.
+
+---
+*End of master prompt. Everything marked [TO CONFIRM] is a real gap, not a formality — write "auf Anfrage" rather than guess.*
